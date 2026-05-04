@@ -107,3 +107,8 @@ body {
     border-radius: 30px;
   }
 }
+
+/* Justificado de texto */
+.justificado {
+  text-align: justify;
+}
