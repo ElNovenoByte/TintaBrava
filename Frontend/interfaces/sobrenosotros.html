@@ -4,21 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tinta Brava - Navbar</title>
-  <!-- Bootstrap 5 CSS + Bootstrap Icons + Google Fonts -->
+  <!-- Bootstrap 5 CSS + Bootstrap Icons + Google Fonts + CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-  <!-- Estilos personalizados -->
   <link rel="stylesheet" href="../styles/estilo-sobrenosotros.css">
 </head>
 <body>
 
-  <!-- ========== NAVBAR (ÚNICO REQUERIDO) ========== -->
+  <!-- ========== NAVBAR ========== -->
   <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
       <!-- Logo + TINTA BRAVA -->
       <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-        <!-- Placeholder del logo: imagen aleatoria cuadrada. Cámbiala por tu logo real. -->
+        <!-- Imagen del Logo -->
         <img src="https://picsum.photos/id/104/40/40" alt="Logo placeholder" width="40" height="40" class="rounded">
         <span class="brand-text">TINTA BRAVA</span>
       </a>
@@ -36,7 +35,7 @@
           <li class="nav-item"><a class="nav-link" href="#">Hombre</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Niños</a></li>
         </ul>
-        <!-- Íconos de acción (sin funcionalidad por ahora) -->
+        <!-- Íconos de acción (Ahorita no funciona pero después si) -->
         <div class="d-flex">
           <ul class="navbar-nav flex-row gap-3">
             <li class="nav-item"><a class="nav-link px-0" href="#"><i class="bi bi-search fs-5"></i></a></li>
@@ -48,7 +47,7 @@
     </div>
   </nav>
 
-  <!-- ========== CONTENIDO PRINCIPAL (RELLENO) ========== -->
+  <!-- ========== CONTENIDO PRINCIPAL ========== -->
   <main class="container my-5">
       <section>
       <h2>¿Quiénes somos?</h2>
@@ -68,85 +67,118 @@
       
       <h3 class="mt-4">Conoce al equipo</h3>
       <div class="row row-cols-2 row-cols-md-4 g-4 mt-2">
-        <!-- 8 placeholders para fotos de integrantes -->
-        <!-- Integrante 1 -->
-        <div class="card text-center m-2" style="width: 15rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+        <!-- Fotos de los Integrantes -->
+
+        <!-- Tarjeta 1 -->
+        <div class="col">
+          <div class="card h-100 text-center team-card">
+            <img src="../imagenes/personas/oscar-dev-foto.png" class="card-img-top team-img" alt="fotoOscar" data-name="Oscar Molina" data-bio="Ingeniero en Computación apasionado por el desarrollo de software y videojuegos. He trabajado en diversos proyectos desde menús de restaurante hasta aplicaciones móviles.">
+            <div class="card-body">
+              <h5 class="card-title">Oscar Molina</h5>
+              <p class="card-text">Ingeniero en Computación</p>
+              <p class="card-text">Desarrollador Full Stack</p>
+            </div>
           </div>
         </div>
-        <!-- Integrante 2 -->
-        <div class="card text-center m-2" style="width: 15rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+
+        <!-- Tarjeta 2 -->
+        <div class="col">
+          <div class="card h-100 text-center team-card">
+            <img src="..." class="card-img-top team-img" alt="fotoAle" data-name="Alejandro Mendoza" data-bio="Hola soy Ale">
+            <div class="card-body">
+              <h5 class="card-title">Alejandro Mendoza</h5>
+              <p class="card-text">Profesión de Ale</p>
+              <p class="card-text">Rol de Ale</p>
+            </div>
           </div>
         </div>
-        <!-- Integrante 3 -->
-        <div class="card text-center m-2" style="width: 15rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+
+        <!-- Tarjeta 3 -->
+        <div class="col">
+          <div class="card h-100 text-center team-card">
+            <img src="..." class="card-img-top team-img" alt="fotoAxel" data-name="Axel Chávez" data-bio="Hola soy Axel">
+            <div class="card-body">
+              <h5 class="card-title">Axel Chávez</h5>
+              <p class="card-text">Profesión de Axel</p>
+              <p class="card-text">Rol de Axel</p>
+            </div>
           </div>
         </div>
-        <!-- Integrante 4 -->
-        <div class="card text-center m-2" style="width: 15rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+
+        <!-- Tarjeta 4 -->
+        <div class="col">
+          <div class="card h-100 text-center team-card">
+            <img src="..." class="card-img-top team-img" alt="fotoFer" data-name="Fernando Zamudio" data-bio="Hola soy Fer">
+            <div class="card-body">
+              <h5 class="card-title">Fernando Zamudio</h5>
+              <p class="card-text">Profesión de Fernando</p>
+              <p class="card-text">Rol de Fernando</p>
+            </div>
           </div>
         </div>
-        <!-- Integrante 5 -->
-        <div class="card text-center m-2" style="width: 15rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+
+        <!-- Tarjeta 5 -->
+        <div class="col">
+          <div class="card h-100 text-center team-card">
+            <img src="..." class="card-img-top team-img" alt="fotoJess" data-name="Jessica Maldonado" data-bio="Hola soy Jess">
+            <div class="card-body">
+              <h5 class="card-title">Jessica Maldonado</h5>
+              <p class="card-text">Profesión de Jess</p>
+              <p class="card-text">Rol de Jess</p>
+            </div>
           </div>
         </div>
-        <!-- Integrante 6 -->
-        <div class="card text-center m-2" style="width: 15rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+
+        <!-- Tarjeta 6 -->
+        <div class="col">
+          <div class="card h-100 text-center team-card">
+            <img src="..." class="card-img-top team-img" alt="fotoLiz" data-name="Lizeth Martinez" data-bio="Hola soy Liz">
+            <div class="card-body">
+              <h5 class="card-title">Lizeth Martinez</h5>
+              <p class="card-text">Profesión de liz</p>
+              <p class="card-text">Rol de Liz</p>
+            </div>
           </div>
         </div>
-        <!-- Integrante 7 -->
-        <div class="card text-center m-2" style="width: 15rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+
+        <!-- Tarjeta 7 -->
+        <div class="col">
+          <div class="card h-100 text-center team-card">
+            <img src="..." class="card-img-top team-img" alt="fotoJesus" data-name="Jesus Caballero" data-bio="Hola soy Jesus">
+            <div class="card-body">
+              <h5 class="card-title">Jesus Caballero</h5>
+              <p class="card-text">Profesión de Jesus</p>
+              <p class="card-text">Rol de Jesus</p>
+            </div>
           </div>
         </div>
-        <!-- Integrante 8 -->
-        <div class="card text-center m-2" style="width: 15rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+
+        <!-- Tarjeta 8 -->
+        <div class="col">
+          <div class="card h-100 text-center team-card">
+            <img src="..." class="card-img-top team-img" alt="fotoAngel" data-name="Angel Baca" data-bio="Hola soy Angel">
+            <div class="card-body">
+              <h5 class="card-title">Angel Baca</h5>
+              <p class="card-text">Profesión de Angel</p>
+              <p class="card-text">Rol de Angel</p>
+            </div>
           </div>
         </div>
+
       </div>
     </section>
   </main>
 
-  <!-- ========== FOOTER (RELLENO) ========== -->
+  <!-- ========== FOOTER ========== -->
   <footer class="footer mt-auto py-4" style="background-color: #0B090A; color: #F5F3F4;">
     <div class="container text-center">
-      <span>&copy; 2025 Tinta Brava. Todos los derechos reservados.</span>
-      <p class="mt-2 small">Footer de relleno para el wireframe.</p>
+      <span>&copy; 2026 Tinta Brava. Todos los derechos reservados.</span>
+      <p class="mt-2 small">Footer de relleno</p>
     </div>
   </footer>
 
-  <!-- Bootstrap JS Bundle (necesario para el colapso) -->
+  <!-- Enlaces (BS y JS) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../scripts/script-sobrenosotros.js"></script>
+  <script src="../js-scripts/script-sobrenosotros.js"></script>
 </body>
 </html>
