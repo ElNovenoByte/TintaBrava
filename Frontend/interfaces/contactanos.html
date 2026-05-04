@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tinta Brava - Contacto</title>
+  <!-- Bootstrap 5 CSS + Icons + Google Fonts + CSS-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/estilo-contactanos.css">
+</head>
+<body>
+
+   <!-- ========== NAVBAR ========== -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <!-- Logo + TINTA BRAVA -->
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <!-- Imagen del Logo -->
+        <img src="https://picsum.photos/id/104/40/40" alt="Logo placeholder" width="40" height="40" class="rounded">
+        <span class="brand-text">TINTA BRAVA</span>
+      </a>
+
+      <!-- Botón hamburguesa responsive -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Elementos colapsables: enlaces e íconos -->
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-3">
+          <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Mujer</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Hombre</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Niños</a></li>
+        </ul>
+        <!-- Íconos de acción (Ahorita no funciona pero después si) -->
+        <div class="d-flex">
+          <ul class="navbar-nav flex-row gap-3">
+            <li class="nav-item"><a class="nav-link px-0" href="#"><i class="bi bi-search fs-5"></i></a></li>
+            <li class="nav-item"><a class="nav-link px-0" href="#"><i class="bi bi-person fs-5"></i></a></li>
+            <li class="nav-item"><a class="nav-link px-0" href="#"><i class="bi bi-cart fs-5"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== CONTENIDO PRINCIPAL ========== -->
+  <main class="container my-5">
+    <div class="row g-5 align-items-start">
+      <!-- Columna izquierda: información de contacto -->
+      <div class="col-lg-7">
+        <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-light">
+          <h3 class="text-primary mb-4">Envíanos un mensaje</h3>
+          
+          <!-- Mensajes de éxito/error (aparecerán dinámicamente) -->
+          <div id="formStatus" class="alert d-none mb-4"></div>
+
+          <!-- FORMULARIO (se enviará con AJAX) -->
+          <form id="contactForm">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="nombre" class="form-label fw-bold text-muted">Nombre completo</label>
+                <input type="text" class="form-control p-3" id="nombre" name="name" placeholder="Ej. Juan Pérez" required>
+              </div>
+              <div class="col-md-6">
+                <label for="email" class="form-label fw-bold text-muted">Correo electrónico</label>
+                <input type="email" class="form-control p-3" id="email" name="email" placeholder="tu@email.com" required>
+              </div>
+              <div class="col-12">
+                <label for="asunto" class="form-label fw-bold text-muted">Asunto</label>
+                <select class="form-select p-3" id="asunto" name="subject" required>
+                  <option value="Duda sobre un producto">Duda sobre un producto</option>
+                  <option value="Estatus de mi pedido">Estatus de mi pedido</option>
+                  <option value="Devoluciones y garantías">Devoluciones y garantías</option>
+                  <option value="Ventas al mayoreo / Patrocinios">Ventas al mayoreo / Patrocinios</option>
+                  <option value="Otro">Otro</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label for="mensaje" class="form-label fw-bold text-muted">Tu mensaje</label>
+                <textarea class="form-control p-3" id="mensaje" name="message" rows="4" placeholder="¿En qué te podemos ayudar?" required></textarea>
+              </div>
+              <div class="col-12 mt-4">
+                <button type="submit" class="btn btn-danger w-100 p-3 fw-bold fs-5 rounded-3" id="submitBtn">
+                  Enviar Mensaje <i class="bi bi-send ms-2"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Columna derecha: formulario con Formspree -->
+      
+      <div class="col-lg-5">
+        <div class="bg-white rounded-4 shadow-sm p-4 p-md-5 h-100">
+          <h2 class="text-danger mb-4">Hablemos</h2>
+          <p class="text-muted mb-4">¿Tienes dudas, sugerencias o quieres una cotización? Escríbenos y te responderemos a la brevedad.</p>
+          <div class="mb-4">
+            <h5 class="fw-bold"><i class="bi bi-geo-alt-fill text-danger me-2"></i> Dirección</h5>
+            <p class="text-muted">CDMX, México · Av. Insurgentes Sur 123</p>
+          </div>
+          <div class="mb-4">
+            <h5 class="fw-bold"><i class="bi bi-envelope-fill text-danger me-2"></i> Correo</h5>
+            <p class="text-muted">hola@tintabrava.mx</p>
+          </div>
+          <div class="mb-4">
+            <h5 class="fw-bold"><i class="bi bi-whatsapp text-danger me-2"></i> WhatsApp</h5>
+            <p class="text-muted">+52 55 1234 5678</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer mt-auto py-4" style="background-color: #0B090A; color: #A4161A;">
+    <div class="container text-center">
+      <span>&copy; 2026 Tinta Brava. Todos los derechos reservados.</span>
+      <p class="mt-2 small">Footer de relleno para el wireframe.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js-scripts/script-contactanos.js"></script>
+
+</body>
+</html>
