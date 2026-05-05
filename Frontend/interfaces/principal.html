@@ -3,39 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tinta Brava - Navbar</title>
+  <title>Tinta Brava - Tienda de Estampado</title>
   <!-- Bootstrap 5 CSS + Bootstrap Icons + Google Fonts + CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles/estilo-sobrenosotros.css">
+  <link rel="stylesheet" href="../styles/estilo-principal.css">
 </head>
 <body>
 
   <!-- ========== NAVBAR ========== -->
   <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
-      <!-- Logo + TINTA BRAVA -->
-      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-        <!-- Imagen del Logo -->
-        <img src="https://picsum.photos/id/104/40/40" alt="Logo placeholder" width="40" height="40" class="rounded">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="principal.html">
+        <img src="../imagenes/logos/logo-darkbg.webp" alt="Logo" width="40" height="40" class="rounded">
         <span class="brand-text">TINTA BRAVA</span>
       </a>
 
-      <!-- Botón hamburguesa responsive -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- Elementos colapsables: enlaces e íconos -->
       <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-3">
-          <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link active" href="principal.html">Inicio</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Mujer</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Hombre</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Niños</a></li>
+          <li class="nav-item"><a class="nav-link" href="sobrenosotros.html">Sobre Nosotros</a></li>
         </ul>
-        <!-- Íconos de acción (Ahorita no funciona pero después si) -->
         <div class="d-flex">
           <ul class="navbar-nav flex-row gap-3">
             <li class="nav-item"><a class="nav-link px-0" href="#"><i class="bi bi-search fs-5"></i></a></li>
@@ -47,144 +42,149 @@
     </div>
   </nav>
 
+  <!-- ========== HERO SECTION CON VIDEO ========== -->
+  <header class="hero-video-container">
+    <video autoplay muted loop playsinline class="video-bg">
+      <source src="../videos/impresión-video.mp4" type="video/mp4">
+      Tu navegador no soporta videos.
+    </video>
+
+    <div class="video-overlay"></div>
+
+    <div class="container text-center">
+      <h1 class="display-3 brand-text" style="font-family: 'Bebas Neue', sans-serif;">VISTE LO QUE PIENSAS</h1>
+      <p class="lead text-white">Estampados con actitud y calidad profesional desde CDMX.</p>
+      <a href="#productos" class="btn btn-danger btn-lg mt-3" style="background-color: #A4161A; border: none;">Ver Colección</a>
+    </div>
+  </header>
+
   <!-- ========== CONTENIDO PRINCIPAL ========== -->
-  <main class="container my-5">
-      <section>
-      <h2>¿Quiénes somos?</h2>
-      <p class="justificado">
-        Somos Tinta Brava, una empresa emergente de estampado conformado por un equipo joven en la Ciudad de México 
-        que entiende la ropa como una extensión de la identidad. 
-        Nos dedicamos a imprimir tus diseños con calidad profesional, ya sea para que los lleves
-        puestos o para que los conviertas en tu propia fuente de ingresos.
-        Más allá de imprimir tinta, proyectamos lo que eres.
-      </p>
-            
-      <p class="justificado">
-        En Tinta Brava creemos que la ropa es una forma de expresión. 
-        Nuestro proyecto nace con la idea de ofrecer playeras que no solo se vean bien, 
-        sino que transmitan identidad, actitud y mensaje
-      </p>
-      
-      <h3 class="mt-4">Conoce al equipo</h3>
-      <div class="row row-cols-2 row-cols-md-4 g-4 mt-2">
-        <!-- Fotos de los Integrantes -->
-
-        <!-- Tarjeta 1 -->
-        <div class="col">
-          <div class="card h-100 text-center team-card">
-            <img src="../imagenes/personas/oscar-dev-foto.png" class="card-img-top team-img" alt="fotoOscar" data-name="Oscar Molina" data-bio="Ingeniero en Computación apasionado por el desarrollo de software y videojuegos. He trabajado en diversos proyectos desde menús de restaurante hasta aplicaciones móviles.">
-            <div class="card-body">
-              <h5 class="card-title">Oscar Molina</h5>
-              <p class="card-text">Ingeniero en Computación</p>
-              <p class="card-text">Desarrollador Full Stack</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 2 -->
-        <div class="col">
-          <div class="card h-100 text-center team-card">
-            <img src="../imagenes/personas/edwin-dev-foto.PNG" class="card-img-top team-img" alt="fotoAle" data-name="Edwin Mendoza" data-bio="Diseño e implemento estrategias de contenido 360° además de gestionar comunidades digitales; también entiendo la lógica detrás de las plataformas web gracias a mi formación técnica como desarrollador Java.">
-            <div class="card-body">
-              <h5 class="card-title">Edwin Mendoza</h5>
-              <p class="card-text">Licenciado en Ciencias de la Comunicación</p>
-              <p class="card-text">Diseñador UX/UI</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 3 -->
-        <div class="col">
-          <div class="card h-100 text-center team-card">
-            <img src="../imagenes/personas/oscar-dev-foto.png" class="card-img-top team-img" alt="fotoAxel" data-name="Axel Chávez" data-bio="Desarrollador Full Stack con formación en Física y Mecatrónica. Tengo experiencia en desarrollo de frontend. Mi capacidad analítica me permite resolver problemas complejos y desarrollar soluciones técnicas eficientes." style="transform: rotate(180deg);">
-            <div class="card-body">
-              <h5 class="card-title">Axel Chávez</h5>
-              <p class="card-text">Físico</p>
-              <p class="card-text">Desarrollador Full Stack</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 4 -->
-        <div class="col">
-          <div class="card h-100 text-center team-card">
-            <img src="../imagenes/personas/Fenando-dev-foto.png" class="card-img-top team-img" alt="fotoFer" data-name="Fernando Zamudio" data-bio="Soy desarrollador Java Junior enfocado en la construcción de aplicaciones completas. Mi formación como ingeniero me proporciona una sólida orientación a la precisión y al detalle">
-            <div class="card-body">
-              <h5 class="card-title">Fernando Zamudio</h5>
-              <p class="card-text">Ingeniero Mecánico</p>
-              <p class="card-text">Desarrollador Backend</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 5 -->
-        <div class="col">
-          <div class="card h-100 text-center team-card">
-            <img src="../imagenes/personas/jess-dev-foto.png" class="card-img-top team-img" alt="fotoJess" data-name="Jessica Maldonado" data-bio="Psicóloga clínica y social enfocada en el desarrollo de software. Ayudo a diseñar soluciones tecnológicas seguras y humanas integrando mi formación como psicóloga clínica y social.">
-            <div class="card-body">
-              <h5 class="card-title">Jessica Maldonado</h5>
-              <p class="card-text">Licenciada en Psicología</p>
-              <p class="card-text">QA Tester</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 6 -->
-        <div class="col">
-          <div class="card h-100 text-center team-card">
-            <img src="..." class="card-img-top team-img" alt="fotoLiz" data-name="Lizeth Martinez" data-bio="Hola soy Liz">
-            <div class="card-body">
-              <h5 class="card-title">Lizeth Martinez</h5>
-              <p class="card-text">Ingeniera Petrolera</p>
-              <p class="card-text">Desarrolladora Full Stack</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 7 -->
-        <div class="col">
-          <div class="card h-100 text-center team-card">
-            <img src="../imagenes/personas/jesus-dev-foto.png" class="card-img-top team-img" alt="fotoJesus" data-name="Jesus Caballero" data-bio="Soy Jesús Caballero, me destaco en la gestión de bases de datos y en el desarrollo de soluciones que permiten manejar la información de forma eficiente y organizada. Me interesa seguir creciendo en el área tecnológica, fortaleciendo tanto mis habilidades técnicas como mi capacidad para trabajar en equipo y construir proyectos funcionales con impacto real.">
-            <div class="card-body">
-              <h5 class="card-title">Jesus Caballero</h5>
-              <p class="card-text">Ingeniero en Sistemas Computacionales</p>
-              <p class="card-text">Desarrollador Full Stack</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tarjeta 8 -->
-        <div class="col">
-          <div class="card h-100 text-center team-card">
-            <img src="../imagenes/personas/angel-dev-foto.png" class="card-img-top team-img" alt="fotoAngel" data-name="Angel Baca" data-bio="Soy Ingeniero en TI con enfoque en desarrollo de software apasionado por crear aplicaciones funcionales y de calidad.">
-            <div class="card-body">
-              <h5 class="card-title">Angel Baca</h5>
-              <p class="card-text">Ingeniero en TI</p>
-              <p class="card-text">Desarrollador Full-Stack</p>
-            </div>
-          </div>
-        </div>
-
+  <main class="container my-5" id="productos">
+    
+    <!-- SECCIÓN: CATEGORÍAS (NUEVA) -->
+    <section class="mb-5">
+      <div class="category-filters d-flex justify-content-center flex-wrap gap-3">
+        <button class="btn btn-outline-dark category-btn active">TODOS</button>
+        <button class="btn btn-outline-dark category-btn">PLAYERAS</button>
+        <button class="btn btn-outline-dark category-btn">HOODIES</button>
+        <button class="btn btn-outline-dark category-btn">GORRAS</button>
       </div>
     </section>
+
+    <!-- GRID PRINCIPAL (3 Columnas) -->
+    <section class="mb-5">
+      <h2 class="text-center brand-text mb-4" style="font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: #A4161A;">NUESTROS PRODUCTOS</h2>
+      
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="card h-100 team-card border-0 shadow-sm">
+            <img src="https://picsum.photos/id/2/400/500" class="card-img-top" alt="Playera 1">
+            <div class="card-body text-center">
+              <h5 class="card-title">Playera "Actitud Brava"</h5>
+              <p class="card-text text-muted">$299.00 MXN</p>
+              <button class="btn btn-dark w-100">Agregar al carrito</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100 team-card border-0 shadow-sm">
+            <img src="https://picsum.photos/id/225/400/500" class="card-img-top" alt="Playera 2">
+            <div class="card-body text-center">
+              <h5 class="card-title">Sudadera Custom Tinta</h5>
+              <p class="card-text text-muted">$450.00 MXN</p>
+              <button class="btn btn-dark w-100">Agregar al carrito</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card h-100 team-card border-0 shadow-sm">
+            <img src="https://picsum.photos/id/64/400/500" class="card-img-top" alt="Playera 3">
+            <div class="card-body text-center">
+              <h5 class="card-title">Tote Bag - Edición CDMX</h5>
+              <p class="card-text text-muted">$150.00 MXN</p>
+              <button class="btn btn-dark w-100">Agregar al carrito</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: BANNER (NUEVA) -->
+    <section class="promo-banner my-5 d-flex align-items-center justify-content-center text-center">
+      <div class="promo-content p-4">
+        <h2 class="brand-text text-white display-4">EDICIÓN LIMITADA: CALAVERA BRAVA</h2>
+        <p class="text-white lead">Solo 50 piezas disponibles. No te quedes sin la tuya.</p>
+        <button class="btn btn-light btn-lg mt-2">Comprar ahora</button>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: GRID SECUNDARIO (4 Columnas - NUEVA) -->
+    <section class="mb-5">
+      <h2 class="text-center brand-text mb-4" style="font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: #0B090A;">LO MÁS VENDIDO</h2>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        <div class="col">
+          <div class="card h-100 border-0 shadow-sm">
+            <img src="https://picsum.photos/id/250/400/500" class="card-img-top" alt="Gorra 1">
+            <div class="card-body text-center">
+              <h5 class="card-title">Gorra Snapback Black</h5>
+              <p class="card-text text-muted">$350.00 MXN</p>
+              <button class="btn btn-dark w-100">Agregar al carrito</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 border-0 shadow-sm">
+            <img src="https://picsum.photos/id/260/400/500" class="card-img-top" alt="Playera 4">
+            <div class="card-body text-center">
+              <h5 class="card-title">Playera Tinta Logo</h5>
+              <p class="card-text text-muted">$299.00 MXN</p>
+              <button class="btn btn-dark w-100">Agregar al carrito</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 border-0 shadow-sm">
+            <img src="https://picsum.photos/id/270/400/500" class="card-img-top" alt="Hoodie 1">
+            <div class="card-body text-center">
+              <h5 class="card-title">Hoodie Essential</h5>
+              <p class="card-text text-muted">$550.00 MXN</p>
+              <button class="btn btn-dark w-100">Agregar al carrito</button>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 border-0 shadow-sm">
+            <img src="https://picsum.photos/id/280/400/500" class="card-img-top" alt="Accesorio 1">
+            <div class="card-body text-center">
+              <h5 class="card-title">Parche Brava Red</h5>
+              <p class="card-text text-muted">$80.00 MXN</p>
+              <button class="btn btn-dark w-100">Agregar al carrito</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <!-- ========== FOOTER (RELLENO) ========== -->
-  <footer class="footer mt-auto py-4" style="background-color: #0B090A; color: #A4161A;">
-    <div class="footer-container">
-      <h3>Tinta Brava</h3>
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer mt-auto py-5" style="background-color: #0B090A; color: #f8f9fa;">
+    <div class="container text-center">
+      <h3 class="brand-text" style="font-family: 'Bebas Neue', sans-serif; color: #A4161A; font-size: 2.5rem;">Tinta Brava</h3>
       <p>Viste lo que piensas. Diseños con actitud desde CDMX</p>
-      <a href="https://www.instagram.com/tintabravamx/">Instagram</a>
-      <h4>Contáctanos</h4>
-      <p>tintabravasupport@gmail.com</p>
-      <p>&COPY; 2026 Tinta Brava. CDMX. Todos los derechos reservados.</p>
+      <div class="d-flex justify-content-center gap-3 my-3">
+        <a href="https://www.instagram.com/tintabravamx/" class="text-white fs-4"><i class="bi bi-instagram"></i></a>
+      </div>
+      <hr style="background-color: #A4161A;">
+      <p class="mb-1">tintabravasupport@gmail.com</p>
+      <p class="small">&copy; 2026 Tinta Brava. CDMX. Todos los derechos reservados.</p>
     </div>  
   </footer>
 
-  
-
   <!-- Enlaces (BS y JS) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../js-scripts/script-sobrenosotros.js"></script>
+  <script src="../js-scripts/script-principal.js"></script>
 </body>
 </html>
