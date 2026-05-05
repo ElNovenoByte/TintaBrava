@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tinta Brava - Navbar</title>
+  <!-- Bootstrap 5 CSS + Bootstrap Icons + Google Fonts + CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/estilo-sobrenosotros.css">
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <!-- Logo + TINTA BRAVA -->
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <!-- Imagen del Logo -->
+        <img src="https://picsum.photos/id/104/40/40" alt="Logo placeholder" width="40" height="40" class="rounded">
+        <span class="brand-text">TINTA BRAVA</span>
+      </a>
+
+      <!-- Botón hamburguesa responsive -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Elementos colapsables: enlaces e íconos -->
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-3">
+          <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Mujer</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Hombre</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Niños</a></li>
+        </ul>
+        <!-- Íconos de acción (Ahorita no funciona pero después si) -->
+        <div class="d-flex">
+          <ul class="navbar-nav flex-row gap-3">
+            <li class="nav-item"><a class="nav-link px-0" href="#"><i class="bi bi-search fs-5"></i></a></li>
+            <li class="nav-item"><a class="nav-link px-0" href="#"><i class="bi bi-person fs-5"></i></a></li>
+            <li class="nav-item"><a class="nav-link px-0" href="#"><i class="bi bi-cart fs-5"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== CONTENIDO PRINCIPAL ========== -->
+  <main class="container my-5">
+      <section>
+      <h2>¿Quiénes somos?</h2>
+      <p class="justificado">
+        Somos Tinta Brava, una empresa emergente de estampado conformado por un equipo joven en la Ciudad de México 
+        que entiende la ropa como una extensión de la identidad. 
+        Nos dedicamos a imprimir tus diseños con calidad profesional, ya sea para que los lleves
+        puestos o para que los conviertas en tu propia fuente de ingresos.
+        Más allá de imprimir tinta, proyectamos lo que eres.
+      </p>
+            
+      <p class="justificado">
+        En Tinta Brava creemos que la ropa es una forma de expresión. 
+        Nuestro proyecto nace con la idea de ofrecer playeras que no solo se vean bien, 
+        sino que transmitan identidad, actitud y mensaje
+      </p>
+      
+      <h3 class="mt-4">Conoce al equipo</h3>
+      <div class="row row-cols-2 row-cols-md-4 g-4 mt-2">
+        <!-- Fotos de los Integrantes -->
+
+        <!-- Tarjeta 1 -->
+        <div class="col">
+          <div class="card h-100 text-center team-card">
+            <img src="../imagenes/personas/oscar-dev-foto.png" class="card-img-top team-img" alt="fotoOscar" data-name="Oscar Molina" data-bio="Ingeniero en Computación apasionado por el desarrollo de software y videojuegos. He trabajado en diversos proyectos desde menús de restaurante hasta aplicaciones móviles.">
+            <div class="card-body">
+              <h5 class="card-title">Oscar Molina</h5>
+              <p class="card-text">Ingeniero en Computación</p>
+              <p class="card-text">Desarrollador Full Stack</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2 -->
+        <div class="col">
+          <div class="card h-100 text-center team-card">
+            <img src="../imagenes/personas/edwin-dev-foto.PNG" class="card-img-top team-img" alt="fotoAle" data-name="Edwin Mendoza" data-bio="Diseño e implemento estrategias de contenido 360° además de gestionar comunidades digitales; también entiendo la lógica detrás de las plataformas web gracias a mi formación técnica como desarrollador Java.">
+            <div class="card-body">
+              <h5 class="card-title">Edwin Mendoza</h5>
+              <p class="card-text">Licenciado en Ciencias de la Comunicación</p>
+              <p class="card-text">Diseñador UX/UI</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 3 -->
+        <div class="col">
+          <div class="card h-100 text-center team-card">
+            <img src="../imagenes/personas/oscar-dev-foto.png" class="card-img-top team-img" alt="fotoAxel" data-name="Axel Chávez" data-bio="Desarrollador Full Stack con formación en Física y Mecatrónica. Tengo experiencia en desarrollo de frontend. Mi capacidad analítica me permite resolver problemas complejos y desarrollar soluciones técnicas eficientes." style="transform: rotate(180deg);">
+            <div class="card-body">
+              <h5 class="card-title">Axel Chávez</h5>
+              <p class="card-text">Físico</p>
+              <p class="card-text">Desarrollador Full Stack</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 4 -->
+        <div class="col">
+          <div class="card h-100 text-center team-card">
+            <img src="../imagenes/personas/Fenando-dev-foto.png" class="card-img-top team-img" alt="fotoFer" data-name="Fernando Zamudio" data-bio="Soy desarrollador Java Junior enfocado en la construcción de aplicaciones completas. Mi formación como ingeniero me proporciona una sólida orientación a la precisión y al detalle">
+            <div class="card-body">
+              <h5 class="card-title">Fernando Zamudio</h5>
+              <p class="card-text">Ingeniero Mecánico</p>
+              <p class="card-text">Desarrollador Backend</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 5 -->
+        <div class="col">
+          <div class="card h-100 text-center team-card">
+            <img src="../imagenes/personas/jess-dev-foto.png" class="card-img-top team-img" alt="fotoJess" data-name="Jessica Maldonado" data-bio="Psicóloga clínica y social enfocada en el desarrollo de software. Ayudo a diseñar soluciones tecnológicas seguras y humanas integrando mi formación como psicóloga clínica y social.">
+            <div class="card-body">
+              <h5 class="card-title">Jessica Maldonado</h5>
+              <p class="card-text">Licenciada en Psicología</p>
+              <p class="card-text">QA Tester</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 6 -->
+        <div class="col">
+          <div class="card h-100 text-center team-card">
+            <img src="..." class="card-img-top team-img" alt="fotoLiz" data-name="Lizeth Martinez" data-bio="Hola soy Liz">
+            <div class="card-body">
+              <h5 class="card-title">Lizeth Martinez</h5>
+              <p class="card-text">Ingeniera Petrolera</p>
+              <p class="card-text">Desarrolladora Full Stack</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 7 -->
+        <div class="col">
+          <div class="card h-100 text-center team-card">
+            <img src="../imagenes/personas/jesus-dev-foto.png" class="card-img-top team-img" alt="fotoJesus" data-name="Jesus Caballero" data-bio="Soy Jesús Caballero, me destaco en la gestión de bases de datos y en el desarrollo de soluciones que permiten manejar la información de forma eficiente y organizada. Me interesa seguir creciendo en el área tecnológica, fortaleciendo tanto mis habilidades técnicas como mi capacidad para trabajar en equipo y construir proyectos funcionales con impacto real.">
+            <div class="card-body">
+              <h5 class="card-title">Jesus Caballero</h5>
+              <p class="card-text">Ingeniero en Sistemas Computacionales</p>
+              <p class="card-text">Desarrollador Full Stack</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 8 -->
+        <div class="col">
+          <div class="card h-100 text-center team-card">
+            <img src="../imagenes/personas/angel-dev-foto.png" class="card-img-top team-img" alt="fotoAngel" data-name="Angel Baca" data-bio="Soy Ingeniero en TI con enfoque en desarrollo de software apasionado por crear aplicaciones funcionales y de calidad.">
+            <div class="card-body">
+              <h5 class="card-title">Angel Baca</h5>
+              <p class="card-text">Ingeniero en TI</p>
+              <p class="card-text">Desarrollador Full-Stack</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER (RELLENO) ========== -->
+  <footer class="footer mt-auto py-4" style="background-color: #0B090A; color: #A4161A;">
+    <div class="footer-container">
+      <h3>Tinta Brava</h3>
+      <p>Viste lo que piensas. Diseños con actitud desde CDMX</p>
+      <a href="https://www.instagram.com/tintabravamx/">Instagram</a>
+      <h4>Contáctanos</h4>
+      <p>tintabravasupport@gmail.com</p>
+      <p>&COPY; 2026 Tinta Brava. CDMX. Todos los derechos reservados.</p>
+    </div>  
+  </footer>
+
+  
+
+  <!-- Enlaces (BS y JS) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js-scripts/script-sobrenosotros.js"></script>
+</body>
+</html>
