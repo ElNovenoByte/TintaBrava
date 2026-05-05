@@ -8,6 +8,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> 
   <link rel="stylesheet" href="../styles/estilo-contactanos.css">
 </head>
 <body>
@@ -47,13 +49,28 @@
     </div>
   </nav>
 
+
   <!-- ========== CONTENIDO PRINCIPAL ========== -->
+
+ <main class="container mt-4 mb-5">
+    
+    <div class="row mb-4 justify-content-center text-center">
+      <div class="col-lg-8">
+        <h1 class="Titulo-contacto">Contáctanos</h1>
+        <p class="texto-contacto">
+          ¿Tienes un proyecto en mente o quieres darnos tu opinión? ¡Estas en el lugar correcto!
+        </p>
+      </div>
+    </div>
+
+    <div class="row g-5 align-items-stretch">
+
   <main class="container my-5">
     <div class="row g-5 align-items-start">
       <!-- Columna izquierda: información de contacto -->
       <div class="col-lg-7">
         <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-light">
-          <h3 class="text-primary mb-4">Envíanos un mensaje</h3>
+          <h3 class="Texto-encabezado">Envíanos un mensaje</h3>
           
           <!-- Mensajes de éxito/error (aparecerán dinámicamente) -->
           <div id="formStatus" class="alert d-none mb-4"></div>
@@ -62,15 +79,15 @@
           <form id="contactForm">
             <div class="row g-3">
               <div class="col-md-6">
-                <label for="nombre" class="form-label fw-bold text-muted">Nombre completo</label>
-                <input type="text" class="form-control p-3" id="nombre" name="name" placeholder="Ej. Juan Pérez" required>
+                <label for="nombre" class="texto-izquierda">Nombre completo</label>
+                <input type="text" class="form-control" id="nombre" name="name" placeholder="Ej. Juan Pérez" required>
               </div>
               <div class="col-md-6">
-                <label for="email" class="form-label fw-bold text-muted">Correo electrónico</label>
-                <input type="email" class="form-control p-3" id="email" name="email" placeholder="tu@email.com" required>
+                <label for="email" class="text-izquierda">Correo electrónico</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="tu@email.com" required>
               </div>
               <div class="col-12">
-                <label for="asunto" class="form-label fw-bold text-muted">Asunto</label>
+                <label for="asunto" class="text-izquierda">Asunto</label>
                 <select class="form-select p-3" id="asunto" name="subject" required>
                   <option value="Duda sobre un producto">Duda sobre un producto</option>
                   <option value="Estatus de mi pedido">Estatus de mi pedido</option>
@@ -80,7 +97,7 @@
                 </select>
               </div>
               <div class="col-12">
-                <label for="mensaje" class="form-label fw-bold text-muted">Tu mensaje</label>
+                <label for="mensaje" class="text-izquierda">Tu mensaje</label>
                 <textarea class="form-control p-3" id="mensaje" name="message" rows="4" placeholder="¿En qué te podemos ayudar?" required></textarea>
               </div>
               <div class="col-12 mt-4">
@@ -97,20 +114,32 @@
       
       <div class="col-lg-5">
         <div class="bg-white rounded-4 shadow-sm p-4 p-md-5 h-100">
-          <h2 class="text-danger mb-4">Hablemos</h2>
-          <p class="text-muted mb-4">¿Tienes dudas, sugerencias o quieres una cotización? Escríbenos y te responderemos a la brevedad.</p>
+          <h3 class="Texto-encabezado">¡Conecta con nosotros!</h3>
+          <p class="text-derecha">¿Tienes dudas, sugerencias o quieres una cotización? Contáctanos por el medio que prefieras o ven a visitarnos a nuestro espacio.</p>
           <div class="mb-4">
             <h5 class="fw-bold"><i class="bi bi-geo-alt-fill text-danger me-2"></i> Dirección</h5>
-            <p class="text-muted">CDMX, México · Av. Insurgentes Sur 123</p>
+            <p class="text-derecha"">Av. Insurgentes Sur 123, Colonia Juárez, Cuauhtémoc, Ciudad de México, CDMX</p>
           </div>
           <div class="mb-4">
             <h5 class="fw-bold"><i class="bi bi-envelope-fill text-danger me-2"></i> Correo</h5>
-            <p class="text-muted">hola@tintabrava.mx</p>
+            <p class="text-derecha"">tintabravasupport@gmail.com</p>
           </div>
           <div class="mb-4">
             <h5 class="fw-bold"><i class="bi bi-whatsapp text-danger me-2"></i> WhatsApp</h5>
-            <p class="text-muted">+52 55 1234 5678</p>
+            <p class="text-derecha">+52 55 1234 5678</p>
           </div>
+        <div class="mb-4">
+          <h5 class="fw-bold">
+           <i class="bi bi-instagram text-danger me-2"></i> Instagram
+          </h5>
+            <p class="text-muted">
+            <a href="https://www.instagram.com/tintabravamx/" 
+            target="_blank" 
+            class="instagram-link">
+            @tintabravamx
+            </a>
+  </p>
+</div>
         </div>
       </div>
     </div>
