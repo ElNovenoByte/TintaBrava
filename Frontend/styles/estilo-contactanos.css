@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: #F5F3F4;
+  background-color: #D3D3D3;
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
   min-height: 100vh;
   display: flex;
@@ -120,4 +120,58 @@ body {
 .form-control:focus, .form-select:focus {
   border-color: #E5383B;
   box-shadow: 0 0 0 0.2rem rgba(229, 56, 59, 0.25);
+}
+
+.Texto-encabezado {
+  color: #A4161A;
+  font-weight: 600;
+  font-family: Roboto, sans-serif;
+}
+
+
+.Titulo-contacto {
+    font-family: 'Bebas Neue', cursive;
+    color: #000000 !important;
+    font-size: 60px;
+    letter-spacing: 1px; 
+}
+
+.texto-contacto {
+    font-family: 'Roboto', sans-serif;
+    color: #161a1d !important; 
+    font-size: 20px;
+}
+
+.instagram-link {
+    text-decoration: none; 
+    color: #161a1d; 
+    transition: all 0.3s ease; 
+    font-weight: 500;
+}
+
+.instagram-link:hover {
+    color: #8B1A1A;
+    text-decoration: underline; 
+    cursor: pointer;
+}
+
+.text-derecha {
+    text-align: left;
+    color: #161a1d !important; 
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.text-izquierda {
+ text-align: left;
+    color: #161a1d !important; 
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.form-control, .form-select {
+    border: 1px solid #D3D3D3;
+    border-radius: 4px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Roboto', sans-serifs;
 }
