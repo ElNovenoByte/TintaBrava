@@ -9,9 +9,47 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet"> 
   <link rel="stylesheet" href="../styles/estilo-playeras.css">
+  <link rel="stylesheet" href="../styles/estilo-footer.css">
+  <link rel="stylesheet" href="../styles/estilo-navbar.css">
 </head>
-</head>
+
 <body>
+
+    <!-- ========== NAVBAR ========== -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container-fluid px-4">
+
+    <!-- Logo + TINTA BRAVA -->
+    <a class="navbar-brand d-flex align-items-center gap-3" href="principal.html">
+      <img src="../imagenes/logo.png" alt="Logo Tinta Brava" width="80" class="rounded">
+      <span class="brand-text">TINTA BRAVA</span>
+    </a>
+
+    <!-- Menú hamburguesa para responsive -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Texto Categorías -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav mx-auto gap-lg-4" id="navbarTexto">
+        <li class="nav-item"><a class="nav-link" href="../interfaces/playeras.html">Playeras</a></li>
+        <li class="nav-item"><a class="nav-link" href="../interfaces/hoodies.html">Hoodies</a></li>
+        <li class="nav-item"><a class="nav-link" href="../interfaces/gorras.html">Gorras</a></li>
+        <li class="nav-item"><a class="nav-link" href="../interfaces/sobrenosotros.html">Sobre Nosotros</a></li>
+      </ul>
+    </div>
+
+    <!-- Íconos de la derecha -->
+    <ul class="navbar-nav d-flex flex-row gap-3 icon-list">
+      <li class="nav-item"><a class="nav-link px-0" href="#"><i class="bi bi-search"></i></a></li>
+      <li class="nav-item"><a class="nav-link px-0" href="#"><i class="bi bi-person"></i></a></li>
+      <li class="nav-item"><a class="nav-link px-0" href="#"><i class="bi bi-cart"></i></a></li>
+    </ul>
+
+  </div>
+</nav>
+
     <h1 class="Titulo-playeras">PLAYERAS</h1>
 </body>
 </html>
