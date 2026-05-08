@@ -1,0 +1,162 @@
+/* ========== NAVBAR PRINCIPAL ========== */
+
+.navbar {
+  background-color: #0B090A;
+  border-bottom: 2px solid #0B090A;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Logo + texto */
+.navbar-brand {
+  align-items: center;
+}
+
+.brand-text {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #A4161A;
+  line-height: 1;
+}
+
+/* Links navbar */
+.navbar-dark .navbar-nav .nav-link {
+  color: #F5F3F4;
+  font-weight: 600;
+  font-size: 1.35rem;
+  padding: 0.5rem 0.8rem;
+  transition: color 0.2s, background-color 0.2s, border-radius 0.2s;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #E5383B;
+  background-color: rgba(229, 56, 59, 0.1);
+  border-radius: 6px;
+}
+
+.navbar-dark .navbar-nav .nav-link.active {
+  color: #BA181B;
+  font-weight: 600;
+  border-bottom: 2px solid #BA181B;
+  background-color: transparent;
+}
+
+/* Íconos navbar */
+.navbar-dark .navbar-nav .nav-link i {
+  font-size: 1.8rem;
+  vertical-align: middle;
+}
+
+/* Botón hamburguesa */
+.navbar-dark .navbar-toggler {
+  border-color: #A4161A;
+  background-color: rgba(164, 22, 26, 0.15);
+}
+
+.navbar-dark .navbar-toggler:focus {
+  box-shadow: 0 0 0 2px #BA181B;
+}
+
+/* ========== Grids para la correcta distribución ========== */
+@media (min-width: 992px) {
+  .container-fluid {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem; 
+  }
+
+  /* Logo y TINTA BRAVA en la parte izquierda */
+  .navbar-brand {
+    grid-column: 1 / 2;
+    justify-self: start;
+  }
+
+  /* Cuando está en hamburguesa se mantiene al centro (colapsa al centro) */
+  .collapse.navbar-collapse {
+    grid-column: 2 / 3;
+    justify-self: center; 
+    width: auto;          
+  }
+
+  /* Íconos centrados a la derecha */
+  .icon-list {
+    grid-column: 3 / 4;
+    justify-self: end;
+    margin-left: 0 !important; /* Elimina cualquier margen automático */
+  }
+
+  /* Quitamos la parte flex para que podamos centrar bien las categorías */
+  .navbar .container-fluid {
+    display: grid;
+  }
+
+  .navbar-nav.mx-auto {
+    position: static;
+    transform: none;
+  }
+
+  /* Centrar entre TINTA BRAVA y el primer ícono */
+  #navbarTexto {
+    justify-content: center;
+    margin: 0 auto;
+  }
+}
+
+/* ========== Estilo responsivo (cuando está colapsado, principalmente para 
+celular y tablets ========== */
+@media (max-width: 991.98px) {
+  .container-fluid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .icon-list {
+    order: 2;        /* Íconos a la derecha del botón hamburguesa */
+    margin-left: auto;
+  }
+
+  .navbar-toggler {
+    order: 1;
+  }
+
+  .collapse.navbar-collapse {
+    order: 3;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .navbar-nav {
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .navbar-dark .navbar-nav .nav-link.active {
+    border-bottom: none;
+    background-color: rgba(186, 24, 27, 0.2);
+    border-radius: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .brand-text {
+    font-size: 2rem;
+  }
+
+  .navbar-brand img {
+    width: 70px;
+  }
+
+  .navbar-dark .navbar-nav .nav-link {
+    font-size: 1.15rem;
+  }
+
+  .navbar-dark .navbar-nav .nav-link i {
+    font-size: 1.4rem;
+  }
+}
