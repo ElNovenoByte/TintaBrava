@@ -131,7 +131,7 @@ body {
 
 .Titulo-contacto {
     font-family: 'Bebas Neue', cursive;
-    color: #660708;
+    color: #000000 !important;
     font-size: 60px;
     letter-spacing: 1px; 
 }
