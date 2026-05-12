@@ -1,0 +1,27 @@
+const productostintabrava = [
+    {id: 1, name:'playera gato espacial', price: 300, image:'', category: 'Playeras', color:["Negro", "Blanco", "Rojo", "Verde"], 
+    description: 'Playera con gato espacial color base negro', size:["XS","S","M","L","XL"] },
+    {id: 2, name:'playera gato fumando', price: 200, image:'', category: 'Playeras', color:["Negro", "Rojo", "Azul", "Verde"], 
+    description: 'Playera con un gato sentado fumando color base negro', size:["M","L","XL"]},
+    {id: 3, name:'playera con estampado de "Adicto a las cajeras del Bodega Aurrera"', price: 250, 
+    image:'', category: 'Playeras', color:["Negro", "Rojo", "Azul", "Verde"], 
+    description: 'Playera con el estampado gracioso con una calaca y texto comico', size: ["S","M","XL"]},
+    {id: 4, name:'playera Perrito meme unos pedillos', price: 180, image:'', category: 'Playeras', 
+   color:["Rojo", "Azul", "Verde"], 
+    description: 'Playera estampado de meme del perrito conocido como unos "pedillos"', 
+    size:["XS","S","M","L","XL"]},
+
+    {id: 5, name:'Gorra con bordado de una rana', price: 180, image:'', category: 'Gorras', color:["Negro", "Blanco", "Rojo", "Azul"], 
+    description: 'Gorra con bordado de una rana en el centro', size: ['Unitalla']},
+    {id: 6, name: 'Gorra Dragon Ball', price: 250, image: '../imagenes/productos/gorras/gorraBlanca.jpg', category: 'Gorras', color:["Negro", "Blanco", "Rojo", "Azul", "Verde"], 
+    description: 'Gorra de estilo minimalista con estampado de Dragon Ball.', size: ['Unitalla']},
+    {id: 7, name: 'Gorra deportiva', price: 280, image: '../imagenes/productos/gorras/gorraAzul.webp', category: 'Gorras', color:["Negro", "Azul", "Verde"], 
+    description: 'Gorra de tela resistente ideal para deportes en exteriores.', size: ['Unitalla']},
+ 
+    {id: 8, name: 'Hoodie de gatos', price: 650, image: '../imagenes/productos/hoodies/hoodieAzul.jpeg', category: 'Hoodies', color:["Negro", "Blanco", "Rojo", "Azul", "Verde"], 
+    description: 'Hoodie de gatos con capucha y bolsillo frontal.', size:["XS","S","L","XL"]},
+    {id: 9, name: 'Hoodie Queen', price: 600, image: '../imagenes/productos/hoodies/hoodieRojo.jpeg', category: 'Hoodies', color:["Blanco", "Rojo", "Azul", "Verde"], 
+    description: 'Hoodie Queen para climas frescos.', size:["XS","S","M"]},
+    {id: 10, name: 'Hoodie anime', price: 700, image: '../imagenes/productos/hoodies/hoodieNegro.jpg', category: 'Hoodies', color:["Negro", "Rojo", "Azul"], 
+    description: 'Hoodie de anime edición especial acabados reforzados.', size:["XS","S","M","L","XL"]},
+];
