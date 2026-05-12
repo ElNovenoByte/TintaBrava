@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background-color: #D3D3D3; font-family: 'Roboto', sans-serif; overflow-x: hidden; }
+
+/* VIDEO BACKGROUNDS */
+.video-bg { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); object-fit: cover; z-index: 0; }
+.video-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 1; }
+
+.hero-video-container { position: relative; height: 50vh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+
+/* VIDEO FULL WIDTH (BAJA ALTURA) */
+.promo-video-fullwidth {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  height: 250px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.promo-content-center { position: relative; z-index: 2; }
+
+/* DISEÑO DE CARDS PERSONALIZADAS */
+.product-card-custom {
+  border: none;
+  border-radius: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #FFF;
+}
+
+.product-card-custom:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.product-card-custom .card-title {
+  color: #0B090A !important;
+  font-size: 1.5rem;
+}
+
+.price-text {
+  color: #A4161A;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.btn-dark-brava {
+  background-color: #0B090A;
+  color: white;
+  border-radius: 0;
+  font-family: 'Bebas Neue', cursive;
+  padding: 10px 25px;
+  transition: 0.3s;
+}
+
+.btn-dark-brava:hover {
+  background-color: #A4161A;
+  color: white;
+}
+
+/* CATEGORÍAS CIRCULARES */
+.category-circle { width: 180px; height: 180px; border-radius: 50%; overflow: hidden; position: relative; margin: 0 auto; transition: 0.4s; }
+.category-circle img { width: 100%; height: 100%; object-fit: cover; }
+.category-label { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(164, 22, 26, 0.7); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.4s; }
+.category-circle:hover .category-label { opacity: 1; }
+
+/*
+.footer-container {
+  display: flex;
+  justify-content: center;   
+  align-items: flex-start;   
+  gap: 30px;                 
+  flex-wrap: wrap;           
+  padding: 40px 0px;
+  text-align: center;
+}
+
+.footer-section h4 {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px; /* 👈 opcional pero queda 🔥 */
+  /*font-size: 20px;
+}
+
+.footer-bottom{
+  border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 15px;
+  font-size: 14px;
+  opacity: 0.7;
+}*/
+
+/* Mejoras en las tarjetas para que resalten sobre el parallax */
+.product-card-custom {
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.05);
+}
