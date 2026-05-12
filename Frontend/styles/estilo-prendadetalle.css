@@ -4,3 +4,8 @@
 body { background-color: #D3D3D3; font-family: 'Roboto', sans-serif; overflow-x: hidden; }
 
 .vh-80 { height: 80vh; }
+
+.rounded-circle:hover{
+    transform: scale(1.1);
+    transition: 0.2s;
+}
