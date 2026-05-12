@@ -95,5 +95,9 @@ body { background-color: #D3D3D3; font-family: 'Roboto', sans-serif; overflow-x:
   opacity: 0.7;
 }*/
 
-
+/* Mejoras en las tarjetas para que resalten sobre el parallax */
+.product-card-custom {
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.05);
+}
 
