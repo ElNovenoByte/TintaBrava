@@ -69,31 +69,27 @@ body { background-color: #D3D3D3; font-family: 'Roboto', sans-serif; overflow-x:
 .category-label { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(164, 22, 26, 0.7); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.4s; }
 .category-circle:hover .category-label { opacity: 1; }
 
-
-.footer-container {
-  display: flex;
-  justify-content: center;   
-  align-items: flex-start;   
-  gap: 30px;                 
-  flex-wrap: wrap;           
-  padding: 40px 0px;
-  text-align: center;
+/* EFECTO PARALLAX EN EL BODY */
+.parallax-bg {
+  background-image: linear-gradient(rgba(211, 211, 211, 0.9), rgba(211, 211, 211, 0.9)), url('../imagenes/textura-fondo.jpg'); /* Puedes poner una textura urbana de fondo */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.footer-section h4 {
-  font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 1px; /* 👈 opcional pero queda 🔥 */
-  font-size: 20px;
+/* AJUSTES PARA EL CARRUSEL */
+.carousel-item {
+  padding: 20px 60px; /* Espacio para que no choquen con las flechas */
 }
 
-.footer-bottom{
-  border-top: 1px solid rgba(255,255,255,0.1);
-  text-align: center;
-  margin-top: 30px;
-  padding-top: 15px;
-  font-size: 14px;
-  opacity: 0.7;
+.carousel-control-prev, .carousel-control-next {
+  opacity: 0.8;
 }
 
-
+/* Mejoras en las tarjetas para que resalten sobre el parallax */
+.product-card-custom {
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.05);
+}
 
