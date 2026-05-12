@@ -1,0 +1,219 @@
+body{
+    background-color: #d3d3d3;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    background-color: #0B090A;
+    border-bottom: 3px solid #A4161A;
+    padding: 12px 0;
+}
+
+.navbar-brand img{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.brand-text{
+    font-family: 'Bebas Neue', sans-serif;
+    color: white;
+    font-size: 3rem;
+    letter-spacing: 2px;
+}
+
+.navbar .nav-link{
+    color: white;
+    font-weight: bold;
+    font-size: 1.3rem;
+    transition: .3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active{
+    color: #E5383B;
+    border-bottom: 3px solid #E5383B;
+}
+
+.navbar i{
+    color: white;
+    font-size: 1.8rem;
+    transition: .3s ease;
+}
+
+.navbar i:hover{
+    color: #E5383B;
+}
+
+/* ================= HERO ================= */
+
+.hero-gorras{
+    background:
+    linear-gradient(rgba(0,0,0,.6),
+    rgba(0,0,0,.6)),
+    url("../gorras/banner.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    height: 75vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    color: white;
+}
+
+.hero-gorras h1{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 6rem;
+    letter-spacing: 4px;
+}
+
+.hero-gorras p{
+    font-size: 1.4rem;
+    margin-top: 10px;
+}
+
+/* ================= TITULOS ================= */
+
+.titulo-seccion{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: #A4161A;
+    letter-spacing: 2px;
+}
+
+/* ================= CARDS ================= */
+
+.gorra-card{
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+
+    transition: .4s ease;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,.2);
+}
+
+.gorra-card:hover{
+    transform: translateY(-10px) scale(1.02);
+}
+
+.gorra-card img{
+    height: 320px;
+    object-fit: cover;
+}
+
+.card-title{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.3rem;
+    color: #161A1D;
+}
+
+.card-text{
+    font-size: 1rem;
+}
+
+.precio{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #A4161A;
+}
+
+/* ================= BOTONES ================= */
+
+.btn-danger{
+    background-color: #A4161A;
+    border: none;
+    padding: 12px 30px;
+    font-weight: bold;
+    transition: .3s ease;
+}
+
+.btn-danger:hover{
+    background-color: #660708;
+}
+
+.btn-outline-danger{
+    border: 2px solid #A4161A;
+    color: #A4161A;
+    font-weight: bold;
+    transition: .3s ease;
+}
+
+.btn-outline-danger:hover{
+    background-color: #A4161A;
+    color: white;
+}
+
+/* ================= CONTACTO ================= */
+
+.contacto-gorras{
+    background-color: #161A1D;
+    color: white;
+}
+
+.contacto-gorras h2{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+}
+
+.contacto-gorras p{
+    font-size: 1.2rem;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+    background-color: #0B090A;
+    color: white;
+}
+
+.footer h3{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: #E5383B;
+}
+
+/* ================= ANIMACIONES ================= */
+
+.animar{
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all .8s ease;
+}
+
+.animar.mostrar{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width: 768px){
+
+    .hero-gorras h1{
+        font-size: 4rem;
+    }
+
+    .titulo-seccion{
+        font-size: 3rem;
+    }
+
+    .contacto-gorras h2{
+        font-size: 3rem;
+    }
+
+    .brand-text{
+        font-size: 2rem;
+    }
+
+}
