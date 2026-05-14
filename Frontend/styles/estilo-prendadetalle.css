@@ -1,10 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;700&display=swap');
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { background-color: #D3D3D3; font-family: 'Roboto', sans-serif; overflow-x: hidden; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-.vh-80 { height: 80vh; }
+body {
+    background-color: #D3D3D3;
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+}
 
+.vh-80 {
+    height: 80vh;
+}
+
+.short-description {
+    font-weight: bolder;
+}
+
+.price{
+    font-weight: bolder;
+}
+
+.long-description {
+    font-weight: normal;
+}
 .rounded-circle:hover{
     transform: scale(1.1);
     transition: 0.2s;
