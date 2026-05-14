@@ -49,43 +49,67 @@
     </div>
     </nav>
 
-    <main>
-        <div class="container p-5">
-            <div class="row vh-80">
-                <div class="col-6 bg-primary">
-                    <h1>ÓSCAR</h1><!-- OSCAR -->
-                </div>
-                <div class="col-6 py-1 d-flex flex-column border border-dark">
-                    <!-- JESÚS Y AXEL -->
-                    <div>Playera blanca STWD</div>
-                    <div>$399.00</div>
-                    <div>Playera blanca con texto y gráfico STWD, cuello redondo y de manga corta.</div>
-                    <!--Dropdown de tallas-->
-                    <div class="mb-3">
-                      <label for="talla" class="form-label">Selecciona tu talla</label>
-
-                      <select class="form-select">
-                        <option selected disabled>Elige una talla</option>
-                        <option>XS</option>
-                        <option>S</option>
-                        <option>M</option>
-                        <option>L</option>
-                        <option>XL</option>
-                      </select>
-                    </div>
-                    <!--Seleccionar los colores-->
-                    <div class="mb-3">
-                      <p class="mb-2">Color:</p>
-                      <div class="d-flex gap-2">
-                        <button class="btn rounded-circle border" style="width: 30px; height: 30px; background-color: black;"></button>
-                        <button class="btn rounded-circle border" style="width: 30px; height: 30px; background-color: white;"></button>
-                        <button class="btn rounded-circle border" style="width: 30px; height: 30px; background-color: red;"></button>
-                      </div>
-                    </div>
-                </div>
-            </div>            
+  <main>
+  <div class="container p-5">
+    <div class="row text-center vh-80">
+      <!-- COLUMNA IZQUIERDA (ÓSCAR): Galería de imágenes -->
+      <div class="col-6 bg-primary">
+        <div class="gallery-layout">
+          <!-- Miniaturas verticales -->
+          <div class="thumbnail-vertical">
+            <div class="thumbnail-item">
+              <img src="https://picsum.photos/id/30/100/100" data-large="https://picsum.photos/id/30/600/750" class="thumbnail-img active-thumb" alt="Vista 1">
+            </div>
+            <div class="thumbnail-item">
+              <img src="https://picsum.photos/id/31/100/100" data-large="https://picsum.photos/id/31/600/750" class="thumbnail-img" alt="Vista 2">
+            </div>
+            <div class="thumbnail-item">
+              <img src="https://picsum.photos/id/32/100/100" data-large="https://picsum.photos/id/32/600/750" class="thumbnail-img" alt="Vista 3">
+            </div>
+            <div class="thumbnail-item">
+              <img src="https://picsum.photos/id/33/100/100" data-large="https://picsum.photos/id/33/600/750" class="thumbnail-img" alt="Vista 4">
+            </div>
+            <div class="thumbnail-item">
+              <img src="https://picsum.photos/id/34/100/100" data-large="https://picsum.photos/id/34/600/750" class="thumbnail-img" alt="Vista 5">
+            </div>
+          </div>
+          <!-- Imagen principal -->
+          <div class="main-image-container">
+            <img id="mainProductImage" class="main-product-img img-fluid" src="https://picsum.photos/id/30/600/750" alt="Vista principal del producto">
+          </div>
         </div>
-    </main>
+      </div>
+
+      <!-- COLUMNA DERECHA (JESÚS Y AXEL): Selector de tallas y colores -->
+      <div class="col-6 bg-secondary d-flex flex-column justify-content-center">
+        <h1>JESÚS Y AXEL</h1>
+
+        <!-- Dropdown de tallas -->
+        <div class="mb-3">
+          <label for="talla" class="form-label">Selecciona tu talla</label>
+          <select class="form-select">
+            <option selected disabled>Elige una talla</option>
+            <option>XS</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+          </select>
+        </div>
+
+        <!-- Seleccionar colores -->
+        <div class="mb-3">
+          <p class="mb-2">Color:</p>
+          <div class="d-flex gap-2">
+            <button class="btn rounded-circle border" style="width: 30px; height: 30px; background-color: black;"></button>
+            <button class="btn rounded-circle border" style="width: 30px; height: 30px; background-color: white;"></button>
+            <button class="btn rounded-circle border" style="width: 30px; height: 30px; background-color: red;"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
 
     <!-- FOOTER -->
 
@@ -127,6 +151,7 @@
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js-scripts/script-prendadetalle.js"></script>
   <script src="../js-scripts/script-principal.js"></script>
 </body>
 </html>
