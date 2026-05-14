@@ -1,11 +1,93 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;700&display=swap');
+/* ========== GALERÍA DE IMÁGENES (ÓSCAR) ========== */
+.gallery-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: flex-start;
+}
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { background-color: #D3D3D3; font-family: 'Roboto', sans-serif; overflow-x: hidden; }
+.thumbnail-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 85px;
+    flex-shrink: 0;
+}
 
 .vh-80 { height: 80vh; }
 
 .rounded-circle:hover{
     transform: scale(1.1);
     transition: 0.2s;
+}
+
+.main-image-container {
+    flex: 1;
+    background-color: #f4f4f4;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.main-product-img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+    display: block;
+}
+
+.thumbnail-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
+    opacity: 0.8;
+}
+
+.thumbnail-img:hover {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+.thumbnail-img.active-thumb {
+    border-color: #000;
+    opacity: 1;
+    box-shadow: 0 0 0 2px rgba(0,0,0,0.05);
+}
+
+/* Responsive: en móviles las miniaturas pasan debajo de la imagen */
+@media (max-width: 767.98px) {
+    .gallery-layout {
+        flex-direction: column;
+    }
+    .thumbnail-vertical {
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .thumbnail-img {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+.placeholders {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+/* Ajustes de la gallery para que no se desborde */
+.col-6.bg-secondary {
+    overflow-y: auto;  
+}
+
+.gallery-layout {
+    height: 100%;          
+    align-items: center;   
 }
