@@ -1,0 +1,175 @@
+/* 
+Estilos del cuerpo modificacion
+ */
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+
+    background:
+    linear-gradient(
+        135deg,
+        #000000,
+        #1a0000,
+        #5c0000
+    );
+
+    height: 100vh;
+}
+
+/* 
+  Contenedor principal 
+*/
+.login-container{
+    width: 950px;
+    height: 550px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #111;
+    box-shadow: 0px 0px 25px rgba(255,0,0,0.3);
+}
+
+/*
+ Lado Izquierdo donde ira la imagen y texto
+*/
+.left-side{
+    position: relative;
+    background-image: url("../imagenes/logos/Ejemplo-Login.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 40px;
+}
+
+/* Capa Oscura para la imagen */
+.overlay{
+    position: absolute;
+    inset: 0;
+
+    background:
+    linear-gradient(
+        to top,
+        rgba(0,0,0,0.7),
+        rgba(255,0,0,0.15)
+    );
+}
+
+/* Modificacion del texto */
+.brand-text{
+    position: relative;
+    z-index: 2;
+    color: white;
+}
+.brand-text h1{
+    color: #ff1a1a;
+
+    font-size: 3.2rem;
+    font-weight: bold;
+}
+
+.brand-text p{
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+/* 
+Lado derecho donde esta el Login
+*/
+
+.right-side{
+    background: #0a0a0a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* cajita que estara el login */
+.login-box{
+    width: 80%;
+}
+
+/* titulo de inicio de sesion */
+.login-box h2{
+    color: #ff1a1a;
+    text-align: center;
+    margin-bottom: 35px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* parte de los inputs */
+.form-control{
+    height: 50px;
+    background: #161616;
+    border: 1px solid #333;
+    color: white;
+}
+
+.form-control::placeholder{
+    color: #888;
+}
+
+.form-control:focus{
+    background: #161616;
+    color: white;
+
+    border-color: #ff1a1a;
+
+    box-shadow: 0 0 10px rgba(255,0,0,0.4);
+}
+
+/* Boton */
+.login-btn{
+    height: 35px;
+    background: #d40000;
+    border: none;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.login-btn:hover{
+    background: #ff1a1a;
+    transform: scale(1.00);
+}
+
+/* Los links */
+.forgot{
+    text-align: center;
+}
+
+.forgot a{
+    color: #aaa;
+    text-decoration: none;
+}
+
+.forgot a:hover{
+    color: #ff1a1a;
+}
+
+/* 
+Ya por ultimo hacerlo responsivo
+*/
+
+@media(max-width:768px){
+
+    .login-container{
+        width: 95%;
+        height: auto;
+    }
+
+    .left-side{
+        height: 250px;
+    }
+
+    .right-side{
+        padding: 40px 20px;
+    }
+
+}
+
+
