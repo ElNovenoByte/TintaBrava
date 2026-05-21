@@ -55,3 +55,21 @@
 .social-link:hover {
   color: #A4161A;
 }
+
+.footer{
+    background-color: #0B090A;
+    color: white;
+}
+
+.footer h4{
+    color: #A4161A;
+}
+
+.footer a{
+    color: white;
+    text-decoration: none;
+}
+
+.footer a:hover{
+    color: #A4161A;
+}

@@ -91,3 +91,22 @@
     height: 100%;          
     align-items: center;   
 }
+
+/*Container*/
+.container h2, 
+.container h4{
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.container p, 
+.container label, 
+.container button{
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+}
+
+/*label de seleccionar tallas*/
+label{
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+}
