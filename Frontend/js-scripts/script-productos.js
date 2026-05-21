@@ -12,11 +12,11 @@ const productostintabrava = [
     size:["XS","S","M","L","XL"]},
 
     {id: 5, name:'Gorra con bordado de una rana', price: 180, image:'', category: 'Gorras', color:["Negro", "Blanco", "Rojo", "Azul"], 
-    description: 'Gorra con bordado de una rana en el centro', size: ['Unitalla']},
+    description: 'Gorra con bordado de una rana en el centro', size: ["Unitalla"]},
     {id: 6, name: 'Gorra Dragon Ball', price: 250, image: '../imagenes/productos/gorras/gorraBlanca.jpg', category: 'Gorras', color:["Negro", "Blanco", "Rojo", "Azul", "Verde"], 
-    description: 'Gorra de estilo minimalista con estampado de Dragon Ball.', size: ['Unitalla']},
+    description: 'Gorra de estilo minimalista con estampado de Dragon Ball.', size: ["Unitalla"]},
     {id: 7, name: 'Gorra deportiva', price: 280, image: '../imagenes/productos/gorras/gorraAzul.webp', category: 'Gorras', color:["Negro", "Azul", "Verde"], 
-    description: 'Gorra de tela resistente ideal para deportes en exteriores.', size: ['Unitalla']},
+    description: 'Gorra de tela resistente ideal para deportes en exteriores.', size: ["Unitalla"]},
  
     {id: 8, name: 'Hoodie de gatos', price: 650, image: '../imagenes/productos/hoodies/hoodieAzul.jpeg', category: 'Hoodies', color:["Negro", "Blanco", "Rojo", "Azul", "Verde"], 
     description: 'Hoodie de gatos con capucha y bolsillo frontal.', size:["XS","S","L","XL"]},

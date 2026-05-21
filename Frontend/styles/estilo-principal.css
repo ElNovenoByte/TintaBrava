@@ -69,35 +69,37 @@ body { background-color: #D3D3D3; font-family: 'Roboto', sans-serif; overflow-x:
 .category-label { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(164, 22, 26, 0.7); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.4s; }
 .category-circle:hover .category-label { opacity: 1; }
 
-/*
-.footer-container {
-  display: flex;
-  justify-content: center;   
-  align-items: flex-start;   
-  gap: 30px;                 
-  flex-wrap: wrap;           
-  padding: 40px 0px;
-  text-align: center;
-}
-
-.footer-section h4 {
-  font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 1px; /* 👈 opcional pero queda 🔥 */
-  /*font-size: 20px;
-}
-
-.footer-bottom{
-  border-top: 1px solid rgba(255,255,255,0.1);
-  text-align: center;
-  margin-top: 30px;
-  padding-top: 15px;
-  font-size: 14px;
-  opacity: 0.7;
-}*/
-
 /* Mejoras en las tarjetas para que resalten sobre el parallax */
 .product-card-custom {
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   border: 1px solid rgba(0,0,0,0.05);
 }
 
+.marquee-container {
+  background-color: #0B090A;
+  color: #f5f5f5;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 15px 0;
+  border-top: 0px solid #A4161A;
+  border-bottom: 0px solid #A4161A;
+  margin-top: 0; /* Pegado al video */
+  display: flex;
+}
+
+.marquee-content {
+  display: flex;
+  animation: scroll-infinite 25s linear infinite;
+}
+
+.marquee-content span {
+  padding: 0 40px;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+}
+
+@keyframes scroll-infinite {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
