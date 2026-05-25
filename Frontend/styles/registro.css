@@ -124,6 +124,25 @@ body {
     border-color: #E5383B !important;
     box-shadow: 0 0 12px rgba(229, 56, 59, 0.45) !important;
 }
+/* Mensaje de Error correo */
+.error-message{
+    display: none;
+    background: #D3D3D3;
+    border: 1px solid #A4161A;
+    color: #a4161a ;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-top: 8px;
+    font-size: 0.85rem;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 0 0 10px rgba(229, 56, 59, 0.25);
+}
+
+/* Input con error correo*/
+.input-error{
+    border: 1px #D3D3D3 !important;
+    box-shadow: 0 0 10px rgba(229, 56, 59, 0.35) !important;
+}
 
 /* Boton de registro */
 .register-btn {
