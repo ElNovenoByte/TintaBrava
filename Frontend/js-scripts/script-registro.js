@@ -12,6 +12,7 @@ const errorContrasena = document.getElementById("errorContrasena");
 formulario.addEventListener("submit", function(e){
 
     e.preventDefault();
+    let valido = true;
 
     const valorCorreo = correo.value.trim();
 
@@ -21,6 +22,7 @@ formulario.addEventListener("submit", function(e){
         errorCorreo.textContent = "El correo es obligatorio";
 
         correo.classList.add("input-error");
+        valido = false;
 
     }
     else if(!valorCorreo.includes("@")){
@@ -29,6 +31,7 @@ formulario.addEventListener("submit", function(e){
         errorCorreo.textContent = "Debes ingresar un correo válido";
 
         correo.classList.add("input-error");
+        valido = false;
 
     }
     else{
@@ -75,7 +78,7 @@ confirmarContrasena.addEventListener("input", function() {
     if (valido) {
        
 console.log("Formulario válido, proceder con el registro");
- window.location.href = "Frontend/interfaces/login.html";
+ window.location.href = "../interfaces/login.html";
     }
 
 });
