@@ -78,10 +78,33 @@ formulario.addEventListener("submit", function (e) {
         telefono.classList.remove("input-error");
 
     }
+
+//CONTRASEÑA: Validación para el campo de contraseña
+    const valorPassword = passwordInput.value.trim();
+    const valorPasswordConfirm = passwordInputconfirm.value.trim();
+    if (valorPassword === "") {
+
+        errorPassword.style.display = "block";
+        errorPassword.textContent = "La contraseña es obligatoria";
+    }
+    else {
+        errorPassword.style.display = "none";
+    }
+
+    if (valorPasswordConfirm === "") {
+        errorPasswordConfirm.style.display = "block";
+        errorPasswordConfirm.textContent = "Debes confirmar la contraseña";
+    }
+    else if (valorPassword !== valorPasswordConfirm) {
+        errorPasswordConfirm.style.display = "block";
+        errorPasswordConfirm.textContent = "Las contraseñas no coinciden";
+    }
+    else {
+        errorPasswordConfirm.style.display = "none";
+    }
 });
 
-//BOTÓN DE MOSTRAR CONTRASEÑA
-//const passwordInput = document.getElementById('passwordInput');
+//BOTÓN DE MOSTRAR CONTRASENA
 const togglePassword = document.getElementById('togglePassword');
 
 // Funciones para mostrar y ocultar la contraseña, además de cambiar el ícono del ojo
@@ -109,7 +132,6 @@ togglePassword.addEventListener('mouseleave', ocultarContrasena);
 
 
 //BOTÓN DE MOSTRAR CONTRASEÑA CONFIRMAR
-//const passwordInputconfirm = document.getElementById('passwordInputconfirm');
 const togglePasswordconfirm = document.getElementById('togglePasswordconfirm');
 
 // Funciones para mostrar y ocultar la contraseña, además de cambiar el ícono del ojo
