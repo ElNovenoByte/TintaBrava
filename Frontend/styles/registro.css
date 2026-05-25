@@ -1,0 +1,189 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    overflow-y: auto; 
+    background-color: #0B090A;
+    min-height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Cuadro principal */
+.register-container {
+    width: 950px;
+    /* El height auto con padding sirve para que caja agarre una altura sin dejar espacios vacíos anchos ni cortar el texto de adentro */
+    height: auto; 
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #0B090A;
+    /* Brillo exterior alrededor de la caja */
+    box-shadow: 0px 0px 30px rgba(229, 56, 59, 0.55);
+    margin: 40px auto; 
+}
+
+/* Cuadro izquierdo (video de fondo) */
+
+.left-side {
+    position: relative;
+    background-image:none;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 40px;
+    min-height: 100%;
+}
+.bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+}
+
+
+
+/* Capa oscura y brillo rojo sobre la imagen */
+.overlay {
+    position: absolute;
+    inset: 0;
+    /* el efecto de brillo rojo se logra con un degradado que va de una un rojo muy transparente a un rojo más brillante, creando un efecto de resplandor */
+    background: linear-gradient(
+        to top,
+        rgba(11, 9, 10, 0.85),
+        rgba(229, 56, 59, 0.18)
+    );
+    z-index: 1;
+}
+
+.brand-text {
+    position: relative;
+    z-index: 2;
+}
+
+/* Letras del titulo Tinta Brava */
+.brand-text h1 {
+    color: #BA181B !important; 
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Cuadro derecho. El formulario */
+.right-side {
+    background: #0B090A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0; 
+}
+
+.register-box {
+    width: 80%;
+}
+
+/* Letras del titulo de registro */
+.register-box h2 {
+    color: #BA181B !important; 
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.2rem;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+/* Cuadros de texto para escribir los datos */
+.form-control {
+    height: 48px;
+    background: #161A1D !important;
+    border: 1px solid #161A1D !important;
+    color: #FFFFFF !important;
+    border-radius: 8px;
+    padding-left: 15px;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Letras guía de los cuadros de texto */
+.form-control::placeholder {
+    color: #B1A7A6 !important; 
+}
+
+/* Efecto de brillo, como de foco, en los cuadros de texto, con un fondo un poco más claro y un borde rojo brillante */
+.form-control:focus {
+    background: #161A1D !important;
+    color: #FFFFFF !important;
+    border-color: #E5383B !important;
+    box-shadow: 0 0 12px rgba(229, 56, 59, 0.45) !important;
+}
+
+/* Boton de registro */
+.register-btn {
+    height: 50px;
+    background: #BA181B !important; 
+    border: none !important;
+    color: #FFFFFF !important;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Efecto del boton de registro al pasar el mouse encima */
+.register-btn:hover {
+    background: #E5383B !important; 
+    color: #FFFFFF !important;
+    box-shadow: 0px 4px 15px rgba(229, 56, 59, 0.4);
+}
+
+.forgot {
+    text-align: center;
+}
+
+/* Las letras del enlace de abajo */
+.forgot a {
+    color: #D3D3D3 !important;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+/* Las letras del enlace de abajo al pasarles encima */
+.forgot a:hover {
+    color: #E5383B !important; 
+}
+
+/* Lo hace responsivo */
+@media(max-width: 768px) {
+    .register-container {
+        width: 95%;
+        height: auto;
+        margin: 40px auto;
+    }
+
+    .left-side {
+        height: 250px;
+    }
+
+    .brand-text h1 {
+        font-size: 3rem;
+    }
+
+    .right-side {
+        padding: 40px 20px;
+    }
+}

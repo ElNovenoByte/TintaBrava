@@ -122,6 +122,15 @@ Lado derecho donde esta el Login
     box-shadow: 0 0 10px rgba(255,0,0,0.4);
 }
 
+.registro-btn{
+    height: 35px;
+    background: #d40000;
+    border: none;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
 /* Boton */
 .login-btn{
     height: 35px;

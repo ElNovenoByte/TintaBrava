@@ -8,18 +8,119 @@
 
   <!-- Bootstrap + Icons + Fonts -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
-        rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
   <!-- CSS -->
   <link rel="stylesheet" href="../styles/estilo-gorras.css">
   <link rel="stylesheet" href="../styles/estilo-navbar.css">
   <link rel="stylesheet" href="../styles/estilo-contactanos.css">
   <link rel="stylesheet" href="../styles/estilo-footer.css">
+
+  <style>
+    /* ── ESTILOS DEL FILTRADO PREMIUM TINTA BRAVA ── */
+    .filter-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 30px 0 50px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.4rem;
+      letter-spacing: 1.5px;
+      padding: 8px 30px;
+      border: 2px solid #000000;
+      background-color: transparent;
+      color: #000000;
+      border-radius: 0px; /* Estilo urbano/rígido */
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    /* Estado activo y hover del botón de filtro */
+    .filter-btn:hover,
+    .filter-btn.active {
+      background-color: #E5383B; /* Rojo Tinta Brava */
+      color: #FFFFFF !important;
+      border-color: #E5383B;
+      box-shadow: 0 4px 15px rgba(229, 56, 59, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* Animación suave para cuando aparecen/desaparecen las tarjetas */
+    .col-product {
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .col-product.hidden {
+      display: none !important;
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    .col-product.show {
+      display: block !important;
+      animation: fadeInUp 0.4s forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* ── EFECTO HOVER DE DOBLE IMAGEN (E-COMMERCE PREMIUM) ── */
+    .card-img-container {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1 / 1; /* Mantiene proporción cuadrada idéntica en todas las tarjetas */
+      background-color: #f5f5f5;
+    }
+
+    /* Propiedades base para las imágenes frontales y traseras */
+    .card-img-container img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                  transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* Imagen frontal: visible de inicio */
+    .img-front {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    /* Imagen trasera: oculta de inicio */
+    .img-back {
+      opacity: 0;
+      z-index: 1;
+    }
+
+    /* Transición hover: Oculta la de enfrente, muestra la de atrás y aplica zoom */
+    .gorra-card-premium:hover .img-front {
+      opacity: 0;
+      transform: scale(1.08);
+    }
+
+    .gorra-card-premium:hover .img-back {
+      opacity: 1;
+      transform: scale(1.08);
+    }
+  </style>
 </head>
 
 <body>
@@ -28,33 +129,16 @@
 <div id="navbar-placeholder"></div>
 
 <!-- ========== HERO ========== -->
-
 <section class="hero-gorras">
-
   <div class="container text-center">
-
-    <h1>
-      HOODIES TINTA BRAVA
-    </h1>
-
-    <p>
-      Diseños urbanos y estilo streetwear.
-    </p>
-
-    <a href="#catalogo"
-       class="btn btn-danger btn-lg mt-3">
-
-       Ver catálogo
-
-    </a>
-
+    <h1>HOODIES TINTA BRAVA</h1>
+    <p>Diseños urbanos y estilo streetwear.</p>
+    <a href="#catalogo" class="btn btn-danger btn-lg mt-3">Ver catálogo</a>
   </div>
-
 </section>
 
-<!-- ========== CATÁLOGO ========== -->
-
-<div class="marquee-subbarra">
+<!-- ========== MARQUEE INFORMATIVO ========== -->
+<div class="marquee-subbarra" id="catalogo">
   <div class="marquee-track">
     <span>NUEVA COLECCIÓN STREETWEAR</span><span>•</span>
     <span>STREET STYLE DESIGN</span><span>•</span>
@@ -67,137 +151,160 @@
   </div>
 </div>
 
+<!-- ========== SECCIÓN CATÁLOGO ========== -->
 <section class="productos-gorras py-5">
   <div class="container">
-    <h2 class="text-center section-title mb-5">NUESTRO CATÁLOGO</h2>
+    <h2 class="text-center section-title mb-2">NUESTRO CATÁLOGO</h2>
+    <p class="text-center text-muted mb-4">Usa los filtros de abajo para explorar nuestras colecciones exclusivas</p>
+
+    <!-- ══ BOTONES DE FILTRADO INTERACTIVO ══ -->
+    <div class="filter-container">
+      <button class="filter-btn active" onclick="filterCategory('todos')">Todos</button>
+      <button class="filter-btn" onclick="filterCategory('bandas')">Bandas</button>
+      <button class="filter-btn" onclick="filterCategory('series')">Series / Cómics</button>
+      <button class="filter-btn" onclick="filterCategory('otros')">Otros</button>
+    </div>
     
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-5">
+    <!-- GRID DE PRODUCTOS -->
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-5" id="products-grid">
       
-      <div class="col">
+      <!-- ==================== CATEGORÍA: BANDAS ==================== -->
+      <div class="col col-product" data-category="bandas">
         <div class="gorra-card-premium h-100">
           <div class="card-img-container">
             <span class="badge-tag">MÁS VENDIDO</span>
-            <img src="../imagenes/productos/gorras/gorraBlack.jpg" class="card-img-top" alt="Gorra 1" onerror="this.src='https://via.placeholder.com/400x400?text=Tinta+Brava'">
+            <img src="/Frontend/imagenes/productos/hoodies/hoodies-bandas/hoodies-blackpink/hoodie-blackpink-1.webp" class="img-front" alt="Hoodie Blackpink Frontal" onerror="this.src='https://via.placeholder.com/400x400?text=Blackpink+Front'">
+            <img src="/Frontend/imagenes/productos/hoodies/hoodies-bandas/hoodies-blackpink/hoodie-blackpink-2.webp" class="img-back" alt="Hoodie Blackpink Trasera" onerror="this.src='https://via.placeholder.com/400x400?text=Blackpink+Back'">
           </div>
           <div class="card-body-custom text-center">
-            <h5 class="card-title-custom">Gorra Trucker Tinta</h5>
-            <p class="card-text-custom">Gorra de malla clásica con el logo bordado en alta densidad.</p>
-            <div class="price-box">$280 MXN</div>
+            <h5 class="card-title-custom">Sudadera Beige Blackpink</h5>
+            <p class="card-text-custom">Sudadera premium con estampado de alta densidad de la banda.</p>
+            <div class="price-box">$1550 MXN</div>
             <button class="btn-brava-action">COMPRAR</button>
           </div>
         </div>
       </div>
 
-      <div class="col">
+      <div class="col col-product" data-category="bandas">
+        <div class="gorra-card-premium h-100">
+          <div class="card-img-container">
+            <img src="/Frontend/imagenes/productos/hoodies/hoodies-bandas/hoodies-boikot/hoodie-boikot1.webp" class="img-front" alt="Hoodie Boikot Frontal" onerror="this.src='https://via.placeholder.com/400x400?text=Boikot+Front'">
+            <img src="/Frontend/imagenes/productos/hoodies/hoodies-bandas/hoodies-boikot/hoodie-boikot-3.webp" class="img-back" alt="Hoodie Boikot Trasera" onerror="this.src='https://via.placeholder.com/400x400?text=Boikot+Back'">
+          </div>
+          <div class="card-body-custom text-center">
+            <h5 class="card-title-custom">Hoodie Boikot Smile</h5>
+            <p class="card-text-custom">Algodón deslavado suave con el clásico logo en el centro.</p>
+            <div class="price-box">$1550 MXN</div>
+            <button class="btn-brava-action">COMPRAR</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col col-product" data-category="bandas">
+        <div class="gorra-card-premium h-100">
+          <div class="card-img-container">
+            <img src="/Frontend/imagenes/productos/hoodies/hoodies-bandas/hoodies-imagine-dragons/hoodie-imagine-dragons-1.webp" class="img-front" alt="Hoodie Imagine Dragons Frontal" onerror="this.src='https://via.placeholder.com/400x400?text=Pink+Floyd+Front'">
+            <img src="/Frontend/imagenes/productos/hoodies/hoodies-bandas/hoodies-imagine-dragons/hoodie-imagine-dragons-2.webp" class="img-back" alt="Hoodie Imagine Dragons Trasera" onerror="this.src='https://via.placeholder.com/400x400?text=Pink+Floyd+Back'">
+          </div>
+          <div class="card-body-custom text-center">
+            <h5 class="card-title-custom">Imagine Dragons Premium Hoodie</h5>
+            <p class="card-text-custom">Diseño icónico con detalles en el pecho y espalda.</p>
+            <div class="price-box" style="color: #E5383B;">$2250 MXN</div>
+            <button class="btn-brava-action">COMPRAR</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== CATEGORÍA: SERIES / CÓMICS ==================== -->
+      <div class="col col-product" data-category="series">
         <div class="gorra-card-premium h-100">
           <div class="card-img-container">
             <span class="badge-tag">NUEVO</span>
-            <img src="../imagenes/productos/gorras/gorraBlanca.jpg" class="card-img-top" alt="Gorra 2" onerror="this.src='https://via.placeholder.com/400x400?text=Tinta+Brava'">
+            <img src="/Frontend/imagenes/productos/hoodies/hoodies-series-comics/hoodies-shingeki/hoodie-shingeki-1.webp" class="img-front" alt="Hoodie Shingeki Frontal" onerror="this.src='https://via.placeholder.com/400x400?text=Akatsuki+Front'">
+            <img src="/Frontend/imagenes/productos/hoodies/hoodies-series-comics/hoodies-shingeki/hoodie-shingeki-2.webp" class="img-back" alt="Hoodie Shingeki Trasera" onerror="this.src='https://via.placeholder.com/400x400?text=Akatsuki+Back'">
           </div>
           <div class="card-body-custom text-center">
-            <h5 class="card-title-custom">Gorra Dragon Ball</h5>
-            <p class="card-text-custom">Estilo minimalista con estampado premium del universo anime.</p>
-            <div class="price-box">$250 MXN</div>
+            <h5 class="card-title-custom">Sudadera Akatsuki Cloud</h5>
+            <p class="card-text-custom">Estilo minimalista con bordado premium.</p>
+            <div class="price-box">$580 MXN</div>
             <button class="btn-brava-action">COMPRAR</button>
           </div>
         </div>
       </div>
 
-      <div class="col">
+      <div class="col col-product" data-category="series">
         <div class="gorra-card-premium h-100">
           <div class="card-img-container">
-            <img src="../imagenes/productos/gorras/gorraAzul.webp" class="card-img-top" alt="Gorra 3" onerror="this.src='https://via.placeholder.com/400x400?text=Tinta+Brava'">
+            <img src="/Frontend/imagenes/productos/hoodies/hoodies-series-comics/hoodies-batman/hoodie.batman-1.webp" class="img-front" alt="Hoodie Absolute Batman Frontal" onerror="this.src='https://via.placeholder.com/400x400?text=Batman+Front'">
+            <img src="/Frontend/imagenes/productos/hoodies/hoodies-series-comics/hoodies-batman/hoodie.batman-2.webp" class="img-back" alt="Hoodie Absolute Batman Trasera" onerror="this.src='https://via.placeholder.com/400x400?text=Batman+Back'">
           </div>
           <div class="card-body-custom text-center">
-            <h5 class="card-title-custom">Gorra Deportiva Azul</h5>
-            <p class="card-text-custom">Tela transpirable de alta resistencia ideal para exteriores.</p>
-            <div class="price-box">$280 MXN</div>
+            <span class="badge-tag">EDICIÓN LIMITADA</span>
+            <h5 class="card-title-custom">Absolute Batman Hoodie</h5>
+            <p class="card-text-custom">Corte oversize con el emblema clásico del caballero de la noche.</p>
+            <div class="price-box" style="color: #E5383B;">$3250 MXN</div>
             <button class="btn-brava-action">COMPRAR</button>
           </div>
         </div>
       </div>
 
-      <div class="col">
+      <div class="col col-product" data-category="series">
         <div class="gorra-card-premium h-100">
           <div class="card-img-container">
-            <img src="../imagenes/productos/gorras/gorraSnapback.jpg" class="card-img-top" alt="Gorra 4" onerror="this.src='https://via.placeholder.com/400x400?text=Tinta+Brava'">
+            <img src="/Frontend/imagenes/productos/hoodies/hoodies-series-comics/hoodies-harry-potter/hoodie-harry-potter-1.webp" class="img-front" alt="Harry Potter Frontal" onerror="this.src='https://via.placeholder.com/400x400?text=One+Piece+Front'">
+            <img src="/Frontend/imagenes/productos/hoodies/hoodies-series-comics/hoodies-harry-potter/hoodie-harry-potter-2.webp" class="img-back" alt="Harry Potter Trasera" onerror="this.src='https://via.placeholder.com/400x400?text=One+Piece+Back'">
           </div>
           <div class="card-body-custom text-center">
-            <h5 class="card-title-custom">Gorra Snapback Urban</h5>
-            <p class="card-text-custom">Visera plana, broche regulable y estructura rígida frontal.</p>
-            <div class="price-box">$320 MXN</div>
+            <h5 class="card-title-custom">Harry Potter</h5>
+            <p class="card-text-custom">Sudadera de felpa con estampado térmico de alta resistencia.</p>
+            <div class="price-box">$990 MXN</div>
             <button class="btn-brava-action">COMPRAR</button>
           </div>
         </div>
       </div>
 
-      <div class="col">
+      <!-- ==================== CATEGORÍA: OTROS ==================== -->
+      <div class="col col-product" data-category="otros">
         <div class="gorra-card-premium h-100">
           <div class="card-img-container">
             <span class="badge-tag">HOT SALE</span>
-            <img src="../imagenes/productos/gorras/gorraRana.jpg" class="card-img-top" alt="Gorra 5" onerror="this.src='https://via.placeholder.com/400x400?text=Tinta+Brava'">
+            <img src="/Frontend/imagenes/productos/hoodies/hoodies-otros/hoodies-gato-destructor/hoodie-gato-destructor-1.webp" class="img-front" alt="Gato destructorFrontal" onerror="this.src='https://via.placeholder.com/400x400?text=Minimal+Front'">
+            <img src="/Frontend/imagenes/productos/hoodies/hoodies-otros/hoodies-gato-destructor/hoodie-gato-destructor-2.webp" class="img-back" alt="Gato destructor Trasera" onerror="this.src='https://via.placeholder.com/400x400?text=Minimal+Back'">
           </div>
           <div class="card-body-custom text-center">
-            <h5 class="card-title-custom">Gorra Bordado Rana</h5>
-            <p class="card-text-custom">Diseño divertido con un sutil y limpio bordado artesanal.</p>
-            <div class="price-box">$180 MXN</div>
+            <h5 class="card-title-custom">Gato destructor</h5>
+            <p class="card-text-custom">Sudadera lisa con microbordado. Comodidad absoluta.</p>
+            <div class="price-box">$950 MXN</div>
             <button class="btn-brava-action">COMPRAR</button>
           </div>
         </div>
       </div>
 
-      <div class="col">
+      <div class="col col-product" data-category="otros">
         <div class="gorra-card-premium h-100">
           <div class="card-img-container">
-            <img src="../imagenes/productos/gorras/gorraDad.jpg" class="card-img-top" alt="Gorra 6" onerror="this.src='https://via.placeholder.com/400x400?text=Tinta+Brava'">
+            <img src="/Frontend/imagenes/productos/hoodies/hoodies-otros/hoodies-sakura/hoodie-sakura-1.webp" class="img-front" alt="Streetwear Sakura Edition Frontal" onerror="this.src='https://via.placeholder.com/400x400?text=Camo+Front'">
+            <img src="/Frontend/imagenes/productos/hoodies/hoodies-otros/hoodies-sakura/hoodie-sakura-2.webp" class="img-back" alt="Streetwear Sakura Edition Trasera" onerror="this.src='https://via.placeholder.com/400x400?text=Camo+Back'">
           </div>
           <div class="card-body-custom text-center">
-            <h5 class="card-title-custom">Dad Hat Vintage</h5>
-            <p class="card-text-custom">Algodón deslavado suave con un ajuste curvo súper cómodo.</p>
-            <div class="price-box">$240 MXN</div>
+            <h5 class="card-title-custom">Streetwear Sakura Edition</h5>
+            <p class="card-text-custom">Estampado premium con gorro forrado a contraste y cordones premium.</p>
+            <div class="price-box">$580 MXN</div>
             <button class="btn-brava-action">COMPRAR</button>
           </div>
         </div>
       </div>
 
-      <div class="col">
+      <div class="col col-product" data-category="otros">
         <div class="gorra-card-premium h-100">
           <div class="card-img-container">
-            <img src="../imagenes/productos/gorras/gorraCamuflaje.jpg" class="card-img-top" alt="Gorra 7" onerror="this.src='https://via.placeholder.com/400x400?text=Tinta+Brava'">
+            <img src="/Frontend/imagenes/productos/hoodies/hoodies-otros/hoodies-gato-freak/hoodie-gato-freak-1.webp" class="img-front" alt="Hoodie Gato Freak Frontal" onerror="this.src='https://via.placeholder.com/400x400?text=Zip-up+Front'">
+            <img src="/Frontend/imagenes/productos/hoodies/hoodies-otros/hoodies-gato-freak/hoodie-gato-freak-2.webp" class="img-back" alt="Hoodie Gato Freak Trasera" onerror="this.src='https://via.placeholder.com/400x400?text=Zip-up+Back'">
           </div>
           <div class="card-body-custom text-center">
-            <h5 class="card-title-custom">Camo Street Cap</h5>
-            <p class="card-text-custom">Patrón militar urbano con costuras reforzadas a contraste.</p>
-            <div class="price-box">$290 MXN</div>
-            <button class="btn-brava-action">COMPRAR</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="gorra-card-premium h-100">
-          <div class="card-img-container">
-            <span class="badge-tag">EDICIÓN LIMITADA</span>
-            <img src="../imagenes/productos/gorras/gorraCalavera.jpg" class="card-img-top" alt="Gorra 8" onerror="this.src='https://via.placeholder.com/400x400?text=Tinta+Brava'">
-          </div>
-          <div class="card-body-custom text-center">
-            <h5 class="card-title-custom">Calavera Brava Premium</h5>
-            <p class="card-text-custom">Diseño insignia de la marca. Pocas unidades disponibles.</p>
-            <div class="price-box" style="color: #E5383B;">$350 MXN</div>
-            <button class="btn-brava-action">COMPRAR</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="gorra-card-premium h-100">
-          <div class="card-img-container">
-            <img src="../imagenes/productos/gorras/gorraBeanie.jpg" class="card-img-top" alt="Gorra 9" onerror="this.src='https://via.placeholder.com/400x400?text=Tinta+Brava'">
-          </div>
-          <div class="card-body-custom text-center">
-            <h5 class="card-title-custom">Beanie Tinta Knit</h5>
-            <p class="card-text-custom">Gorro de punto elástico suave, perfecto para complementar el outfit.</p>
-            <div class="price-box">$210 MXN</div>
+            <h5 class="card-title-custom">Hoodie Gato Freak</h5>
+            <p class="card-text-custom">Chamarra con cierre metálico, bolsas frontales y felpa ultra suave.</p>
+            <div class="price-box">$490 MXN</div>
             <button class="btn-brava-action">COMPRAR</button>
           </div>
         </div>
@@ -210,9 +317,16 @@
 <!-- ========== FOOTER ========== -->
 <div id="footer-placeholder"></div>
 
+  <!-- Scripts Obligatorios del Sistema -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../js-scripts/script-productos.js"></script>
   <script src="../js-scripts/script-principal.js"></script>
   <script src="../js-scripts/script-cargarcomponentes.js"></script>
+
+  
+
+  <script src="../js-scripts/script-hoodies.js"></script>
+
+
 </body>
 </html>
