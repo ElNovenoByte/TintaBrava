@@ -161,3 +161,64 @@ body { background-color: #D3D3D3; font-family: 'Roboto', sans-serif; overflow-x:
   z-index: 10;
   text-transform: uppercase;
 }
+
+.category-card{
+  position: relative;
+  overflow: hidden;
+  height: 400px;
+  border-radius: 15px;
+  transition: transform 0.3s ease;
+  background-color: black;
+  border-radius: 0;
+  border: none;
+}
+
+.category-card img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  height: 500px;
+}
+
+.category-card .card-body{
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 2;
+}
+
+.category-card .card-title{
+  color: white;
+  font-size: 2rem;
+  font-family: 'Bebas Neue';
+  font-weight: bold;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.category-card .card-body{
+  background: transparent;
+}
+
+.category-card::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.8),
+    rgba(0,0,0,0.1)
+  );
+  z-index: 1;
+}
+
+.category-card:hover img{
+  transform: scale(1.05);
+}
+
+.card-group{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  gap: 20px;
+}
