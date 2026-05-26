@@ -8,6 +8,11 @@ if (inputTelefono) { // Verifica que el elemento exista antes de agregar el even
     });
 }
 const formulario = document.getElementById("registroForm");
+const nombre = document.getElementById("nombre");
+const apellido = document.getElementById("apellido");
+
+const errorNombre = document.getElementById("errorNombre");
+const errorApellido = document.getElementById("errorApellido");
 
 const correo = document.getElementById("correo");
 
@@ -22,10 +27,78 @@ const passwordInputconfirm = document.getElementById('passwordInputconfirm');
 const errorPassword = document.getElementById("errorPassword");
 const errorPasswordConfirm = document.getElementById("errorPasswordConfirm");
 
+
+
+
+
+
 formulario.addEventListener("submit", function (e) {
 
     e.preventDefault();
     let valido = true;
+    const regexTexto = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+
+/* VALIDACIÓN NOMBRE */
+
+const valorNombre = nombre.value.trim();
+
+if (valorNombre === "") {
+
+    errorNombre.style.display = "block";
+    errorNombre.textContent = "El nombre es obligatorio";
+
+    nombre.classList.add("input-error");
+
+    valido = false;
+
+}
+else if (!regexTexto.test(valorNombre)) {
+
+    errorNombre.style.display = "block";
+    errorNombre.textContent = "El nombre solo puede contener letras";
+
+    nombre.classList.add("input-error");
+
+    valido = false;
+
+}
+else {
+
+    errorNombre.style.display = "none";
+
+    nombre.classList.remove("input-error");
+}
+
+/* VALIDACIÓN APELLIDO */
+
+const valorApellido = apellido.value.trim();
+
+if (valorApellido === "") {
+
+    errorApellido.style.display = "block";
+    errorApellido.textContent = "El apellido es obligatorio";
+
+    apellido.classList.add("input-error");
+
+    valido = false;
+
+}
+else if (!regexTexto.test(valorApellido)) {
+
+    errorApellido.style.display = "block";
+    errorApellido.textContent = "El apellido solo puede contener letras";
+
+    apellido.classList.add("input-error");
+
+    valido = false;
+
+}
+else {
+
+    errorApellido.style.display = "none";
+
+    apellido.classList.remove("input-error");
+}
 
     const valorCorreo = correo.value.trim();
 
@@ -159,4 +232,5 @@ togglePasswordconfirm.addEventListener('mouseup', ocultarContrasenaconfirm);
 
 // También se puede ocultar la contraseña si el usuario mueve el mouse fuera del área del botón mientras lo mantiene presionado.
 togglePasswordconfirm.addEventListener('mouseleave', ocultarContrasenaconfirm);
+
 
