@@ -32,11 +32,13 @@
                 <h2>CREAR CUENTA</h2>
                 <form id="registroForm" novalidate>
                     <div class="mb-3">
-                        <input type="text" class="form-control" placeholder="Nombre" required>
+                        <input type="text" id="nombre" class="form-control" placeholder="Nombre" required>
+                        <small class="error-message" id="errorNombre"></small>
                     </div>
 
                     <div class="mb-3">
-                        <input type="text" class="form-control" placeholder="Apellido" required>
+                        <input type="text" id="apellido" class="form-control" placeholder="Apellido" required>
+                          <small class="error-message" id="errorApellido"></small>
                     </div>
 
                     <div class="mb-3">
