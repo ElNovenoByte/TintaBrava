@@ -13,15 +13,26 @@ body {
   flex-direction: column;
 }
 
-#crear:hover {
+#editar:hover {
   transform: scale(1.20);
   transform-origin: center;
   color: #A4161A;
 }
 
-#editar {
+#crear {
   transform: scale(1.20);
   transform-origin: center;
   color: #A4161A;
+  border-left-color: rgb(164, 22, 26);
+}
+
+#submit:hover {
+  background: rgb(164,22,26);
+  transform: scale(1.05);
+  transform-origin: center;
+}
+
+#submit {
+  background: #0B090A;
 }
 
