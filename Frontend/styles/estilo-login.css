@@ -3,20 +3,15 @@ Estilos del cuerpo modificacion
  */
 
 body{
-    margin: 0;
+      margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-    overflow: hidden;
-
-    background:
-    linear-gradient(
-        135deg,
-        #000000,
-        #1a0000,
-        #5c0000
-    );
-
-    height: 100vh;
+    overflow-y: auto; 
+    background-color: #0B090A;
+    min-height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* 
@@ -120,6 +115,15 @@ Lado derecho donde esta el Login
     border-color: #ff1a1a;
 
     box-shadow: 0 0 10px rgba(255,0,0,0.4);
+}
+
+.registro-btn{
+    height: 35px;
+    background: #d40000;
+    border: none;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
 /* Boton */

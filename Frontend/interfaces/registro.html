@@ -3,23 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TINTABRAVA - REGISTRO</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../styles/estilo-footer.css">
+    <title>TINTA BRAVA - REGISTRO</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="../styles/estilo-footer.css">
+    <link rel="stylesheet" href="../styles/registro.css?v=3.0">
+    
 </head>
+
 <body>
     
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="register-container row g-0">
 
-asd prueba
+        <div class="col-md-6 left-side">
+            <video autoplay muted loop playsinline class="bg-video">
+        <source src="../videos/video_pagina_registro.mp4" type="video/mp4">
+    </video>
+            <div class="overlay"></div>
+            <div class="brand-text">
+            </div>
+        </div>
 
+        <div class="col-md-6 right-side">
+            <div class="register-box">
+                <h2>CREAR CUENTA</h2>
+                <form id="registroForm" novalidate>
+                    <div class="mb-3">
+                        <input type="text" id="nombre" class="form-control" placeholder="Nombre" required>
+                        <small class="error-message" id="errorNombre"></small>
+                    </div>
 
+                    <div class="mb-3">
+                        <input type="text" id="apellido" class="form-control" placeholder="Apellido" required>
+                          <small class="error-message" id="errorApellido"></small>
+                    </div>
 
+                    <div class="mb-3">
+                        <input type="email" id="correo" class="form-control" placeholder="Correo electrónico" required>
+                        <small class="error-message" id="errorCorreo"></small>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="tel" id="telefono" class="form-control" placeholder="Teléfono" maxlength="10" required>
+                        <small class="error-message" id="errorTelefono"></small>
+                    </div>
+                    
+
+                     <div class="mb-3">
+                        <div class="input-group">
+                         <input type="password" class="form-control" placeholder="Contraseña" required id="passwordInput">
+                            <span class="input-group-text" style="cursor: pointer;">
+                                <img src="../imagenes/iconos/ojo_abierto.png" alt="Mostrar contraseña" style="width: 20px;" id="togglePassword">
+                            </span>
+                        </div>
+                            <small class="error-message" id="errorPassword"></small>
+                    </div>
+
+                   <div class="mb-3">
+                     <div class="input-group">
+                        <input type="password" class="form-control" placeholder="Confirmar contraseña" required id="passwordInputconfirm">
+                        <span class="input-group-text" style="cursor: pointer;">
+                            <img src="../imagenes/iconos/ojo_abierto.png" alt="Mostrar contraseña" style="width: 20px;" id="togglePasswordconfirm">
+                        </span>
+                    </div>
+                        <small class="error-message" id="errorPasswordConfirm"></small>
+
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn register-btn">
+                            Registrarse
+                        </button>
+                    </div>
+                </form>
+
+                <div class="forgot mt-4">
+                    <a href="login.html">¿Ya tienes una cuenta? Inicia sesión</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js-scripts/script-registro.js"></script>
 <script src="../js-scripts/script-contactanos.js"></script>
+<script src="../js-scripts/script-registro.js"></script>
 </body>
 </html>
