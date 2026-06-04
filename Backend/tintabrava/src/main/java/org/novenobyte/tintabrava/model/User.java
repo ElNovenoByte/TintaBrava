@@ -2,6 +2,9 @@ package org.novenobyte.tintabrava.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "usuarios")
 public class User {
@@ -27,6 +30,11 @@ public class User {
 
     @Column(name = "contrasena", nullable = false, length = 20) //No puede ser null
     private String contrasena;
+
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private Cliente clientes;
+
+
 
     public User(Long idUsuario, Boolean admin, String nombre, String apellido, String correo, String telefono, String contrasena) {
         this.idUsuario = idUsuario;
