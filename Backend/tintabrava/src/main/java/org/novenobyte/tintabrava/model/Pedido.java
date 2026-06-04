@@ -14,18 +14,17 @@ public class Pedido {
     @Column(name = "id_pedido")
     private Long idPedido;
 
+
+    @Column(name = "id_cliente", nullable = false)
+    private Long idCliente;
+
+
     @Column(name = "fecha_pedido", nullable = false)
     private Date fechaPedido;
 
     @Column(name = "fecha_entrega", nullable = false)
     private Date fechaEntrega;
 
-    // Primary key relacion muchos a 1
-    @ManyToOne
-    @JoinColumn(name = "pedido_id_cliente")
-    private Cliente cliente;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Pedido> pedidos = new ArrayList<>();
 
 }
