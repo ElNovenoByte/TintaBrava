@@ -10,13 +10,14 @@ public class Stock {
     @Column(name = "id_stock")
     private Long idStock;
 
-    @Column(name = "id_producto",nullable = false)
-    private Long idProducto;
+    @OneToOne
+    @JoinColumn(name = "id_producto",nullable = false)
+    private Producto idProducto;
 
     @Column(name = "cantidad", nullable = false)
     private Integer cantidad;
 
-    public Stock(Long idStock, Long idProducto, Integer cantidad) {
+    public Stock(Long idStock, Producto idProducto, Integer cantidad) {
         this.idStock = idStock;
         this.idProducto = idProducto;
         this.cantidad = cantidad;
@@ -33,11 +34,11 @@ public class Stock {
         this.idStock = idStock;
     }
 
-    public Long getIdProducto() {
+    public Producto getIdProducto() {
         return idProducto;
     }
 
-    public void setIdProducto(Long idProducto) {
+    public void setIdProducto(Producto idProducto) {
         this.idProducto = idProducto;
     }
 

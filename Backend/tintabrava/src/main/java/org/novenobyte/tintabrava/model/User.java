@@ -13,9 +13,6 @@ public class User {
     @Column(name = "id_usuario")
     private Long idUsuario;
 
-    @Column(name = "admin", nullable = false) // No puede ser null
-    private Boolean admin;
-
     @Column(name = "nombre", nullable = false, length = 20) // No puede ser null, maximo 20 caracteres
     private String nombre;
 
@@ -31,14 +28,11 @@ public class User {
     @Column(name = "contrasena", nullable = false, length = 20) //No puede ser null
     private String contrasena;
 
-    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
-    private Cliente clientes;
-
-
+    @OneToOne(mappedBy = "usuario") // Mandamos "usuario" a la tabla Cliente para que la use como FK
+    private Cliente cliente;
 
     public User(Long idUsuario, Boolean admin, String nombre, String apellido, String correo, String telefono, String contrasena) {
         this.idUsuario = idUsuario;
-        this.admin = admin;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
@@ -54,14 +48,6 @@ public class User {
 
     public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
-    }
-
-    public Boolean getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(Boolean admin) {
-        this.admin = admin;
     }
 
     public String getNombre() {
@@ -108,7 +94,6 @@ public class User {
     public String toString() {
         return "User{" +
                 "idUsuario=" + idUsuario +
-                ", admin=" + admin +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", correo='" + correo + '\'' +

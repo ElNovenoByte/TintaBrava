@@ -13,19 +13,20 @@ public class Cliente {
     @Column(name = "id_cliente")
     private Long idCliente;
 
-    @Column(name = "id_usuario", nullable = false)
-    private Long idUsuario;
-
-    @Column(name = "id_pedido", nullable = false)
-    private Long idPedido;
+    @OneToOne // Indicamos que es FK. Va a venir desde Usuario
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private User usuario;
 
     @Column(name = "direccion", nullable = false)
     private String direccion;
 
-    public Cliente(Long idCliente, Long idUsuario, Long idPedido, String direccion) {
+    // Indicamos Onetomany porque este lado es el que solo se puede UNO.
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY) //Se supone lo de lazy es para no traer todos los pedidos de una vez
+    private List<Pedido> pedidos = new ArrayList<>();
+
+    public Cliente(Long idCliente, User usuario, String direccion) {
         this.idCliente = idCliente;
-        this.idUsuario = idUsuario;
-        this.idPedido = idPedido;
+        this.usuario = usuario;
         this.direccion = direccion;
     }
 
@@ -40,12 +41,12 @@ public class Cliente {
         this.idCliente = idCliente;
     }
 
-    public Long getIdUsuario() {
-        return idUsuario;
+    public User getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(User usuario) {
+        this.usuario = usuario;
     }
 
     public String getDireccion() {
@@ -56,20 +57,11 @@ public class Cliente {
         this.direccion = direccion;
     }
 
-    public Long getIdPedido() {
-        return idPedido;
-    }
-
-    public void setIdPedido(Long idPedido) {
-        this.idPedido = idPedido;
-    }
-
     @Override
     public String toString() {
         return "Cliente{" +
                 "idCliente=" + idCliente +
-                ", idUsuario=" + idUsuario +
-                ", idPedido=" + idPedido +
+                ", usuario=" + usuario +
                 ", direccion='" + direccion + '\'' +
                 '}';
     }
