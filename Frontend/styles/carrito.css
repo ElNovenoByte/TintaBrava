@@ -115,7 +115,6 @@ body {
     gap: 60px;
 }
 
-/* Selectores y etiquetas */
 .control-cantidad, .control-precio {
     display: flex;
     flex-direction: column;
@@ -128,6 +127,11 @@ body {
     color: #0B090A;
     margin-bottom: 8px;
     text-align: center;
+}
+
+/* Para que la palabra cantidad no esté desalineada a la izquierda */
+.control-cantidad .texto-etiqueta {
+    padding-left: 65px;
 }
 
 .opciones-cantidad {
@@ -376,3 +380,4 @@ body {
         object-fit: contain !important;
         margin: 0 !important;           
     }
+
