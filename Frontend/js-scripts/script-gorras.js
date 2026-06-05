@@ -54,7 +54,7 @@ function renderGorras() {
       ? `<span class="badge-tag">${gorra.tag}</span>` 
       : "";
 
-    // Construcción del template HTML respetando las clases exactas de tus estilos
+    // Construcción del template HTML respetando las clases exactas de los estilos
     colDiv.innerHTML = `
       <div class="gorra-card-premium h-100">
         <div class="card-img-container">
@@ -67,9 +67,15 @@ function renderGorras() {
           <p class="card-text-custom">${gorra.description}</p>
           <div class="price-box">$${gorra.price} MXN</div>
           <button class="btn-brava-action">COMPRAR</button>
+          <button class="btn-brava-action btn-agregar-carrito">AGREGAR AL CARRITO</button>
         </div>
       </div>
     `;
+    // 3. Buscamos el botón dentro del elemento que acabamos de crear y le asignamos el evento
+// (Aquí asumimos que importaste 'anadirAlCarrito' correctamente en este archivo)
+colDiv.querySelector('.btn-agregar-carrito').addEventListener('click', () => {
+    guardarEnLocalStorage(gorra);
+});
 
     // Inyectamos el elemento estructurado al contenedor principal
     productsGrid.appendChild(colDiv);
@@ -103,4 +109,28 @@ function filterCategory(category) {
       product.classList.add('hidden');
     }
   });
+  
+}
+
+  function guardarEnLocalStorage(producto) {
+    // Obtenemos el carrito actual del localStorage o inicializamos uno nuevo si no existe
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    // Verificamos si el producto ya existe en el carrito para actualizar la cantidad en lugar de agregarlo como nuevo
+    const productoExistente = carrito.find(item => item.name === producto.name); // Aquí asumimos que el nombre del producto es único, si no lo es, se debería usar un ID único para la comparación
+
+    if (productoExistente) {
+        // Si el producto ya existe, incrementamos su cantidad
+        productoExistente.cantidad = (productoExistente.cantidad || 1) + 1;
+    } else {
+        // Si el producto no existe, lo agregamos al carrito con una cantidad inicial de 1
+        producto.cantidad = 1;
+        carrito.push(producto);
+    }
+
+    // Guardamos el carrito actualizado de nuevo en localStorage
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+
+    // Notificamos al usuario que el producto se ha agregado al carrito
+    alert(`¡${producto.name} se agregó al carrito!`);
 }
