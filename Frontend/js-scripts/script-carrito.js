@@ -54,15 +54,15 @@ document.addEventListener("DOMContentLoaded", function() {
             itemDiv.innerHTML = `
                 <div class="bloque-izquierdo">
                     <input type="checkbox" class="check-producto" checked>
-                    <a href="prendadetalle.html" class="link-producto">
+                    <a href="../interfaces/prendadetalle.html" class="link-producto">
                         <img src="${producto.image_front}" class="imagen-cuadro" alt="${producto.name}" style="width:80px; height:80px; object-fit:cover; border-radius:4px;" onerror="this.src='https://via.placeholder.com/400x400?text=No+Image'">
                     </a>
                 </div>
                 
                 <div class="bloque-centro">
-                    <a href="prendadetalle.html" class="link-producto"> 
+                    <a class="descripcion-producto" href="../interfaces/prendadetalle.html" class="link-producto"> 
+                        ${producto.description || "Descripción no disponible"}
                     </a>
-                    <p class="descripcion-producto">${producto.description || 'Diseño exclusivo de la línea Streetwear.'}</p>
                 </div>
                 
                 <div class="bloque-derecho">

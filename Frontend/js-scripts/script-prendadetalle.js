@@ -12,8 +12,36 @@ const ejemploProducto = {
         "../imagenes/productos/gorras/gorrasotros/gorrassimples/gorra1.jpg",
         "../imagenes/productos/gorras/gorrasotros/gorrassimples/gorra1-2.jpg",
         "../imagenes/productos/gorras/gorrasotros/gorrassimples/gorra1-3.jpg"
-    ]
+    ],
+    image_front: "../imagenes/productos/gorras/gorrasotros/gorrassimples/gorra1.jpg"
 };
+
+//Función para agregar el producto al localStorage (carrito)
+function agregarAlCarrito(producto) {
+    const sizeSelect = document.getElementById('sizeSelector');
+    const tallaElegida = sizeSelect ? sizeSelect.value : (producto.size[0] || 'Unitalla');
+    let colorElegido = window.getSelectedColor ? window.getSelectedColor() : 'No definido';
+    
+        // Obtenemos el carrito actual del localStorage o inicializamos uno nuevo si no existe
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    // Verificamos si el producto ya existe en el carrito para actualizar la cantidad en lugar de agregarlo como nuevo
+    const productoExistente = carrito.find(item => item.name === producto.name); // Aquí asumimos que el nombre del producto es único, si no lo es, se debería usar un ID único para la comparación
+
+    if (productoExistente) {
+        // Si el producto ya existe, incrementamos su cantidad
+        productoExistente.cantidad = (productoExistente.cantidad || 1) + 1;
+    } else {
+        // Si el producto no existe, lo agregamos al carrito con una cantidad inicial de 1
+        producto.cantidad = 1;
+        carrito.push(producto);
+    }
+
+    // Guardamos el carrito actualizado de nuevo en localStorage
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+
+    alert(`🛒 Agregado al carrito:\nProducto: ${producto.name}\nTalla: ${tallaElegida}\nColor: ${colorElegido}\nPrecio: $${producto.price}`);
+}
 
 function escapeHTML(str) {
     if (!str) return '';
@@ -155,19 +183,16 @@ function renderizarProducto(producto) {
     }
 
     // ---------- Añadir al carrito ----------
+  
     const addBtn = document.getElementById('addToCartBtn');
     if (addBtn) {
         const newBtn = addBtn.cloneNode(true);
         addBtn.parentNode.replaceChild(newBtn, addBtn);
-        newBtn.addEventListener('click', () => {
-            const sizeSelect = document.getElementById('sizeSelector');
-            const tallaElegida = sizeSelect ? sizeSelect.value : (producto.size[0] || 'Unitalla');
-            let colorElegido = window.getSelectedColor ? window.getSelectedColor() : 'No definido';
-            alert(`🛒 Agregado al carrito:\nProducto: ${producto.name}\nTalla: ${tallaElegida}\nColor: ${colorElegido}\nPrecio: $${producto.price}`);
-        });
+       newBtn.addEventListener('click', () => agregarAlCarrito(producto));
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     renderizarProducto(ejemploProducto);
 });
+

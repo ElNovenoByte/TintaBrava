@@ -3,9 +3,14 @@ body {
     background-color: #D3D3D3;
     font-family: 'Roboto', sans-serif;
     margin: 0;
-    padding: 40px 20px;
     color: #0B090A;
 }
+
+.body-carrito {
+    padding: 40px 20px;
+}
+
+
 
 /* Contenedor principal */
 .contenedor-principal {
@@ -106,6 +111,7 @@ body {
 .descripcion-producto {
     margin: 0;
     font-size: 14px;
+    text-decoration: none;
     color: #161A1D;
 }
 
