@@ -50,7 +50,9 @@
     </div>
     </nav>
 
+    <!-- ========== FORMULARIO ============ -->
     <main>
+        <!-- HEADER CON VALORES CREAR | EDITAR -->
         <section>
             <div class="container mt-5">
                 <div class="row justify-content-center">
@@ -63,31 +65,33 @@
                 </div>
             </div>
         </section>
+
+        <!-- FORMULARIO -->
         <section class="mt-4 mb-5">
             <div class="container my-0">
                 <div class="row justify-content-center my-0 py-0">
                     <div class="col-11 col-md-8 ps-0 pe-0 my-0">
                         <form>
-                            <div class="my-3"><input class="border rounded-2 form-control" type="text" placeholder="Nombre del producto*" required="" maxlength="100">
+                            <div class="my-3"><input id="nombre" class="border rounded-2 form-control" type="text" placeholder="Nombre del producto*" required="" maxlength="100">
                                 <p class="small text-black text-opacity-50 ms-0 ps-3">Máximo 100 caracteres.</p>
                             </div>
-                            <div class="my-3"><input class="form-control" type="number" min="0" placeholder="Precio (MXN)*" required="" step="0.01">
+                            <div class="my-3"><input id="precio" class="form-control" type="number" min="0" placeholder="Precio (MXN)*" required="" step="0.01">
                                 <p class="small text-black text-opacity-50 ms-0 ps-3">Mayor a 0. Hasta 2 decimales (ejemplo: 19.99)</p>
                             </div>
-                            <div class="my-3"><select class="form-select" required="">
+                            <div class="my-3"><select id="categoria" class="form-select" required="">
                                     <option value="" selected="">Categoría*</option>
                                     <option value="playera">Playera</option>
                                     <option value="hoodie">Hoodie</option>
                                     <option value="gorra">Gorra</option>
                                 </select></div>
-                            <div class="my-3"><select class="form-select" required="">
+                            <div class="my-3"><select id="subcategoria" class="form-select" required="">
                                     <option value="" selected="">Subcategoría*</option>
                                     <option value="deportiva">Deportiva</option>
                                     <option value="casual">Casual</option>
                                     <option value="elegante">Elegante</option>
                                     <option value="otro">Otro</option>
                                 </select></div>
-                            <div class="mt-3 mb-3"><textarea class="form-control" placeholder="Descripción*" maxlength="500" required=""></textarea>
+                            <div class="mt-3 mb-3"><textarea id="descripcion" class="form-control" placeholder="Descripción*" maxlength="500" required=""></textarea>
                                 <p class="small text-black text-opacity-50 ms-0 ps-3">Máximo 500 caracteres.</p>
                             </div>
                             <div class="mt-3 mb-3">
@@ -98,33 +102,20 @@
                                 </div>
                                 <div class="row gy-2 row-cols-lg-3 row-cols-xl-5 justify-content-evenly pt-0 my-1" style="color: rgb(33, 37, 41);">
                                     <div class="col-auto">
-                                        <div class="input-group"><span class="input-group-text">XS</span><input class="form-control" type="number" min="0" max="999" step="1" placeholder="0" value="0" required=""></div>
+                                        <div class="input-group"><span class="input-group-text">XS</span><input id="xs" class="form-control" type="number" min="0" max="999" step="1" placeholder="0" value="0" required=""></div>
                                     </div>
                                     <div class="col-auto">
-                                        <div class="input-group"><span class="input-group-text">S</span><input class="form-control" type="number" min="0" max="999" step="1" placeholder="0" value="0" required=""></div>
+                                        <div class="input-group"><span class="input-group-text">S</span><input id="s" class="form-control" type="number" min="0" max="999" step="1" placeholder="0" value="0" required=""></div>
                                     </div>
                                     <div class="col-auto">
-                                        <div class="input-group"><span class="input-group-text">M</span><input class="form-control" type="number" min="0" max="999" step="1" placeholder="0" value="0" required=""></div>
+                                        <div class="input-group"><span class="input-group-text">M</span><input id="m" class="form-control" type="number" min="0" max="999" step="1" placeholder="0" value="0" required=""></div>
                                     </div>
                                     <div class="col-auto">
-                                        <div class="input-group"><span class="input-group-text">L</span><input class="form-control" type="number" min="0" max="999" step="1" placeholder="0" value="0" required=""></div>
+                                        <div class="input-group"><span class="input-group-text">L</span><input id="l" class="form-control" type="number" min="0" max="999" step="1" placeholder="0" value="0" required=""></div>
                                     </div>
                                     <div class="col-auto">
-                                        <div class="input-group"><span class="input-group-text">XL</span><input class="form-control" type="number" min="0" max="999" step="1" placeholder="0" value="0" required=""></div>
+                                        <div class="input-group"><span class="input-group-text">XL</span><input id="xl" class="form-control" type="number" min="0" max="999" step="1" placeholder="0" value="0" required=""></div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="mt-3 mb-3">
-                                <div class="row justify-content-start">
-                                    <div class="col-auto">
-                                        <p class="ps-3 mb-0">Color*</p>
-                                    </div>
-                                </div>
-                                <div class="row justify-content-center pt-0 my-1">
-                                    <div class="col col-sm-auto">
-                                        <div class="input-group"><span class="input-group-text">Nombre del color</span><input class="form-control" type="text" placeholder="Ejemplo: Negro" required="" maxlength="50"></div>
-                                    </div>
-                                    <div class="col-auto"><input class="form-control form-control-color" type="color" required="" value="#000000"></div>
                                 </div>
                             </div>
                             <div class="mt-3 mb-5">
@@ -134,13 +125,13 @@
                                     </div>
                                 </div>
                                 <div class="row justify-content-center pt-0 my-2">
-                                    <div class="col"><input class="form-control" type="file" required="" accept=".png, .jpg, .jpeg"></div>
+                                    <div class="col"><input id="imagen-1" class="form-control" type="file" required="" accept=".png, .jpg, .jpeg"></div>
                                 </div>
                                 <div class="row justify-content-center pt-0 my-2">
-                                    <div class="col"><input class="form-control" type="file" required="" accept=".png, .jpg, .jpeg"></div>
+                                    <div class="col"><input id="imagen-2" class="form-control" type="file" required="" accept=".png, .jpg, .jpeg"></div>
                                 </div>
                                 <div class="row justify-content-center pt-0 my-2">
-                                    <div class="col"><input class="form-control" type="file" required="" accept=".png, .jpg, .jpeg"></div>
+                                    <div class="col"><input id="imagen-3" class="form-control" type="file" required="" accept=".png, .jpg, .jpeg"></div>
                                 </div>
                             </div>
                             <div class="text-center my-3"><input class="btn fs-3 border rounded-0 btn-primary px-5" type="submit" id="submit" style="font-family: 'Bebas Neue', sans-serif;letter-spacing: 2px;transition: 0.4s;" value="Crear"></div>
@@ -186,6 +177,8 @@
         <p>© 2026 Tinta Brava. Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <script src="/Frontend/js-scripts/script-prendacreacion.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
