@@ -11,7 +11,7 @@ public class Stock {
     private Long idStock;
 
     @OneToOne
-    @JoinColumn(name = "id_producto",nullable = false)
+    @JoinColumn(name = "id_producto",nullable = false, unique = true)
     private Producto idProducto;
 
     @Column(name = "cantidad", nullable = false)

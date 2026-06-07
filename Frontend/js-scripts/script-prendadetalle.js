@@ -92,22 +92,6 @@ function renderizarProducto(producto) {
                 <div class="product-price">$${producto.price.toFixed(2)} MXN</div>
                 <p class="product-description">${escapeHTML(producto.description)}</p>
                 
-                <!-- Selector de talla -->
-                <div class="mb-4">
-                    <label class="section-label d-block">Talla disponible</label>
-                    <select id="sizeSelector" class="form-select form-select-custom w-100">
-                        ${tallas.map(t => `<option value="${escapeHTML(t)}">${escapeHTML(t)}</option>`).join('')}
-                    </select>
-                </div>
-                
-                <!-- Selector de colores -->
-                <div class="mb-4">
-                    <div class="section-label d-block">Color / Diseño</div>
-                    <div id="colorSelectorContainer" class="d-flex flex-wrap align-items-center gap-3 mt-2">
-                        ${coloresHTML}
-                    </div>
-                </div>
-                
                 <!-- Botón añadir al carrito -->
                 <div class="mt-3">
                     <button id="addToCartBtn" class="btn-add-cart">

@@ -14,7 +14,7 @@ public class Cliente {
     private Long idCliente;
 
     @OneToOne // Indicamos que es FK. Va a venir desde Usuario
-    @JoinColumn(name = "id_usuario", nullable = false)
+    @JoinColumn(name = "id_usuario", nullable = false, unique = true)
     private User usuario;
 
     @Column(name = "direccion", nullable = false)

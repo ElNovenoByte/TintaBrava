@@ -28,7 +28,7 @@ public class User {
     @Column(name = "contrasena", nullable = false, length = 20) //No puede ser null
     private String contrasena;
 
-    @OneToOne(mappedBy = "usuario") // Mandamos "usuario" a la tabla Cliente para que la use como FK
+    @OneToOne(cascade = CascadeType.ALL) // Mandamos "usuario" a la tabla Cliente para que la use como FK
     private Cliente cliente;
 
     public User(Long idUsuario, Boolean admin, String nombre, String apellido, String correo, String telefono, String contrasena) {
