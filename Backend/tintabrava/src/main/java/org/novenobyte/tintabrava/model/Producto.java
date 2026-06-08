@@ -2,6 +2,9 @@ package org.novenobyte.tintabrava.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name ="productos")
 public class Producto {
@@ -10,20 +13,19 @@ public class Producto {
     @Column(name = "id_producto")
     private Long idProducto;
 
-    @Column(name = "id_categoria", nullable = false)
-    private Long idCategoria;
+    @ManyToOne
+    @JoinColumn(name = "id_categoria", nullable = false)
+    private Category idCategoria;
 
-    @Column(name = "id_subcategoria", nullable = false)
-    private Long idSubCategoria;
+    @ManyToOne
+    @JoinColumn(name = "id_subcategoria", nullable = false)
+    private SubCategory idSubCategoria;
 
-    @Column(name = "nombre_categoria", nullable = false, unique = true)
-    private String nombreCategoria;
+    @Column(name = "nombre_producto", nullable = false, unique = true)
+    private String nombreProducto;
 
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
-
-    @Column(name = "stock", nullable = false)
-    private Integer stock;
 
     @Column(name = "precio", nullable = false)
     private Double precio;
@@ -34,13 +36,16 @@ public class Producto {
     @Column(name = "imagen_principal", nullable = false, unique = true)
     private String imagenPrincipal;
 
-    public Producto(Long idProducto, Long idCategoria, String nombreCategoria, Long idSubCategoria, String descripcion, Integer stock, Double precio, Long sku, String imagenPrincipal) {
+    //Mandamos esta ID a Producto
+    @OneToMany(mappedBy = "idProducto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<DetallesPedido> detallesPedido = new ArrayList<>();
+
+    public Producto(Long idProducto, Category idCategoria, String nombreProducto, SubCategory idSubCategoria, String descripcion, Integer stock, Double precio, Long sku, String imagenPrincipal) {
         this.idProducto = idProducto;
         this.idCategoria = idCategoria;
-        this.nombreCategoria = nombreCategoria;
+        this.nombreProducto = nombreProducto;
         this.idSubCategoria = idSubCategoria;
         this.descripcion = descripcion;
-        this.stock = stock;
         this.precio = precio;
         this.sku = sku;
         this.imagenPrincipal = imagenPrincipal;
@@ -57,28 +62,28 @@ public class Producto {
         this.idProducto = idProducto;
     }
 
-    public Long getIdCategoria() {
+    public Category getIdCategoria() {
         return idCategoria;
     }
 
-    public void setIdCategoria(Long idCategoria) {
+    public void setIdCategoria(Category idCategoria) {
         this.idCategoria = idCategoria;
     }
 
-    public Long getIdSubCategoria() {
+    public SubCategory getIdSubCategoria() {
         return idSubCategoria;
     }
 
-    public void setIdSubCategoria(Long idSubCategoria) {
+    public void setIdSubCategoria(SubCategory idSubCategoria) {
         this.idSubCategoria = idSubCategoria;
     }
 
     public String getNombreCategoria() {
-        return nombreCategoria;
+        return nombreProducto;
     }
 
     public void setNombreCategoria(String nombreCategoria) {
-        this.nombreCategoria = nombreCategoria;
+        this.nombreProducto = nombreCategoria;
     }
 
     public String getDescripcion() {
@@ -87,14 +92,6 @@ public class Producto {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
     }
 
     public Double getPrecio() {
@@ -127,12 +124,11 @@ public class Producto {
                 "idProducto=" + idProducto +
                 ", idCategoria=" + idCategoria +
                 ", idSubCategoria=" + idSubCategoria +
-                ", nombreCategoria='" + nombreCategoria + '\'' +
+                ", nombreProducto='" + nombreProducto + '\'' +
                 ", descripcion='" + descripcion + '\'' +
-                ", stock=" + stock +
                 ", precio=" + precio +
                 ", sku=" + sku +
                 ", imagenPrincipal='" + imagenPrincipal + '\'' +
                 '}';
     }
-}
+    }

@@ -2,6 +2,9 @@ package org.novenobyte.tintabrava.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="categorias")
 public class Category {
@@ -17,6 +20,9 @@ public class Category {
         this.nombre = nombre;
         this.idCategory = idCategory;
     }
+
+    @OneToMany(mappedBy = "idCategoria", cascade = CascadeType.ALL, fetch = FetchType.LAZY) //Se supone lo de lazy es para no traer todos los pedidos de una vez
+    private List<Producto> producto = new ArrayList<>();
 
     public Category(){} //JPA Constructor
 

@@ -11,11 +11,13 @@ public class DetallesPedido {
     @Column(name = "id_detalle")
     private Long idDetalle;
 
-    @Column(name = "id_pedido", nullable = false)
-    private Long idPedido;
+    @ManyToOne
+    @JoinColumn(name = "id_pedido", nullable = false)
+    private Pedido idPedido;
 
-    @Column(name = "id_producto", nullable = false)
-    private Long idProducto;
+    @ManyToOne
+    @JoinColumn(name = "id_producto", nullable = false)
+    private Producto idProducto;
 
     @Column(name = "cantidad_producto", nullable = false)
     private Integer cantidadProducto;
@@ -23,7 +25,7 @@ public class DetallesPedido {
     @Column(name = "total", nullable = true)
     private Double total;
 
-    public DetallesPedido(Long idDetalle, Long idPedido, Long idProducto, Integer cantidadProducto, Double total) {
+    public DetallesPedido(Long idDetalle, Pedido idPedido, Producto idProducto, Integer cantidadProducto, Double total) {
         this.idDetalle = idDetalle;
         this.idPedido = idPedido;
         this.idProducto = idProducto;
@@ -42,19 +44,19 @@ public class DetallesPedido {
         this.idDetalle = idDetalle;
     }
 
-    public Long getIdPedido() {
+    public Pedido getIdPedido() {
         return idPedido;
     }
 
-    public void setIdPedido(Long idPedido) {
+    public void setIdPedido(Pedido idPedido) {
         this.idPedido = idPedido;
     }
 
-    public Long getIdProducto() {
+    public Producto getIdProducto() {
         return idProducto;
     }
 
-    public void setIdProducto(Long idProducto) {
+    public void setIdProducto(Producto idProducto) {
         this.idProducto = idProducto;
     }
 
