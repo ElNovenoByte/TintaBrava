@@ -1,52 +1,8 @@
-body{
-    background-color: #d3d3d3;
-    font-family: Arial, sans-serif;
+body {
+    background-color: #D3D3D3;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
-    padding: 0;
-}
-
-/* ================= NAVBAR ================= */
-
-.navbar{
-    background-color: #0B090A;
-    border-bottom: 3px solid #A4161A;
-    padding: 12px 0;
-}
-
-.navbar-brand img{
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-}
-
-.brand-text{
-    font-family: 'Bebas Neue', sans-serif;
-    color: white;
-    font-size: 3rem;
-    letter-spacing: 2px;
-}
-
-.navbar .nav-link{
-    color: white !important;
-    font-weight: bold;
-    font-size: 1.3rem;
-    transition: .3s ease;
-}
-
-.navbar .nav-link:hover,
-.navbar .nav-link.active{
-    color: #E5383B !important;
-    border-bottom: 3px solid #E5383B;
-}
-
-.navbar i{
-    color: white;
-    font-size: 1.8rem;
-    transition: .3s ease;
-}
-
-.navbar i:hover{
-    color: #E5383B;
+    color: #0B090A;
 }
 
 /* ================= TÍTULO HOODIES ================= */
@@ -234,7 +190,7 @@ body{
     .brand-text{
         font-size: 2rem;
     }
-
+/* 
     .navbar-brand img{
         width: 50px;
         height: 50px;
@@ -247,7 +203,7 @@ body{
 
     .navbar i{
         font-size: 1.5rem;
-    }
+    } */
 
     .Titulo-hoodies{
         font-size: 45px;
