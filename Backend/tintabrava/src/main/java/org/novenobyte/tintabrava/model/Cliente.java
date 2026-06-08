@@ -13,7 +13,7 @@ public class Cliente {
     @Column(name = "id_cliente")
     private Long idCliente;
 
-    @OneToOne // Indicamos que es FK. Va a venir desde Usuario
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)// Indicamos que es FK. Va a venir desde Usuario
     @JoinColumn(name = "id_usuario", nullable = false, unique = true)
     private User usuario;
 

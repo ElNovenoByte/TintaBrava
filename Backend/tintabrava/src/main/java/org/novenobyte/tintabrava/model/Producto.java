@@ -40,10 +40,6 @@ public class Producto {
     @OneToMany(mappedBy = "idProducto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<DetallesPedido> detallesPedido = new ArrayList<>();
 
-    //Mandamos esta ID a Stock
-    @OneToOne(mappedBy = "idProducto")
-    private Stock stock;
-
     public Producto(Long idProducto, Category idCategoria, String nombreProducto, SubCategory idSubCategoria, String descripcion, Integer stock, Double precio, Long sku, String imagenPrincipal) {
         this.idProducto = idProducto;
         this.idCategoria = idCategoria;
@@ -135,4 +131,4 @@ public class Producto {
                 ", imagenPrincipal='" + imagenPrincipal + '\'' +
                 '}';
     }
-}
+    }

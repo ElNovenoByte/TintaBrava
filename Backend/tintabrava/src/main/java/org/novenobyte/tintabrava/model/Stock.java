@@ -10,7 +10,7 @@ public class Stock {
     @Column(name = "id_stock")
     private Long idStock;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_producto",nullable = false, unique = true)
     private Producto idProducto;
 
