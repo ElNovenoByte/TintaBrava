@@ -5,50 +5,6 @@ body{
     padding: 0;
 }
 
-/* ================= NAVBAR ================= */
-
-.navbar{
-    background-color: #0B090A;
-    border-bottom: 3px solid #A4161A;
-    padding: 12px 0;
-}
-
-.navbar-brand img{
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-}
-
-.brand-text{
-    font-family: 'Bebas Neue', sans-serif;
-    color: white;
-    font-size: 3rem;
-    letter-spacing: 2px;
-}
-
-.navbar .nav-link{
-    color: white;
-    font-weight: bold;
-    font-size: 1.3rem;
-    transition: .3s ease;
-}
-
-.navbar .nav-link:hover,
-.navbar .nav-link.active{
-    color: #E5383B;
-    border-bottom: 3px solid #E5383B;
-}
-
-.navbar i{
-    color: white;
-    font-size: 1.8rem;
-    transition: .3s ease;
-}
-
-.navbar i:hover{
-    color: #E5383B;
-}
-
 /* ================= HERO VIDEO ================= */
 .hero-video-container {
     position: relative;

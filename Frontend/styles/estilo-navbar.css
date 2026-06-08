@@ -29,6 +29,7 @@
   font-size: 1.35rem;
   padding: 0.5rem 0.8rem;
   transition: color 0.2s, background-color 0.2s, border-radius 0.2s;
+  font-family: 'Roboto', sans-serif;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
