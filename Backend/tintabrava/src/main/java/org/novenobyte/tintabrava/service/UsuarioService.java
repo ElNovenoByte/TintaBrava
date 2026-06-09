@@ -18,21 +18,26 @@ public class UsuarioService {
     }
 
     // Get
+    // Obtener usuarios
     public List<User> getUsers() {
         return usuarioRepository.findAll();
     }
 
     // Post
+    // Crear usuario
     public User createUser(User newUser){
+        if(usuarioRepository.existsByCorreo(newUser.getCorreo())){
+            throw new RuntimeException("Email already exist");
+        }
         return usuarioRepository.save(newUser);
     }
 
     // Put
-
+    // Actualizar usuarios
     public User updateUser(Long id, User updatedUser){
 
         User user = usuarioRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(id)); //Revisar esto
+                .orElseThrow(() -> new UserNotFoundException("Not found user with id: " + id));
 
         user.setNombre(updatedUser.getNombre());
         user.setApellido(updatedUser.getApellido());
@@ -52,7 +57,7 @@ public class UsuarioService {
                     "User not found with id: " + id);
         }
     }
-
+    // Eliminar por correo
      public void deleteUserByCorreo(String correo){
         User user = usuarioRepository.findByCorreo(correo);
 
@@ -63,7 +68,7 @@ public class UsuarioService {
                     "User not found with email: " + correo);
         }
     }
-
+    // Eliminar por telefono
     public void deleteUserByTelefono(String telefono){
         User user = usuarioRepository.findByTelefono(telefono);
 
@@ -73,6 +78,11 @@ public class UsuarioService {
             throw new UserNotFoundException(
                     "User not found with phone: " + telefono);
         }
+    }
+
+    // Validar si el correo existe
+    public boolean existsCorreo(String correo){
+        return usuarioRepository.existsByCorreo(correo);
     }
 
 
