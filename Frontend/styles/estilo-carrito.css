@@ -108,11 +108,21 @@ body {
     color: #0B090A;
 }
 
+.nombre-producto {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #0B090A;
+    display: block; 
+    margin-bottom: 4px;
+}
+
 .descripcion-producto {
     margin: 0;
     font-size: 14px;
     text-decoration: none;
     color: #161A1D;
+    display: block;
 }
 
 .bloque-derecho {

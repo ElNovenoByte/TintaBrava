@@ -58,13 +58,14 @@ document.addEventListener("DOMContentLoaded", function() {
                         <img src="${producto.image_front}" class="imagen-cuadro" alt="${producto.name}" style="width:80px; height:80px; object-fit:cover; border-radius:4px;" onerror="this.src='https://via.placeholder.com/400x400?text=No+Image'">
                     </a>
                 </div>
-                
+
                 <div class="bloque-centro">
-                    <a class="descripcion-producto" href="../interfaces/prendadetalle.html" class="link-producto"> 
+                    <a class="nombre-producto link-producto" href="../interfaces/prendadetalle.html">${producto.name}</a>
+                    <a class="descripcion-producto link-producto" href="../interfaces/prendadetalle.html"> 
                         ${producto.description || "Descripción no disponible"}
                     </a>
                 </div>
-                
+
                 <div class="bloque-derecho">
                     <div class="control-cantidad">
                         <span class="texto-etiqueta">Cantidad</span>
