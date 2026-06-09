@@ -29,10 +29,9 @@ public class ProductoController {
     //Post
     @PostMapping("/post/nuevo-producto")
     public ResponseEntity<Producto> createProducto(@RequestBody Producto newProducto){
-        Producto productoBySku = productoService.findProductoBySku(newProducto.getSku());
 
         //Validar si el producto existe por sku
-        if(productoBySku != null){
+        if(productoService.productoExistsBySku(newProducto.getSku())){
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         } else {
             //Si un producto no existe, lanzar un estatus: 201 CREATE

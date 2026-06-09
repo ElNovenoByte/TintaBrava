@@ -78,12 +78,12 @@ public class Producto {
         this.idSubCategoria = idSubCategoria;
     }
 
-    public String getNombreCategoria() {
+    public String getNombreProducto() {
         return nombreProducto;
     }
 
-    public void setNombreCategoria(String nombreCategoria) {
-        this.nombreProducto = nombreCategoria;
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
     }
 
     public String getDescripcion() {
@@ -118,6 +118,14 @@ public class Producto {
         this.imagenPrincipal = imagenPrincipal;
     }
 
+    public List<DetallesPedido> getDetallesPedido() {
+        return detallesPedido;
+    }
+
+    public void setDetallesPedido(List<DetallesPedido> detallesPedido) {
+        this.detallesPedido = detallesPedido;
+    }
+
     @Override
     public String toString() {
         return "Producto{" +
@@ -129,6 +137,7 @@ public class Producto {
                 ", precio=" + precio +
                 ", sku=" + sku +
                 ", imagenPrincipal='" + imagenPrincipal + '\'' +
+                ", detallesPedido=" + detallesPedido +
                 '}';
     }
-    }
+}
