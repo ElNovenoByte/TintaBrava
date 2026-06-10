@@ -1,46 +1,63 @@
-// ========== RENDERIZADO DE PRODUCTOS (GORRAS) ==========
-function renderGorras() {
+const urlGorras = `http://127.0.0.1:8080/api/productos/get/gorras`; // Ajusta URL
+
+async function renderGorras() {
   const productsGrid = document.getElementById("products-grid");
   if (!productsGrid) return;
-  productsGrid.innerHTML = "";
 
-  const gorras = productostintabrava.filter(prod => prod.category === 'Gorras');
+  productsGrid.innerHTML = '<div class="text-center">Cargando productos...</div>';
 
-  gorras.forEach(gorra => {
-    const colDiv = document.createElement("div");
-    colDiv.className = "col col-product show";
-    colDiv.setAttribute("data-category", gorra.subcategory);
-    colDiv.setAttribute("data-id", gorra.id);
+  try {
+    const response = await fetch(urlGorras);
+    if (!response.ok) throw new Error('Error al cargar gorras');
+    const gorras = await response.json();
 
-    const badgeHTML = gorra.tag ? `<span class="badge-tag">${gorra.tag}</span>` : "";
+    if (!gorras.length) {
+      productsGrid.innerHTML = '<div class="text-center">No hay productos disponibles</div>';
+      return;
+    }
 
-    colDiv.innerHTML = `
-      <div class="gorra-card-premium h-100">
-        <div class="card-img-container">
-          ${badgeHTML}
-          <img src="${gorra.image_front}" class="img-front" alt="${gorra.name} Frontal" onerror="this.src='https://via.placeholder.com/400x400?text=No+Image'">
-          <img src="${gorra.image_back}" class="img-back" alt="${gorra.name} Trasera" onerror="this.src='https://via.placeholder.com/400x400?text=No+Image'">
+    productsGrid.innerHTML = '';
+
+    gorras.forEach(gorra => {
+      const colDiv = document.createElement("div");
+      colDiv.className = "col col-product show";
+      let subcat = gorra.idSubCategoria.nombre.toLowerCase();
+      if (subcat === 'series/comics') subcat = 'series';
+      colDiv.setAttribute("data-category", subcat);
+      colDiv.setAttribute("data-id", gorra.idProducto);
+
+      const badgeHTML = gorra.tag ? `<span class="badge-tag">${gorra.tag}</span>` : "";
+
+      colDiv.innerHTML = `
+        <div class="gorra-card-premium h-100">
+          <div class="card-img-container">
+            ${badgeHTML}
+            <img src="${gorra.imagen1}" class="img-front" alt="${gorra.nombreProducto} Frontal" onerror="this.src='https://via.placeholder.com/400x400?text=No+Image'">
+            <img src="${gorra.imagen2}" class="img-back" alt="${gorra.nombreProducto} Trasera" onerror="this.src='https://via.placeholder.com/400x400?text=No+Image'">
+          </div>
+          <div class="card-body-custom text-center">
+            <h5 class="card-title-custom">${gorra.nombreProducto}</h5>
+            <p class="card-text-custom">${gorra.descripcion}</p>
+            <div class="price-box">$${gorra.precio} MXN</div>
+            <button class="btn-brava-action btn-agregar-carrito">DETALLES</button>
+          </div>
         </div>
-        <div class="card-body-custom text-center">
-          <h5 class="card-title-custom">${gorra.name}</h5>
-          <p class="card-text-custom">${gorra.description}</p>
-          <div class="price-box">$${gorra.price} MXN</div>
-          <button class="btn-brava-action btn-agregar-carrito">DETALLES</button>
-        </div>
-      </div>
-    `;
+      `;
 
-    productsGrid.appendChild(colDiv);
-  });
+      productsGrid.appendChild(colDiv);
+    });
+  } catch (error) {
+    console.error(error);
+    productsGrid.innerHTML = '<div class="text-center text-danger">Error al cargar productos</div>';
+  }
 }
 
-// ========== DELEGACIÓN PARA BOTONES "DETALLES" ==========
 document.addEventListener("DOMContentLoaded", () => {
   renderGorras();
 
   const productsGrid = document.getElementById("products-grid");
   if (productsGrid) {
-    productsGrid.addEventListener("click", (e) => {
+    productsGrid.addEventListener("click", async (e) => {
       const btn = e.target.closest(".btn-agregar-carrito");
       if (!btn) return;
 
@@ -48,24 +65,26 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!colProduct) return;
 
       const productId = parseInt(colProduct.getAttribute("data-id"));
-      const producto = productostintabrava.find(p => p.id === productId);
-      if (producto) {
-        localStorage.setItem("productoDetalle", JSON.stringify(producto));
-        window.location.href = "prendadetalle.html";
-      } else {
-        console.error("Producto no encontrado");
+      try {
+        const response = await fetch(urlGorras);
+        const gorras = await response.json();
+        const producto = gorras.find(p => p.idProducto === productId);
+        if (producto) {
+          localStorage.setItem("productoDetalle", JSON.stringify(producto));
+          window.location.href = "prendadetalle.html";
+        }
+      } catch (error) {
+        console.error(error);
       }
     });
   }
 });
 
-// ========== FILTROS (igual que en playeras) ==========
+// Filtros (idéntico)
 function filterCategory(category, event) {
   const buttons = document.querySelectorAll('.filter-btn');
   buttons.forEach(btn => btn.classList.remove('active'));
-  if (event && event.currentTarget) {
-    event.currentTarget.classList.add('active');
-  }
+  if (event?.currentTarget) event.currentTarget.classList.add('active');
 
   const products = document.querySelectorAll('.col-product');
   products.forEach(product => {
@@ -83,16 +102,13 @@ function filterCategory(category, event) {
   });
 }
 
-// Reemplazar los onclick de los botones de filtro
 document.querySelectorAll('.filter-btn').forEach(btn => {
   const originalOnclick = btn.getAttribute('onclick');
   if (originalOnclick) {
     btn.removeAttribute('onclick');
     btn.addEventListener('click', (e) => {
       const match = originalOnclick.match(/filterCategory\('(.+?)'\)/);
-      if (match) {
-        filterCategory(match[1], e);
-      }
+      if (match) filterCategory(match[1], e);
     });
   }
 });

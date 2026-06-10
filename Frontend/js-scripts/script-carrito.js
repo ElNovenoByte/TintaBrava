@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const contenedorCarritoActivo = document.getElementById("contenedor-carrito-activo");
     const seccionVacía = document.getElementById("seccion-vacía");
 
-    
     const modalElemento = document.getElementById("modalConfirmacion");
     const bootstrapModal = new bootstrap.Modal(modalElemento);
     const btnModalOK = document.getElementById("btn-modal-ok");
@@ -17,13 +16,34 @@ document.addEventListener("DOMContentLoaded", function() {
     let nombreProductoAEliminar = null;
     let productosEnCarrito = [];
 
-    // Función para obtener el estado actual del carrito desde localStorage
-    function obtenerCarrito() {
-        productosEnCarrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    // ========== FUNCIÓN NORMALIZADORA ==========
+    // Convierte cualquier producto (formato antiguo o nuevo API) a un objeto uniforme
+    function normalizarProducto(prod) {
+        return {
+            id: prod.idProducto || prod.id,
+            name: prod.nombreProducto || prod.name,
+            price: prod.precio || prod.price,
+            description: prod.descripcion || prod.description,
+            category: prod.idCategoria?.nombre || prod.category,
+            subcategory: prod.idSubCategoria?.nombre || prod.subcategory,
+            image_front: prod.imagen1 || prod.image_front,
+            image_back: prod.imagen2 || prod.image_back,
+            urlimagenes: prod.urlimagenes || [prod.imagen1, prod.imagen2, prod.imagen3].filter(Boolean),
+            cantidad: prod.cantidad || 1,
+            talla: prod.talla || "N/A",
+            colorSeleccionado: prod.colorSeleccionado || "N/A"
+        };
     }
 
-    // Función para actualizar el estado del carrito en localStorage después de cualquier cambio
+    // Función para obtener el estado actual del carrito desde localStorage y normalizarlo
+    function obtenerCarrito() {
+        const rawCarrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        productosEnCarrito = rawCarrito.map(prod => normalizarProducto(prod));
+    }
+
+    // Función para actualizar el estado del carrito en localStorage (se guarda normalizado)
     function actualizarLocalStorage() {
+        // Guardamos los productos ya normalizados, pero sin perder el formato original si es necesario
         localStorage.setItem('carrito', JSON.stringify(productosEnCarrito));
     }
 
@@ -44,13 +64,12 @@ document.addEventListener("DOMContentLoaded", function() {
         productosEnCarrito.forEach((producto) => {
             const itemDiv = document.createElement("div");
             itemDiv.className = "item-producto";
-            // Agregamos atributos personalizados para facilitar futuras manipulaciones (como cantidad y precio base)
             itemDiv.setAttribute("data-nombre", producto.name);
             itemDiv.setAttribute("data-precio-base", producto.price);
+            itemDiv.setAttribute("data-id", producto.id);
 
             const subtotalItem = producto.price * producto.cantidad;
 
-            // Construcción del template HTML para cada producto en el carrito
             itemDiv.innerHTML = `
                 <div class="bloque-izquierdo">
                     <input type="checkbox" class="check-producto" checked>
@@ -168,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function() {
             itemSeleccionadoParaEliminar.style.opacity = "0";
             
             setTimeout(function() {
-                // Filtrar el arreglo para remover el producto
+                // Filtrar el arreglo para remover el producto (por nombre normalizado)
                 productosEnCarrito = productosEnCarrito.filter(p => p.name !== nombreProductoAEliminar);
                 actualizarLocalStorage();
                 

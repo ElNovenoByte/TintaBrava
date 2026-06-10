@@ -1,20 +1,19 @@
-// ========== AGREGAR AL CARRITO (sin tallas/colores) ==========
+// ========== AGREGAR AL CARRITO ==========
 function agregarAlCarrito(producto) {
   let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-  const productoExistente = carrito.find(item => item.id === producto.id);
+  const productoExistente = carrito.find(item => item.idProducto === producto.idProducto);
   if (productoExistente) {
     productoExistente.cantidad = (productoExistente.cantidad || 1) + 1;
   } else {
     producto.cantidad = 1;
-    // Asignamos valores por defecto ya que no usamos talla/color
     producto.talla = "N/A";
     producto.colorSeleccionado = "N/A";
     carrito.push(producto);
   }
 
   localStorage.setItem('carrito', JSON.stringify(carrito));
-  alert(`🛒 Agregado al carrito:\n${producto.name}\nPrecio: $${producto.price}`);
+  alert(`🛒 Agregado al carrito:\n${producto.nombreProducto}\nPrecio: $${producto.precio}`);
 }
 
 // ========== ESCAPE HTML (seguridad) ==========
@@ -28,21 +27,18 @@ function escapeHTML(str) {
   });
 }
 
-// ========== RENDERIZAR PRODUCTO (SOLO GALERÍA + INFO BÁSICA) ==========
+// ========== RENDERIZAR PRODUCTO (GALERÍA CON 3 IMÁGENES) ==========
 function renderizarProducto(producto) {
   const container = document.getElementById('productDetailRow');
   if (!container) return;
 
-  // Construir array de imágenes (priorizamos urlimagenes si existe, sino usamos front/back)
+  // Construir array de imágenes (prioriza imagen1, imagen2, imagen3)
   let imagenes = [];
-  if (producto.urlimagenes && producto.urlimagenes.length) {
-    imagenes = producto.urlimagenes.slice(0, 3);
-  } else {
-    if (producto.image_front) imagenes.push(producto.image_front);
-    if (producto.image_back) imagenes.push(producto.image_back);
-    // Si hay una tercera imagen en el futuro, se agregaría aquí
-  }
+  if (producto.imagen1) imagenes.push(producto.imagen1);
+  if (producto.imagen2) imagenes.push(producto.imagen2);
+  if (producto.imagen3) imagenes.push(producto.imagen3);
 
+  // Si no hay imágenes, usar placeholders
   if (imagenes.length === 0) {
     imagenes = ['https://via.placeholder.com/400x500?text=Sin+imagen'];
   }
@@ -58,7 +54,6 @@ function renderizarProducto(producto) {
   });
 
   const htmlCompleto = `
-    <!-- Columna izquierda: galería -->
     <div class="col-12 col-md-6 mb-4 mb-md-0">
       <div class="gallery-layout">
         <div class="thumbnail-vertical">
@@ -69,12 +64,11 @@ function renderizarProducto(producto) {
         </div>
       </div>
     </div>
-    <!-- Columna derecha: detalles (solo nombre, precio, descripción, botón) -->
     <div class="col-12 col-md-6 d-flex align-items-center">
       <div class="details-card w-100">
-        <h1 class="product-name">${escapeHTML(producto.name)}</h1>
-        <div class="product-price">$${producto.price.toFixed(2)} MXN</div>
-        <p class="product-description">${escapeHTML(producto.description)}</p>
+        <h1 class="product-name">${escapeHTML(producto.nombreProducto)}</h1>
+        <div class="product-price">$${producto.precio.toFixed(2)} MXN</div>
+        <p class="product-description">${escapeHTML(producto.descripcion)}</p>
         <div class="mt-3">
           <button id="addToCartBtn" class="btn-add-cart">
             <i class="bi bi-cart-plus me-2"></i> Añadir al carrito
@@ -115,10 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (productoGuardado) {
     const producto = JSON.parse(productoGuardado);
     renderizarProducto(producto);
-    // Limpiar para que no persista en recargas accidentales
     localStorage.removeItem('productoDetalle');
   } else {
-    // Si no hay producto, mostrar mensaje y enlace de regreso
     const container = document.getElementById('productDetailRow');
     if (container) {
       container.innerHTML = `
