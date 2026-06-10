@@ -98,6 +98,10 @@
 .team-img {
   cursor: pointer;
   transition: transform 0.2s, filter 0.2s;
+  width: 100%;        /* Controls the overall scaling size */
+  height: auto;       /* Overrides default height restrictions */
+  object-fit: cover; /* Crops the image to cleanly fill the ratio */
+  aspect-ratio: 4/5;  /* Forces the specific aspect ratio box */
 }
 
 .team-img:hover {
