@@ -42,16 +42,16 @@
         // Si todo es válido, procedemos a crear el JSON
       
         // 1. Obtenemos los valores usando document.getElementById()
-        const nombre = document.getElementById('form-nombre').value;
+        const nombre = document.getElementById('form-nombre').value.trim();
         const precio = document.getElementById('form-precio').value;
         const categoria = document.getElementById('form-categoria').value;
         const subcategoria = document.getElementById('form-subcategoria').value;
         const descripcion = document.getElementById('form-descripcion').value;
-        const tallaXs = document.getElementById('form-xs').value;
+        /*const tallaXs = document.getElementById('form-xs').value;
         const tallaS = document.getElementById('form-s').value;
         const tallaM = document.getElementById('form-m').value;
         const tallaL = document.getElementById('form-l').value;
-        const tallaXl = document.getElementById('form-xl').value;
+        const tallaXl = document.getElementById('form-xl').value;*/
 
         // 2. Generamos las rutas de las imágenes
         const img1 = document.getElementById('imagen-1');
@@ -77,27 +77,55 @@
         };
 
         // 3. Construimos el objeto product
-        const product = {
-          nombre: nombre,
-          precio: precio,
-          categoria: categoria,
-          subcategoria: subcategoria,
+        const producto = {
+          nombreProducto: nombre,
           descripcion: descripcion,
-          tallaXs: tallaXs,
+          precio: parseFloat(precio),
+          idCategoria: {
+            idCategory: parseInt(categoria)
+          },
+          idSubCategoria: {
+            idSubcategory: parseInt(subcategoria)
+          },
+          /*tallaXs: tallaXs,
           tallaS: tallaS,
           tallaM: tallaM,
           tallaL: tallaL,
-          tallaXl: tallaXl,
+          tallaXl: tallaXl,*/
           imagen1: obtenerRutaImagen(img1, 1),
           imagen2: obtenerRutaImagen(img2, 2),
-          imagen3: obtenerRutaImagen(img3, 3)
+          imagen3: obtenerRutaImagen(img3, 3),
         };
 
+        console.log(producto);
+
+        console.log(JSON.stringify(producto, null, 2));
         // 4. Convertimos a JSON y mostramos en consola
-        const jsonFinal = JSON.stringify(product, null, 2);
+        const jsonFinal = JSON.stringify(producto, null, 2);
         console.log("Datos listos para enviar a la base de datos:");
         console.log(jsonFinal);
         // console.log(img1.files);
+        fetch("http://localhost:8080/api/productos/post/nuevo-producto", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(producto)
+        })
+        .then(response => {
+            if(!response.ok){
+                throw new Error("Error al crear producto");
+            }
+
+            return response.json();
+        })
+        .then(data => {
+            alert("Producto creado correctamente");
+            console.log(data);
+        })
+        .catch(error => {
+            console.error(error);
+        });
 
         // (Aquí es donde más adelante agregarías el código para mandar el JSON a tu servidor)
       }
