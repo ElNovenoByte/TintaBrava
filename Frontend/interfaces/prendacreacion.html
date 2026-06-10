@@ -21,86 +21,99 @@
 
     <!-- ========== FORMULARIO ============ -->
     <main>
-        <!-- HEADER CON VALORES CREAR | EDITAR -->
         <section>
             <div class="container mt-5">
                 <div class="row justify-content-center">
-                    <div class="col-3 text-center" style="border-right-width: 1px;border-right-style: solid;"><a href="#" style="text-decoration: none;color: inherit;">
-                            <h1 id="crear" style="font-family: 'Bebas Neue', sans-serif;transition: 0.4s;">Crear</h1>
-                        </a></div>
-                    <div class="col-3 text-center" style="border-left-width: 1px;border-left-style: solid;"><a href="prendaedicion.html" style="text-decoration: none;color: inherit;">
-                            <h1 id="editar" style="font-family: 'Bebas Neue', sans-serif;transition: 0.4s;">Editar</h1>
-                        </a></div>
+                    <div class="col-3 text-center">
+                        <h1 id="crear" style="font-family: 'Bebas Neue', sans-serif;">Crear</h1>
+                    </div>
                 </div>
             </div>
         </section>
-
-        <!-- FORMULARIO -->
-        <section class="mt-4 mb-5">
+        <section class="mt-0 mb-5">
             <div class="container my-0">
                 <div class="row justify-content-center my-0 py-0">
                     <div class="col-11 col-md-8 ps-0 pe-0 my-0">
-                        <form>
-                            <div class="my-3"><input id="nombre" class="border rounded-2 form-control" type="text" placeholder="Nombre del producto*" required="" maxlength="100">
-                                <p class="small text-black text-opacity-50 ms-0 ps-3">Máximo 100 caracteres.</p>
+                        <form class="needs-validation" novalidate="">
+                            <div class="my-3"><label class="form-label fw-semibold" for="form-nombre">Nombre de la prenda *</label><input class="border rounded-2 form-control mt-0" type="text" id="form-nombre" placeholder="Player negra con logo de ..." required="" maxlength="50" minlength="5" name="productName">
+                                <div class="invalid-feedback">
+                                    <p>Introduce un nombre con una longitud de 5 a 50 caracteres.</p>
+                                </div>
                             </div>
-                            <div class="my-3"><input id="precio" class="form-control" type="number" min="0" placeholder="Precio (MXN)*" required="" step="0.01">
-                                <p class="small text-black text-opacity-50 ms-0 ps-3">Mayor a 0. Hasta 2 decimales (ejemplo: 19.99)</p>
+                            <div class="my-3"><label class="form-label fw-semibold" for="form-precio">Precio (MXN) *</label><input class="form-control" type="number" id="form-precio" min="0" placeholder="199.99" required="" step="0.01" name="productPrice">
+                                <div class="invalid-feedback">
+                                    <p>Introduce un número mayor a 0 y hasta 2 decimales (ejemplo: 19.99).</p>
+                                </div>
                             </div>
-                            <div class="my-3"><select id="categoria" class="form-select" required="">
-                                    <option value="" selected="">Categoría*</option>
+                            <div class="my-3"><label class="form-label fw-semibold" for="form-categoria">Categoría *</label><select class="form-select" id="form-categoria" required="" name="productCategory">
+                                    <option value="" selected="">- Selecciona una categoría -</option>
                                     <option value="playera">Playera</option>
                                     <option value="hoodie">Hoodie</option>
                                     <option value="gorra">Gorra</option>
-                                </select></div>
-                            <div class="my-3"><select id="subcategoria" class="form-select" required="">
-                                    <option value="" selected="">Subcategoría*</option>
-                                    <option value="deportiva">Deportiva</option>
-                                    <option value="casual">Casual</option>
-                                    <option value="elegante">Elegante</option>
-                                    <option value="otro">Otro</option>
-                                </select></div>
-                            <div class="mt-3 mb-3"><textarea id="descripcion" class="form-control" placeholder="Descripción*" maxlength="500" required=""></textarea>
-                                <p class="small text-black text-opacity-50 ms-0 ps-3">Máximo 500 caracteres.</p>
-                            </div>
-                            <div class="mt-3 mb-3">
-                                <div class="row justify-content-start">
-                                    <div class="col-auto">
-                                        <p class="ps-3 mb-0">Tallas y cantidades disponibles*</p>
-                                    </div>
-                                </div>
-                                <div class="row gy-2 row-cols-lg-3 row-cols-xl-5 justify-content-evenly pt-0 my-1" style="color: rgb(33, 37, 41);">
-                                    <div class="col-auto">
-                                        <div class="input-group"><span class="input-group-text">XS</span><input id="xs" class="form-control" type="number" min="0" max="999" step="1" placeholder="0" value="0" required=""></div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="input-group"><span class="input-group-text">S</span><input id="s" class="form-control" type="number" min="0" max="999" step="1" placeholder="0" value="0" required=""></div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="input-group"><span class="input-group-text">M</span><input id="m" class="form-control" type="number" min="0" max="999" step="1" placeholder="0" value="0" required=""></div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="input-group"><span class="input-group-text">L</span><input id="l" class="form-control" type="number" min="0" max="999" step="1" placeholder="0" value="0" required=""></div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="input-group"><span class="input-group-text">XL</span><input id="xl" class="form-control" type="number" min="0" max="999" step="1" placeholder="0" value="0" required=""></div>
-                                    </div>
+                                </select>
+                                <div class="invalid-feedback">
+                                    <p>Selecciona una categoría.</p>
                                 </div>
                             </div>
-                            <div class="mt-3 mb-5">
-                                <div class="row justify-content-start">
-                                    <div class="col-auto">
-                                        <p class="ps-3 mb-0">Imágenes del producto*</p>
+                            <div class="my-3"><label class="form-label fw-semibold" for="form-subcategoria">Subcategoría *</label><select class="form-select" id="form-subcategoria" required="" name="productSubcategory">
+                                    <option value="" selected="">- Selecciona una subcategoría -</option>
+                                    <!-- <option value="personalizable">Personalizable</option> -->
+                                    <option value="deportiva">Bandas</option>
+                                    <option value="seriesComics">Series/Cómics</option>
+                                    <option value="otros">Otros</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    <p>Selecciona una subcategoría.</p>
+                                </div>
+                            </div>
+                            <div class="mt-3 mb-3"><label class="form-label fw-semibold" for="form-descripcion">Descripción*</label><textarea class="form-control" id="form-descripcion" placeholder="Escribe una descripción de la prenda." maxlength="500" required="" name="productDescription" minlength="20"></textarea>
+                                <div class="invalid-feedback">
+                                    <p>Escribe una descripción de con una longitud entre 20 y 500 caracteres.</p>
+                                </div>
+                            </div>
+                            <div class="mt-3 mb-3"><label class="form-label fw-semibold mb-0" for="form-tallas-cantidades">Tallas y cantidades por talla</label>
+                                <fieldset id="form-tallas-cantidades">
+                                    <div class="row gy-2 row-cols-lg-3 row-cols-xl-5 justify-content-evenly pt-0 my-1" style="color: rgb(33, 37, 41);">
+                                        <div class="col-auto">
+                                            <div class="input-group"><span class="input-group-text">XS</span><input class="form-control" type="number" id="form-xs" min="0" max="999" step="1" placeholder="0" value="0" required="" name="productXS"></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="input-group"><span class="input-group-text">S</span><input class="form-control" type="number" id="form-s" min="0" max="999" step="1" placeholder="0" value="0" required="" name="productS"></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="input-group"><span class="input-group-text">M</span><input class="form-control" type="number" id="form-m" min="0" max="999" step="1" placeholder="0" value="0" required="" name="productM"></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="input-group"><span class="input-group-text">L</span><input class="form-control" type="number" id="form-l" min="0" max="999" step="1" placeholder="0" value="0" required="" name="productL"></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="input-group"><span class="input-group-text">XL</span><input class="form-control" type="number" id="form-xl" min="0" max="999" step="1" placeholder="0" value="0" required="" name="productXL"></div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="mt-3 mb-5"><label class="form-label fw-semibold mb-2" for="form-tallas-cantidades">Imágenes del producto *</label>
+                                <p class="small text-center text-sm-start text-black text-opacity-50 ms-0 ps-3 mb-2">Selecciona 3 imágenes.</p>
+                                <div class="row gy-3 justify-content-center mt-0 pt-0 mb-2">
+                                    <div class="col mt-0"><input class="form-control btn-img-upload" type="file" id="imagen-1" required="" accept=".png, .jpg, .jpeg, .webp" name="productImage1">
+                                        <div class="invalid-feedback">
+                                            <p>Adjunta una primera imagen.</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row justify-content-center pt-0 my-2">
-                                    <div class="col"><input id="imagen-1" class="form-control" type="file" required="" accept=".png, .jpg, .jpeg"></div>
+                                <div class="row gy-3 justify-content-center mt-0 pt-0 mb-2">
+                                    <div class="col mt-0"><input class="form-control btn-img-upload" type="file" id="imagen-2" required="" accept=".png, .jpg, .jpeg, .webp" name="productImage2">
+                                        <div class="invalid-feedback">
+                                            <p>Adjunta una segunda imagen.</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="row justify-content-center pt-0 my-2">
-                                    <div class="col"><input id="imagen-2" class="form-control" type="file" required="" accept=".png, .jpg, .jpeg"></div>
-                                </div>
-                                <div class="row justify-content-center pt-0 my-2">
-                                    <div class="col"><input id="imagen-3" class="form-control" type="file" required="" accept=".png, .jpg, .jpeg"></div>
+                                <div class="row gy-3 justify-content-center mt-0 pt-0 mb-2">
+                                    <div class="col mt-0"><input class="form-control btn-img-upload" type="file" id="imagen-3" required="" accept=".png, .jpg, .jpeg, .webp" name="productImage3">
+                                        <div class="invalid-feedback">
+                                            <p>Adjunta una tercera imagen.</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="text-center my-3"><input class="btn fs-3 border rounded-0 btn-primary px-5" type="submit" id="submit" style="font-family: 'Bebas Neue', sans-serif;letter-spacing: 2px;transition: 0.4s;" value="Crear"></div>
