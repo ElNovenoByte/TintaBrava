@@ -2,6 +2,8 @@ package org.novenobyte.tintabrava.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,23 +21,24 @@ public class Pedido {
     private Cliente cliente;
 
     @Column(name = "fecha_pedido", nullable = false)
-    private Date fechaPedido;
+    private LocalDateTime fechaPedido;
 
     @Column(name = "fecha_entrega", nullable = false)
-    private Date fechaEntrega;
+    private LocalDate fechaEntrega;
 
     //Mandamos esta a detallesPedidos
     @OneToMany(mappedBy = "idPedido", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<DetallesPedido> detallesPedidos = new ArrayList<>();
 
-    public Pedido(Long idPedido, Cliente cliente, Date fechaPedido, Date fechaEntrega) {
+    public Pedido(Long idPedido, Cliente cliente, LocalDateTime fechaPedido, LocalDate fechaEntrega) {
         this.idPedido = idPedido;
         this.cliente = cliente;
         this.fechaPedido = fechaPedido;
         this.fechaEntrega = fechaEntrega;
     }
 
-    public Pedido(){}
+    public Pedido() {
+    }
 
     public Long getIdPedido() {
         return idPedido;
@@ -53,19 +56,19 @@ public class Pedido {
         this.cliente = cliente;
     }
 
-    public Date getFechaPedido() {
+    public LocalDateTime getFechaPedido() {
         return fechaPedido;
     }
 
-    public void setFechaPedido(Date fechaPedido) {
+    public void setFechaPedido(LocalDateTime fechaPedido) {
         this.fechaPedido = fechaPedido;
     }
 
-    public Date getFechaEntrega() {
+    public LocalDate getFechaEntrega() {
         return fechaEntrega;
     }
 
-    public void setFechaEntrega(Date fechaEntrega) {
+    public void setFechaEntrega(LocalDate fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
     }
 
