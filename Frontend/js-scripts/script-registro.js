@@ -136,7 +136,8 @@ else {
         errorTelefono.style.display = "block";
         errorTelefono.textContent = "El teléfono es obligatorio";
 
-        correo.classList.add("input-error");
+        telefono.classList.add("input-error");
+        valido = false;
 
     }
     else if (valorTelefono.length !== 10) {
@@ -145,6 +146,7 @@ else {
         errorTelefono.textContent = "Debes ingresar un teléfono de 10 dígitos";
 
         telefono.classList.add("input-error");
+        valido = false;
 
     }
     else {
@@ -162,6 +164,7 @@ else {
 
         errorPassword.style.display = "block";
         errorPassword.textContent = "La contraseña es obligatoria";
+        valido = false;
     }
     else {
         errorPassword.style.display = "none";
@@ -170,14 +173,54 @@ else {
     if (valorPasswordConfirm === "") {
         errorPasswordConfirm.style.display = "block";
         errorPasswordConfirm.textContent = "Debes confirmar la contraseña";
+        valido = false;
     }
     else if (valorPassword !== valorPasswordConfirm) {
         errorPasswordConfirm.style.display = "block";
         errorPasswordConfirm.textContent = "Las contraseñas no coinciden";
+        valido = false;
     }
     else {
         errorPasswordConfirm.style.display = "none";
     }
+
+    //Se añade validacion para que si algo falla se detenga ahi
+    if (!valido) {
+        return;
+    }
+
+    // Crear objeto para enviar al backend
+    const user = {
+        nombre: nombre.value.trim(),
+        apellido: apellido.value.trim(),
+        correo: correo.value.trim(),
+        telefono: telefono.value.trim(),
+        contrasena: passwordInput.value.trim()
+    };
+
+    // Llamada al backend
+    fetch("http://localhost:8080/api/usuarios/post/create", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+    })
+    .then(response => {
+        if(!response.ok){
+            throw new Error("Error al registrar el usuario");
+        }
+        return response.json();        
+    })
+    .then(data => {
+        alert("Usuario registrado correctamente");
+        console.log(data);
+        formulario.reset();
+    })
+    .catch(error => {
+        console.error(error);
+        alert(error.message);
+    });
 });
 
 //BOTÓN DE MOSTRAR CONTRASENA
