@@ -1,0 +1,63 @@
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    let valido = true;
+
+    const correo = document.getElementById("correo");
+    const password = document.getElementById("passwordInput");
+    const errorCorreo = document.getElementById("errorCorreo");
+    const errorPassword = document.getElementById("errorPassword");
+
+    // Limpiar errores anteriores
+    [correo, password].forEach(input => input.classList.remove("input-error"));
+    [errorCorreo, errorPassword].forEach(msg => {
+        msg.style.display = "none";
+        msg.textContent = "";
+    });
+
+    // Validar correo
+    const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (correo.value.trim() === "") {
+        mostrarError(correo, errorCorreo, "El correo es obligatorio.");
+        valido = false;
+    } else if (!regexCorreo.test(correo.value.trim())) {
+        mostrarError(correo, errorCorreo, "Ingresa un correo válido. Ejemplo: usuario@correo.com");
+        valido = false;
+    }
+
+    // Validar contraseña
+    if (password.value.trim() === "") {
+        mostrarError(password, errorPassword, "La contraseña es obligatoria.");
+        valido = false;
+    } 
+
+    // Si todo es válido, redirigir
+    if (valido) {
+        window.location.href = "../interfaces/principal.html";
+    }
+});
+
+// Función reutilizable para mostrar errores
+function mostrarError(input, mensaje, texto) {
+    input.classList.add("input-error");
+    mensaje.textContent = texto;
+    mensaje.style.display = "block";
+}
+
+// Toggle mostrar/ocultar contraseña
+// DESPUÉS
+const togglePassword = document.getElementById('togglePassword');
+const passwordInput = document.getElementById('passwordInput');
+
+function mostrarContrasena() {
+    passwordInput.type = 'text';
+    togglePassword.src = '../imagenes/iconos/ojo_abierto.png';
+}
+
+function ocultarContrasena() {
+    passwordInput.type = 'password';
+    togglePassword.src = '../imagenes/iconos/ojo_cerrado.png';
+}
+
+togglePassword.addEventListener('mousedown', mostrarContrasena);
+togglePassword.addEventListener('mouseup', ocultarContrasena);
+togglePassword.addEventListener('mouseleave', ocultarContrasena);
