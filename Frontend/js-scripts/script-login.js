@@ -80,6 +80,20 @@ function ocultarContrasena() {
     togglePassword.src = '../imagenes/iconos/ojo_cerrado.png';
 }
 
+// Botón Volver
+const btnVolver = document.getElementById('btnVolver');
+
+if (btnVolver) {
+    btnVolver.addEventListener('click', function() {
+        if (document.referrer) {
+            window.history.back();
+        } else {
+            // Si entraron directo por URL
+            window.location.href = "../interfaces/principal.html";
+        }
+    });
+}
+
 togglePassword.addEventListener('mousedown', mostrarContrasena);
 togglePassword.addEventListener('mouseup', ocultarContrasena);
 togglePassword.addEventListener('mouseleave', ocultarContrasena);
