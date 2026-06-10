@@ -55,6 +55,7 @@ function renderGorras() {
       : "";
 
     // Construcción del template HTML respetando las clases exactas de los estilos
+    
     colDiv.innerHTML = `
       <div class="gorra-card-premium h-100">
         <div class="card-img-container">
@@ -66,7 +67,7 @@ function renderGorras() {
           <h5 class="card-title-custom">${gorra.name}</h5>
           <p class="card-text-custom">${gorra.description}</p>
           <div class="price-box">$${gorra.price} MXN</div>
-          <button class="btn-brava-action">COMPRAR</button>
+          <button class="btn-brava-action" style="display: none;">COMPRAR</button>
           <button class="btn-brava-action btn-agregar-carrito">AGREGAR AL CARRITO</button>
         </div>
       </div>
