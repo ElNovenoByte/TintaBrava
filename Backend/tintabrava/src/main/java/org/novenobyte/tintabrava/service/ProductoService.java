@@ -54,9 +54,10 @@ public class ProductoService {
     public boolean productoExistsBySku(Long sku){
         return productoRepository.existsBySku(sku);
     }
+
     //Buscar por ID
-//    public Optional<Producto> findProductoByID(Long id){
-//        return productoRepository.findById(id);
-//    }
+    public Optional<Producto> findProductoByID(Long id){
+        return productoRepository.findById(id);
+    }
 
 }
