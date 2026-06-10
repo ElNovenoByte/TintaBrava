@@ -18,6 +18,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/productos")
+@CrossOrigin(origins = "*")
 public class ProductoController {
     private final ProductoService productoService;
     private final CategoriaRepository categoryRepository;
