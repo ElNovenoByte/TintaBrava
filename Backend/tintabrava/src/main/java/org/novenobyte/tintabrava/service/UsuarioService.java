@@ -29,6 +29,9 @@ public class UsuarioService {
         if(usuarioRepository.existsByCorreo(newUser.getCorreo())){
             throw new RuntimeException("Email already exist");
         }
+        if(usuarioRepository.existsByTelefono(newUser.getTelefono())){
+            throw new RuntimeException("Phone already exist");
+        }
         return usuarioRepository.save(newUser);
     }
 
