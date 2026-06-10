@@ -18,6 +18,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/productos")
+@CrossOrigin(origins = "*")
 public class ProductoController {
     private final ProductoService productoService;
     private final CategoriaRepository categoryRepository;
@@ -38,6 +39,24 @@ public class ProductoController {
         return productoService.getProductos();
     }
 
+    // Get Playeras
+    @GetMapping("/get/playeras")
+    public List<Producto> getPlayeras() {
+        return productoService.getProductosByCategoria(1L);
+    }
+
+    // Get Hoodies
+    @GetMapping("/get/hoodies")
+    public List<Producto> getHoodies() {
+        return productoService.getProductosByCategoria(2L);
+    }
+
+    // Get gorras
+    @GetMapping("/get/gorras")
+    public List<Producto> getGorras() {
+        return productoService.getProductosByCategoria(3L);
+    }
+
     //Get por ID
     @GetMapping("/get/{id}")
     public ResponseEntity<Optional<Producto>> getProductoByID(@PathVariable Long id){
@@ -47,6 +66,8 @@ public class ProductoController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    //Get
 
     //Post
     @PostMapping("/post/nuevo-producto")

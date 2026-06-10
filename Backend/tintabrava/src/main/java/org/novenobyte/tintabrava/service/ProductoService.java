@@ -23,6 +23,11 @@ public class ProductoService {
         return productoRepository.findAll();
     }
 
+    // Get por categoria
+    public List<Producto> getProductosByCategoria(Long idCategoria) {
+        return productoRepository.findByIdCategoria_IdCategoria(idCategoria);
+    }
+
     //Post
     public Producto createProducto(Producto newProducto){
         Long skuGenerado = System.currentTimeMillis();
