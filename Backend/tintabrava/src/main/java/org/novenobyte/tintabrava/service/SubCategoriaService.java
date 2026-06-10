@@ -16,29 +16,8 @@ public class SubCategoriaService {
         this.subCategoriaRepository = subCategoriaRepository;
     }
 
-    public List<SubCategory> getAll() {
+    //Get
+    public List<SubCategory> getSubCategorias(){
         return subCategoriaRepository.findAll();
     }
-
-    public SubCategory getById(Long id) {
-        return subCategoriaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("SubCategoría no encontrada con id: " + id));
-    }
-
-    public SubCategory save(SubCategory subCategoria) {
-        return subCategoriaRepository.save(subCategoria);
-    }
-
-    public SubCategory update(Long id, SubCategory subCategoria) {
-        SubCategory existing = getById(id);
-        existing.setNombre(subCategoria.getNombre());
-        existing.setDescripcion(subCategoria.getDescripcion());
-        return subCategoriaRepository.save(existing);
-    }
-
-    public void delete(Long id) {
-        getById(id); // valida que exista antes de borrar
-        subCategoriaRepository.deleteById(id);
-    }
-
 }

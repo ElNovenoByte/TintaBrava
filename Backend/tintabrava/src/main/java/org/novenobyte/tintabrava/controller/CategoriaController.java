@@ -3,9 +3,9 @@ package org.novenobyte.tintabrava.controller;
 import org.novenobyte.tintabrava.model.Category;
 import org.novenobyte.tintabrava.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -19,35 +19,8 @@ public class CategoriaController {
         this.categoriaService = categoriaService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<Category>> getAll(){
-        return ResponseEntity.ok(categoriaService.getAll());
+    @GetMapping("/getall")
+    public List<Category> getCategorias(){
+        return categoriaService.getCategorias();
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Category> getById(@PathVariable Long id) {
-        return ResponseEntity.ok(categoriaService.getById(id));
-    }
-
-    @PostMapping
-    public ResponseEntity<Category> create(@RequestBody Category categoria) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(categoriaService.save(categoria));
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Category> update(@PathVariable Long id, @RequestBody Category categoria) {
-        return ResponseEntity.ok(categoriaService.update(id, categoria));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        categoriaService.delete(id);
-        return ResponseEntity.noContent().build();
-    }
-
-
-
 }
-
-
-

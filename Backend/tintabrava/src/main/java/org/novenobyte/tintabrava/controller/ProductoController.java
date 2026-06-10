@@ -1,7 +1,11 @@
 package org.novenobyte.tintabrava.controller;
 
 import org.novenobyte.tintabrava.exceptions.ProductoNotFound;
+import org.novenobyte.tintabrava.model.Category;
 import org.novenobyte.tintabrava.model.Producto;
+import org.novenobyte.tintabrava.model.SubCategory;
+import org.novenobyte.tintabrava.repository.CategoriaRepository;
+import org.novenobyte.tintabrava.repository.SubCategoriaRepository;
 import org.novenobyte.tintabrava.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +18,16 @@ import java.util.List;
 @RequestMapping("/api/productos")
 public class ProductoController {
     private final ProductoService productoService;
+    private final CategoriaRepository categoryRepository;
+    private final SubCategoriaRepository subCategoryRepository;
 
     @Autowired
-    public ProductoController(ProductoService productoService) {
+    public ProductoController(ProductoService productoService,
+                              CategoriaRepository categoryRepository,
+                              SubCategoriaRepository subCategoryRepository) {
         this.productoService = productoService;
+        this.categoryRepository = categoryRepository;
+        this.subCategoryRepository = subCategoryRepository;
     }
 
     //Get
@@ -29,6 +39,20 @@ public class ProductoController {
     //Post
     @PostMapping("/post/nuevo-producto")
     public ResponseEntity<Producto> createProducto(@RequestBody Producto newProducto){
+
+        // Extraer los IDs de los objetos anidados
+        Long catId = newProducto.getIdCategoria().getIdCategory();
+        Long subCatId = newProducto.getIdSubCategoria().getIdSubcategory();
+
+        // Buscar las entidades reales en la BD (o lanzar excepción si no existen)
+        Category categoria = categoryRepository.findById(catId)
+                .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
+        SubCategory subCategoria = subCategoryRepository.findById(subCatId)
+                .orElseThrow(() -> new RuntimeException("Subcategoría no encontrada"));
+
+        // Reemplazar los objetos temporales por los gestionados
+        newProducto.setIdCategoria(categoria);
+        newProducto.setIdSubCategoria(subCategoria);
 
         //Validar si el producto existe por sku
         if(productoService.productoExistsBySku(newProducto.getSku())){

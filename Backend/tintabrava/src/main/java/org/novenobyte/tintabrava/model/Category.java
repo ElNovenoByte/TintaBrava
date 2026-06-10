@@ -11,14 +11,14 @@ public class Category {
     @Id //Se asigna llave primaria
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Para autoincrementar
     @Column(name = "id_categoria")
-    private Long idCategory;
+    private Long idCategoria;
 
     @Column(name = "nombre", nullable = false, length = 30, unique = true)
     private String nombre;
 
-    public Category(String nombre, Long idCategory) {
+    public Category(String nombre, Long idCategoria) {
         this.nombre = nombre;
-        this.idCategory = idCategory;
+        this.idCategoria = idCategoria;
     }
 
     @OneToMany(mappedBy = "idCategoria", cascade = CascadeType.ALL, fetch = FetchType.LAZY) //Se supone lo de lazy es para no traer todos los pedidos de una vez
@@ -27,11 +27,11 @@ public class Category {
     public Category(){} //JPA Constructor
 
     public Long getIdCategory() {
-        return idCategory;
+        return idCategoria;
     }
 
-    public void setIdCategory(Long idCategory) {
-        this.idCategory = idCategory;
+    public void setIdCategory(Long idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
     public String getNombre() {
@@ -45,7 +45,7 @@ public class Category {
     @Override
     public String toString() {
         return "Category{" +
-                "idCategory=" + idCategory +
+                "idCategory=" + idCategoria +
                 ", nombre='" + nombre + '\'' +
                 '}';
     }
