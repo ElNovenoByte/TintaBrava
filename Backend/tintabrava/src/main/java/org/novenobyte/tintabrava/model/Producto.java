@@ -33,22 +33,30 @@ public class Producto {
     @Column(name = "sku", nullable = false, unique = true)
     private Long sku;
 
-    @Column(name = "imagen_principal", nullable = false, unique = true)
-    private String imagenPrincipal;
+    @Column(name = "imagen_1", nullable = false)
+    private String imagen1;
+
+    @Column(name = "imagen_2", nullable = false)
+    private String imagen2;
+
+    @Column(name = "imagen_3", nullable = false)
+    private String imagen3;
 
     //Mandamos esta ID a Producto
     @OneToMany(mappedBy = "idProducto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<DetallesPedido> detallesPedido = new ArrayList<>();
 
-    public Producto(Long idProducto, Category idCategoria, String nombreProducto, SubCategory idSubCategoria, String descripcion, Integer stock, Double precio, Long sku, String imagenPrincipal) {
+    public Producto(Long idProducto, Category idCategoria, SubCategory idSubCategoria, String nombreProducto, String descripcion, Double precio, Long sku, String imagen1, String imagen2, String imagen3, List<DetallesPedido> detallesPedido) {
         this.idProducto = idProducto;
         this.idCategoria = idCategoria;
-        this.nombreProducto = nombreProducto;
         this.idSubCategoria = idSubCategoria;
+        this.nombreProducto = nombreProducto;
         this.descripcion = descripcion;
         this.precio = precio;
         this.sku = sku;
-        this.imagenPrincipal = imagenPrincipal;
+        this.imagen1 = imagen1;
+        this.imagen2 = imagen2;
+        this.imagen3 = imagen3;
     }
 
     public Producto() {
@@ -110,20 +118,28 @@ public class Producto {
         this.sku = sku;
     }
 
-    public String getImagenPrincipal() {
-        return imagenPrincipal;
+    public String getImagen1() {
+        return imagen1;
     }
 
-    public void setImagenPrincipal(String imagenPrincipal) {
-        this.imagenPrincipal = imagenPrincipal;
+    public void setImagen1(String imagen1) {
+        this.imagen1 = imagen1;
     }
 
-    public List<DetallesPedido> getDetallesPedido() {
-        return detallesPedido;
+    public String getImagen2() {
+        return imagen2;
     }
 
-    public void setDetallesPedido(List<DetallesPedido> detallesPedido) {
-        this.detallesPedido = detallesPedido;
+    public void setImagen2(String imagen2) {
+        this.imagen2 = imagen2;
+    }
+
+    public String getImagen3() {
+        return imagen3;
+    }
+
+    public void setImagen3(String imagen3) {
+        this.imagen3 = imagen3;
     }
 
     @Override
@@ -136,8 +152,9 @@ public class Producto {
                 ", descripcion='" + descripcion + '\'' +
                 ", precio=" + precio +
                 ", sku=" + sku +
-                ", imagenPrincipal='" + imagenPrincipal + '\'' +
-                ", detallesPedido=" + detallesPedido +
+                ", imagen1='" + imagen1 + '\'' +
+                ", imagen2='" + imagen2 + '\'' +
+                ", imagen3='" + imagen3 + '\'' +
                 '}';
     }
 }
