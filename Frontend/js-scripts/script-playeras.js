@@ -1,62 +1,20 @@
-
-function filterCategory(category) {
-      // 1. Cambiar el botón activo en la interfaz
-      const buttons = document.querySelectorAll('.filter-btn');
-      buttons.forEach(btn => btn.classList.remove('active'));
-      
-      // Buscar el botón presionado y encenderlo
-      event.currentTarget.classList.add('active');
-
-      // 2. Filtrar las tarjetas de productos
-      const products = document.querySelectorAll('.col-product');
-      
-      products.forEach(product => {
-        const prodCat = product.getAttribute('data-category');
-        
-        if (category === 'todos') {
-          // Si es 'todos', quitamos clases de ocultar y aplicamos la animación
-          product.classList.remove('hidden');
-          product.classList.add('show');
-        } else if (prodCat === category) {
-          // Si coincide la categoría elegida
-          product.classList.remove('hidden');
-          product.classList.add('show');
-        } else {
-          // Si no coincide, la ocultamos suavemente
-          product.classList.remove('show');
-          product.classList.add('hidden');
-        }
-      });
-    }
-
-    // Esperar a que el DOM esté completamente cargado
-document.addEventListener("DOMContentLoaded", () => {
-  renderPlayeras();
-});
-
+// ========== RENDERIZADO DE PRODUCTOS (SOLO PLAYERAS) ==========
 function renderPlayeras() {
   const productsGrid = document.getElementById("products-grid");
-  
-  // Limpiamos el grid estático que venía del HTML
+  if (!productsGrid) return;
   productsGrid.innerHTML = "";
 
-  // 1. Filtramos el array global 'productostintabrava' para obtener solo Playeras
-  // Nota: Asegúrate de que 'script-productos.js' se cargue antes que este archivo.
+  // Filtrar productos con categoría "Playeras"
   const playeras = productostintabrava.filter(prod => prod.category === 'Playeras');
 
-  // 2. Iteramos sobre cada playera para construir su estructura HTML idéntica
   playeras.forEach(playera => {
-    // Crear el contenedor de la columna respetando las clases y el dataset para el filtro
     const colDiv = document.createElement("div");
-    colDiv.className = "col col-product show"; // Inician visibles por defecto
+    colDiv.className = "col col-product show";
     colDiv.setAttribute("data-category", playera.subcategory);
+    colDiv.setAttribute("data-id", playera.id); // Guardamos ID para identificar al hacer clic
 
-    // Renderizado condicional del Tag flotante (Badge) si existe en el objeto
-    const badgeHTML = playera.tag 
-      ? `<span class="badge-tag">${playera.tag}</span>` 
-      : "";
+    const badgeHTML = playera.tag ? `<span class="badge-tag">${playera.tag}</span>` : "";
 
-    // Construcción del template de la tarjeta premium conservando las clases exactas
     colDiv.innerHTML = `
       <div class="gorra-card-premium h-100">
         <div class="card-img-container">
@@ -68,34 +26,53 @@ function renderPlayeras() {
           <h5 class="card-title-custom">${playera.name}</h5>
           <p class="card-text-custom">${playera.description}</p>
           <div class="price-box">$${playera.price} MXN</div>
-          <button class="btn-brava-action" style="display: none;">COMPRAR</button>
           <button class="btn-brava-action btn-agregar-carrito">DETALLES</button>
         </div>
       </div>
     `;
 
-    // Inyectar la tarjeta estructurada al grid principal
     productsGrid.appendChild(colDiv);
   });
 }
 
-// Conservamos tu función de filtrado original abajo para que los botones sigan respondiendo
-function filterCategory(category) {
-  // 1. Cambiar el botón activo en la interfaz
+// ========== DELEGACIÓN DE EVENTOS PARA BOTONES "DETALLES" ==========
+document.addEventListener("DOMContentLoaded", () => {
+  renderPlayeras();
+
+  const productsGrid = document.getElementById("products-grid");
+  if (productsGrid) {
+    productsGrid.addEventListener("click", (e) => {
+      const btn = e.target.closest(".btn-agregar-carrito");
+      if (!btn) return;
+
+      const colProduct = btn.closest(".col-product");
+      if (!colProduct) return;
+
+      const productId = parseInt(colProduct.getAttribute("data-id"));
+      const producto = productostintabrava.find(p => p.id === productId);
+      if (producto) {
+        // Guardar producto completo en localStorage
+        localStorage.setItem("productoDetalle", JSON.stringify(producto));
+        // Redirigir a la página de detalle (ajusta la ruta si es necesario)
+        window.location.href = "prendadetalle.html";
+      } else {
+        console.error("Producto no encontrado");
+      }
+    });
+  }
+});
+
+// ========== FILTROS (mejorados para mantener la delegación) ==========
+function filterCategory(category, event) {
   const buttons = document.querySelectorAll('.filter-btn');
   buttons.forEach(btn => btn.classList.remove('active'));
-  
-  // Buscar el botón presionado y encenderlo
   if (event && event.currentTarget) {
     event.currentTarget.classList.add('active');
   }
 
-  // 2. Filtrar las tarjetas de productos dinámicas
   const products = document.querySelectorAll('.col-product');
-  
   products.forEach(product => {
     const prodCat = product.getAttribute('data-category');
-    
     if (category === 'todos') {
       product.classList.remove('hidden');
       product.classList.add('show');
@@ -108,3 +85,17 @@ function filterCategory(category) {
     }
   });
 }
+
+// Reemplazar los onclick de los botones de filtro por event listeners
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  const originalOnclick = btn.getAttribute('onclick');
+  if (originalOnclick) {
+    btn.removeAttribute('onclick');
+    btn.addEventListener('click', (e) => {
+      const match = originalOnclick.match(/filterCategory\('(.+?)'\)/);
+      if (match) {
+        filterCategory(match[1], e);
+      }
+    });
+  }
+});

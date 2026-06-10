@@ -1,182 +1,132 @@
-// Producto de ejemplo pa ver cómo se visualiza
-const ejemploProducto = {
-    SKU: Math.floor(Math.random() * 1000000),
-    name: 'Essential Cap Homero',
-    price: 240,
-    category: 'Gorras',
-    subcategory: 'otros',
-    color: ["Rojo"],
-    description: 'Gorra lisa de alta resistencia con estampado de los Simpsons, ajuste cómodo y estilo único.',
-    size: ["Default"],
-    urlimagenes: [
-        "../imagenes/productos/gorras/gorrasotros/gorrassimples/gorra1.jpg",
-        "../imagenes/productos/gorras/gorrasotros/gorrassimples/gorra1-2.jpg",
-        "../imagenes/productos/gorras/gorrasotros/gorrassimples/gorra1-3.jpg"
-    ],
-    image_front: "../imagenes/productos/gorras/gorrasotros/gorrassimples/gorra1.jpg"
-};
-
-//Función para agregar el producto al localStorage (carrito)
+// ========== AGREGAR AL CARRITO (sin tallas/colores) ==========
 function agregarAlCarrito(producto) {
-    const sizeSelect = document.getElementById('sizeSelector');
-    const tallaElegida = sizeSelect ? sizeSelect.value : (producto.size[0] || 'Unitalla');
-    let colorElegido = window.getSelectedColor ? window.getSelectedColor() : 'No definido';
-    
-        // Obtenemos el carrito actual del localStorage o inicializamos uno nuevo si no existe
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-    // Verificamos si el producto ya existe en el carrito para actualizar la cantidad en lugar de agregarlo como nuevo
-    const productoExistente = carrito.find(item => item.name === producto.name); // Aquí asumimos que el nombre del producto es único, si no lo es, se debería usar un ID único para la comparación
+  const productoExistente = carrito.find(item => item.id === producto.id);
+  if (productoExistente) {
+    productoExistente.cantidad = (productoExistente.cantidad || 1) + 1;
+  } else {
+    producto.cantidad = 1;
+    // Asignamos valores por defecto ya que no usamos talla/color
+    producto.talla = "N/A";
+    producto.colorSeleccionado = "N/A";
+    carrito.push(producto);
+  }
 
-    if (productoExistente) {
-        // Si el producto ya existe, incrementamos su cantidad
-        productoExistente.cantidad = (productoExistente.cantidad || 1) + 1;
-    } else {
-        // Si el producto no existe, lo agregamos al carrito con una cantidad inicial de 1
-        producto.cantidad = 1;
-        carrito.push(producto);
-    }
-
-    // Guardamos el carrito actualizado de nuevo en localStorage
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-
-    alert(`🛒 Agregado al carrito:\nProducto: ${producto.name}\nTalla: ${tallaElegida}\nColor: ${colorElegido}\nPrecio: $${producto.price}`);
+  localStorage.setItem('carrito', JSON.stringify(carrito));
+  alert(`🛒 Agregado al carrito:\n${producto.name}\nPrecio: $${producto.price}`);
 }
 
+// ========== ESCAPE HTML (seguridad) ==========
 function escapeHTML(str) {
-    if (!str) return '';
-    return str.replace(/[&<>]/g, function(m) {
-        if (m === '&') return '&amp;';
-        if (m === '<') return '&lt;';
-        if (m === '>') return '&gt;';
-        return m;
-    });
+  if (!str) return '';
+  return str.replace(/[&<>]/g, function(m) {
+    if (m === '&') return '&amp;';
+    if (m === '<') return '&lt;';
+    if (m === '>') return '&gt;';
+    return m;
+  });
 }
 
-// Mapeo de nombres de color a valores hex (o bueno del css)
-function mapColorName(colorName) {
-    const map = {
-        'Negro': '#000000',
-        'Rojo': '#ff1024',
-        'Azul': '#1E6091',
-        'Blanco': '#F8F9FA',
-        'Verde': '#2A9D8F'
-    };
-    return map[colorName] || colorName;
-}
-
+// ========== RENDERIZAR PRODUCTO (SOLO GALERÍA + INFO BÁSICA) ==========
 function renderizarProducto(producto) {
-    const container = document.getElementById('productDetailRow');
-    if (!container) return;
+  const container = document.getElementById('productDetailRow');
+  if (!container) return;
 
-    const tieneDefault = producto.color.some(c => c.toLowerCase() === 'default');
-    const tallas = producto.size || ["Unitalla"];
-    const imagenes = producto.urlimagenes.slice(0, 3); 
+  // Construir array de imágenes (priorizamos urlimagenes si existe, sino usamos front/back)
+  let imagenes = [];
+  if (producto.urlimagenes && producto.urlimagenes.length) {
+    imagenes = producto.urlimagenes.slice(0, 3);
+  } else {
+    if (producto.image_front) imagenes.push(producto.image_front);
+    if (producto.image_back) imagenes.push(producto.image_back);
+    // Si hay una tercera imagen en el futuro, se agregaría aquí
+  }
 
-    let thumbnailsHTML = '';
-    imagenes.forEach((img, idx) => {
-        thumbnailsHTML += `
-            <div class="thumbnail-item">
-                <img src="${img}" data-large="${img}" class="thumbnail-img ${idx === 0 ? 'active-thumb' : ''}" alt="Vista ${idx+1}">
-            </div>
-        `;
-    });
+  if (imagenes.length === 0) {
+    imagenes = ['https://via.placeholder.com/400x500?text=Sin+imagen'];
+  }
 
-    let coloresHTML = '';
-    if (tieneDefault) {
-        coloresHTML = `
-            <div class="rainbow-swatch">
-                <div class="rainbow-box"></div>
-                <span class="rainbow-text">Default</span>
-            </div>
-        `;
-    } else {
-        coloresHTML = `<div class="d-flex flex-wrap gap-3" id="colorCirclesWrapper">`;
-        producto.color.forEach(color => {
-            const bgColor = mapColorName(color);
-            coloresHTML += `
-                <div class="color-option" data-color="${escapeHTML(color)}" style="background-color: ${bgColor};"></div>
-            `;
-        });
-        coloresHTML += `</div><small class="text-muted mt-1 d-block">Selecciona un color</small>`;
-    }
-
-    const htmlCompleto = `
-        <!-- Columna izquierda: galería -->
-        <div class="col-12 col-md-6 mb-4 mb-md-0">
-            <div class="gallery-layout">
-                <div class="thumbnail-vertical">
-                    ${thumbnailsHTML}
-                </div>
-                <div class="main-image-container">
-                    <img id="mainProductImage" class="main-product-img" src="${imagenes[0] || ''}" alt="Vista principal">
-                </div>
-            </div>
-        </div>
-        <!-- Columna derecha: detalles -->
-        <div class="col-12 col-md-6 d-flex align-items-center">
-            <div class="details-card w-100">
-                <h1 class="product-name">${escapeHTML(producto.name)}</h1>
-                <div class="product-price">$${producto.price.toFixed(2)} MXN</div>
-                <p class="product-description">${escapeHTML(producto.description)}</p>
-                
-                <!-- Botón añadir al carrito -->
-                <div class="mt-3">
-                    <button id="addToCartBtn" class="btn-add-cart">
-                        <i class="bi bi-cart-plus me-2"></i> Añadir al carrito
-                    </button>
-                </div>
-            </div>
-        </div>
+  // Generar miniaturas (thumbnails)
+  let thumbnailsHTML = '';
+  imagenes.forEach((img, idx) => {
+    thumbnailsHTML += `
+      <div class="thumbnail-item">
+        <img src="${img}" data-large="${img}" class="thumbnail-img ${idx === 0 ? 'active-thumb' : ''}" alt="Vista ${idx+1}">
+      </div>
     `;
+  });
 
-    container.innerHTML = htmlCompleto;
+  const htmlCompleto = `
+    <!-- Columna izquierda: galería -->
+    <div class="col-12 col-md-6 mb-4 mb-md-0">
+      <div class="gallery-layout">
+        <div class="thumbnail-vertical">
+          ${thumbnailsHTML}
+        </div>
+        <div class="main-image-container">
+          <img id="mainProductImage" class="main-product-img" src="${imagenes[0]}" alt="Vista principal">
+        </div>
+      </div>
+    </div>
+    <!-- Columna derecha: detalles (solo nombre, precio, descripción, botón) -->
+    <div class="col-12 col-md-6 d-flex align-items-center">
+      <div class="details-card w-100">
+        <h1 class="product-name">${escapeHTML(producto.name)}</h1>
+        <div class="product-price">$${producto.price.toFixed(2)} MXN</div>
+        <p class="product-description">${escapeHTML(producto.description)}</p>
+        <div class="mt-3">
+          <button id="addToCartBtn" class="btn-add-cart">
+            <i class="bi bi-cart-plus me-2"></i> Añadir al carrito
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
 
-    // ---------- Galería ----------
-    const mainImage = document.getElementById('mainProductImage');
-    const thumbImgs = document.querySelectorAll('.thumbnail-img');
-    if (mainImage && thumbImgs.length) {
-        thumbImgs.forEach(thumb => {
-            thumb.addEventListener('click', function() {
-                const largeSrc = this.getAttribute('data-large');
-                if (largeSrc) mainImage.src = largeSrc;
-                thumbImgs.forEach(t => t.classList.remove('active-thumb'));
-                this.classList.add('active-thumb');
-            });
-        });
-    }
+  container.innerHTML = htmlCompleto;
 
-    // ---------- Parte de mostrar los colores (aunque si es default va rainbow) ----------
-    if (!tieneDefault) {
-        const colorOptions = document.querySelectorAll('.color-option');
-        let selectedColor = producto.color[0] || null;
-        if (colorOptions.length) {
-            colorOptions[0].classList.add('selected-color');
-            selectedColor = producto.color[0];
-        }
-        colorOptions.forEach(opt => {
-            opt.addEventListener('click', function() {
-                selectedColor = this.getAttribute('data-color');
-                colorOptions.forEach(c => c.classList.remove('selected-color'));
-                this.classList.add('selected-color');
-            });
-        });
-        window.getSelectedColor = () => selectedColor;
-    } else {
-        window.getSelectedColor = () => "Default (diseño único)";
-    }
+  // --- Lógica de la galería (cambiar imagen principal al hacer clic en miniatura) ---
+  const mainImage = document.getElementById('mainProductImage');
+  const thumbImgs = document.querySelectorAll('.thumbnail-img');
+  if (mainImage && thumbImgs.length) {
+    thumbImgs.forEach(thumb => {
+      thumb.addEventListener('click', function() {
+        const largeSrc = this.getAttribute('data-large');
+        if (largeSrc) mainImage.src = largeSrc;
+        thumbImgs.forEach(t => t.classList.remove('active-thumb'));
+        this.classList.add('active-thumb');
+      });
+    });
+  }
 
-    // ---------- Añadir al carrito ----------
-  
-    const addBtn = document.getElementById('addToCartBtn');
-    if (addBtn) {
-        const newBtn = addBtn.cloneNode(true);
-        addBtn.parentNode.replaceChild(newBtn, addBtn);
-       newBtn.addEventListener('click', () => agregarAlCarrito(producto));
-    }
+  // --- Botón de añadir al carrito ---
+  const addBtn = document.getElementById('addToCartBtn');
+  if (addBtn) {
+    const newBtn = addBtn.cloneNode(true);
+    addBtn.parentNode.replaceChild(newBtn, addBtn);
+    newBtn.addEventListener('click', () => agregarAlCarrito(producto));
+  }
 }
 
+// ========== CARGA INICIAL: OBTENER PRODUCTO DESDE LOCALSTORAGE ==========
 document.addEventListener('DOMContentLoaded', () => {
-    renderizarProducto(ejemploProducto);
+  const productoGuardado = localStorage.getItem('productoDetalle');
+  if (productoGuardado) {
+    const producto = JSON.parse(productoGuardado);
+    renderizarProducto(producto);
+    // Limpiar para que no persista en recargas accidentales
+    localStorage.removeItem('productoDetalle');
+  } else {
+    // Si no hay producto, mostrar mensaje y enlace de regreso
+    const container = document.getElementById('productDetailRow');
+    if (container) {
+      container.innerHTML = `
+        <div class="col-12 text-center">
+          <h3>No se encontró el producto</h3>
+          <a href="playeras.html" class="btn btn-danger mt-3">Volver a la tienda</a>
+        </div>
+      `;
+    }
+  }
 });
-
