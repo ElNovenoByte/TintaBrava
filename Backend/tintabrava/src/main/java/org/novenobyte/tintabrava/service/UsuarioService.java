@@ -23,6 +23,11 @@ public class UsuarioService {
         return usuarioRepository.findAll();
     }
 
+    //Obtener usuario por correo
+    public User getUserByCorreo(String correo){
+        return usuarioRepository.findByCorreo(correo);
+    }
+
     // Post
     // Crear usuario
     public User createUser(User newUser){

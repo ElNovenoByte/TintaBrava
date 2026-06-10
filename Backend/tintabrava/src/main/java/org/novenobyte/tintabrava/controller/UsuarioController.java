@@ -1,5 +1,7 @@
 package org.novenobyte.tintabrava.controller;
 
+import org.apache.coyote.Response;
+import org.novenobyte.tintabrava.exceptions.UserNotFoundException;
 import org.novenobyte.tintabrava.model.User;
 import org.novenobyte.tintabrava.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,15 @@ public class UsuarioController {
     @GetMapping("/get/todos/usuarios")
     public List<User> allUsuarios() {
         return usuarioService.getUsers();
+    }
+
+    @GetMapping("/get/{correo}")
+    public ResponseEntity<User> getUserByCorreo(@PathVariable String correo){
+        try {
+            return ResponseEntity.ok(usuarioService.getUserByCorreo(correo));
+        } catch (UserNotFoundException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     //Post
