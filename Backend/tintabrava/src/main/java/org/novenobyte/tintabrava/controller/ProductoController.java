@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/productos")
 @CrossOrigin(origins = "*")
@@ -74,11 +75,15 @@ public class ProductoController {
 
         // Extraer los IDs de los objetos anidados
         Long catId = newProducto.getIdCategoria().getIdCategory();
+        System.out.println(newProducto);
+        System.out.println(newProducto.getIdCategoria());
+        System.out.println(newProducto.getIdSubCategoria());
         Long subCatId = newProducto.getIdSubCategoria().getIdSubcategory();
 
-        // Buscar las entidades reales en la BD (o lanzar excepción si no existen)
+        // Buscar las entidades reales en la BD
         Category categoria = categoryRepository.findById(catId)
                 .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
+
         SubCategory subCategoria = subCategoryRepository.findById(subCatId)
                 .orElseThrow(() -> new RuntimeException("Subcategoría no encontrada"));
 
@@ -86,14 +91,14 @@ public class ProductoController {
         newProducto.setIdCategoria(categoria);
         newProducto.setIdSubCategoria(subCategoria);
 
-        //Validar si el producto existe por sku
+        /* Validar si el producto existe por SKU
         if(productoService.productoExistsBySku(newProducto.getSku())){
             return new ResponseEntity<>(HttpStatus.CONFLICT);
-        } else {
-            //Si un producto no existe, lanzar un estatus: 201 CREATE
-            return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(productoService.createProducto(newProducto));
-        }
+        }*/
+
+        // Guardar producto
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(productoService.createProducto(newProducto));
     }
 
     //Put
