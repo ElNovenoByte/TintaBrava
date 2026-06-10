@@ -266,6 +266,20 @@ function ocultarContrasenaconfirm() {
     togglePasswordconfirm.alt = 'Mostrar contraseña';
 }
 
+// Botón Volver
+const btnVolver = document.getElementById('btnVolver');
+
+if (btnVolver) {
+    btnVolver.addEventListener('click', function() {
+        if (document.referrer) {
+            window.history.back();
+        } else {
+            // Si entraron directo por URL
+            window.location.href = "../interfaces/principal.html";
+        }
+    });
+}
+
 //EVENTOS PARA MOSTRAR/OCULTAR CONTRASEÑA
 // Agrega event listeners para manejar el comportamiento del botón de mostrar/ocultar contraseña
 togglePasswordconfirm.addEventListener('mousedown', mostrarContrasenaconfirm);
