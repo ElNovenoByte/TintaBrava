@@ -14,6 +14,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         msg.textContent = "";
     });
 
+    
     // Validar correo
     const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (correo.value.trim() === "") {
@@ -28,14 +29,35 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
     if (password.value.trim() === "") {
         mostrarError(password, errorPassword, "La contraseña es obligatoria.");
         valido = false;
-    } 
+    }
 
-    // Si todo es válido, redirigir
+    // Si todo es válido, conectar con la API
     if (valido) {
-        window.location.href = "../interfaces/principal.html";
+        fetch(`http://localhost:8080/api/usuarios/get/${encodeURIComponent(correo.value.trim())}`)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                mostrarError(correo, errorCorreo, "Correo no registrado.");
+            }
+        })
+        .then(data => {
+            if (data) {
+                if (data.correo === correo.value.trim()) {
+                    // Si el correo coincide
+                    window.location.href = "../interfaces/principal.html";
+                } else {
+                    // Si no son iguales
+                    mostrarError(correo, errorCorreo, "Correo no registrado.");
+                }
+            }
+        })
+        .catch(error => {
+            mostrarError(correo, errorCorreo, "Correo no registado.");
+            console.error(error);
+        });
     }
 });
-
 // Función reutilizable para mostrar errores
 function mostrarError(input, mensaje, texto) {
     input.classList.add("input-error");
@@ -61,3 +83,5 @@ function ocultarContrasena() {
 togglePassword.addEventListener('mousedown', mostrarContrasena);
 togglePassword.addEventListener('mouseup', ocultarContrasena);
 togglePassword.addEventListener('mouseleave', ocultarContrasena);
+
+
