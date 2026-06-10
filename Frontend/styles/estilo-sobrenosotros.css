@@ -13,13 +13,27 @@
     margin-bottom: 30px;
 }
 
-.mt-4 {
-    font-family: 'Roboto', sans-serif;
-    font-size: 25px;
+.equipo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
     text-align: left;
     color: #0B090A;
-    font-weight: bold;
-    margin-top: 1.5rem !important;
+    margin-top: 50px;
+    margin-bottom: 15px;
+}
+
+.card h-100 text-center team-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-img-top.team-img {
+    width: 100%;
+    height: auto; 
+    aspect-ratio: 4 / 5; 
 }
 
 /* ========== ESTILOS DEL MODAL ========== */
