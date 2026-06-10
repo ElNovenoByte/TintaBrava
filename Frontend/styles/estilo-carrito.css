@@ -1,0 +1,399 @@
+/* Estilos del cuerpo de la página */
+body {
+    background-color: #D3D3D3;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    color: #0B090A;
+}
+
+.body-carrito {
+    padding: 40px 20px;
+}
+
+
+
+/* Contenedor principal */
+.contenedor-principal {
+    background-color: transparent;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Título de la página */
+.titulo-pagina {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 45px;
+    letter-spacing: 1px;
+    margin-top: 0;
+    margin-bottom: 30px;
+    color: #0B090A;
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Listado de productos */
+.lista-items {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Tarjetas de producto */
+.item-producto {
+    background-color: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    position: relative;
+    color: #0B090A;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.item-desactivado {
+    opacity: 0.45;
+    box-shadow: none;
+}
+
+.link-producto {
+    text-decoration: none;
+    color: inherit;
+}
+.link-producto:hover {
+    color: #BA181B;
+}
+
+/* Distribución de columnas internas */
+.bloque-izquierdo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.check-producto {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    accent-color: #BA181B;
+}
+
+.imagen-cuadro {
+    width: 75px;
+    height: 75px;
+    background-color: #F5F3F4;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+}
+
+.bloque-centro {
+    flex-grow: 1;
+    padding: 0 25px;
+}
+
+.nombre-producto {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #0B090A;
+}
+
+.nombre-producto {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #0B090A;
+    display: block; 
+    margin-bottom: 4px;
+}
+
+.descripcion-producto {
+    margin: 0;
+    font-size: 14px;
+    text-decoration: none;
+    color: #161A1D;
+    display: block;
+}
+
+.bloque-derecho {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.control-cantidad, .control-precio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.texto-etiqueta {
+    font-size: 14px;
+    font-weight: bold;
+    color: #0B090A;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+/* Para que la palabra cantidad no esté desalineada a la izquierda */
+.control-cantidad .texto-etiqueta {
+    padding-left: 65px;
+}
+
+.opciones-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Palabra eliminar */
+.link-eliminar {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #BA181B;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s ease;
+}
+.link-eliminar:hover {
+    color: #660708;
+    text-decoration: underline;
+}
+
+/* Grupo de botones e input numérico */
+.grupo-contador {
+    display: flex;
+    align-items: center;
+    border: 1px solid #B1A7A6;
+    border-radius: 6px;
+    background-color: #FFFFFF;
+    overflow: hidden;
+}
+
+.btn-menos, .btn-mas {
+    background: none;
+    border: none;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    color: #0B090A;
+}
+.btn-menos:hover, .btn-mas:hover {
+    background-color: #F5F3F4;
+}
+
+.input-numero {
+    width: 32px;
+    border: none;
+    border-left: 1px solid #B1A7A6;
+    border-right: 1px solid #B1A7A6;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    outline: none;
+    color: #0B090A;
+}
+
+.precio-texto {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #0B090A;
+}
+
+/* Sección de resumen de compra*/
+.seccion-pago {
+    margin-top: 35px;
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+    width: auto;
+}
+
+.resumen-total {
+    display: flex;
+    align-items: baseline;
+    gap: 50px;
+}
+
+.titulo-total {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    color: #0B090A;
+    letter-spacing: 1px;
+}
+
+.monto-total {
+    font-family: 'Roboto', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    color: #0B090A;
+}
+
+.contenedor-btn-pagar {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.btn-pagar {
+    background-color: #BA181B;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 40px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(186, 24, 27, 0.15);
+}
+.btn-pagar:hover {
+    background-color: #0B090A;
+    color: #FFFFFF;
+}
+.btn-pagar:disabled {
+    background-color: #B1A7A6;
+    color: #F5F3F4;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Contenedor del modal */
+.contenedor-modal {
+    background-color: #FFFFFF !important;
+    color: #0B090A !important;
+    border: 1px solid #D3D3D3;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.texto-modal {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: #161A1D;
+    text-align: center;
+}
+
+.btn-modal {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    padding: 8px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-confirmar {
+    background-color: #BA181B;
+    color: #FFFFFF;
+    border: none;
+}
+.btn-confirmar:hover {
+    background-color: #0B090A;
+    color: #FFFFFF;
+}
+
+.btn-cancelar {
+    background-color: #F5F3F4;
+    color: #161A1D;
+    border: 1px solid #B1A7A6;
+}
+.btn-cancelar:hover {
+    background-color: #B1A7A6;
+    color: #0B090A;
+}
+
+/* Carrito vacío */
+.seccion-vacía {
+    text-align: center;
+    padding: 60px 10px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.mensaje-vacío {
+    font-size: 20px;
+    font-weight: bold;
+    color: #0B090A;
+    margin-bottom: 20px;
+}
+
+.btn-regresar {
+    background-color: #BA181B;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 25px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Modificadores responsivos */
+@media (max-width: 768px) {
+    .item-producto {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .bloque-derecho {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .bloque-centro {
+        padding: 0;
+    }
+    .seccion-pago {
+        width: 100%;
+        align-items: center;
+    }
+    .resumen-total {
+        justify-content: space-between;
+        width: 100%;
+    }
+    .btn-pagar {
+        width: 100%;
+    }
+
+
+}
+
+/* Cabecera de la página */
+    .cabecera-pagina {
+        display: flex !important;
+        align-items: center !important;  
+        gap: 15px !important;            
+        margin-bottom: 30px !important;  
+        align-self: flex-start !important; 
+    }
+
+
+/* Elemento del icono del carrito */
+    .icono-carrito-texto {
+        height: 40px !important;        
+        width: auto !important;          /* Esto evita que la imagen del carrito se deforme o se aplaste */
+        display: block !important;
+        object-fit: contain !important;
+        margin: 0 !important;           
+    }
+

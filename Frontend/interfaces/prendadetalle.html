@@ -4,165 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tinta Brava - Tienda de Estampado</title>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles/estilo-prendadetalle.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="../styles/estilo-prendadetalle.css">
   <link rel="stylesheet" href="../styles/estilo-footer.css">
   <link rel="stylesheet" href="../styles/estilo-navbar.css">
 </head>
 <body class="parallax-bg">
 
-    <!-- ========== NAVBAR ========== -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-    <div class="container-fluid px-4">
+<!-- ========== NAVBAR ========== -->
+<div id="navbar-placeholder"></div>
 
-        <!-- Logo + TINTA BRAVA -->
-        <a class="navbar-brand d-flex align-items-center gap-3" href="principal.html">
-        <img src="../imagenes/logo.png" alt="Logo Tinta Brava" width="80" class="rounded">
-        <span class="brand-text">TINTA BRAVA</span>
-        </a>
-
-        <!-- Menú hamburguesa para responsive -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Texto Categorías -->
-        <div class="collapse navbar-collapse" id="navbarContent">
-        <ul class="navbar-nav mx-auto gap-lg-4" id="navbarTexto">
-            <li class="nav-item"><a class="nav-link" href="../interfaces/playeras.html">Playeras</a></li>
-            <li class="nav-item"><a class="nav-link" href="../interfaces/hoodies.html">Hoodies</a></li>
-            <li class="nav-item"><a class="nav-link" href="../interfaces/gorras.html">Gorras</a></li>
-            <li class="nav-item"><a class="nav-link" href="../interfaces/sobrenosotros.html">Sobre Nosotros</a></li>
-        </ul>
-        </div>
-
-        <!-- Íconos de la derecha -->
-        <ul class="navbar-nav d-flex flex-row gap-3 icon-list">
-        <li class="nav-item"><a class="nav-link px-0" href="#"><i class="bi bi-search"></i></a></li>
-        <li class="nav-item"><a class="nav-link px-0" href="#"><i class="bi bi-person"></i></a></li>
-        <li class="nav-item"><a class="nav-link px-0" href="#"><i class="bi bi-cart"></i></a></li>
-        </ul>
-
-    </div>
-    </nav>
-
+<!-- ========== MAIN ========== -->
   <main>
-  <div class="container p-5">
-    <div class="row text-center vh-80">
-      <!-- COLUMNA IZQUIERDA (ÓSCAR): Galería de imágenes -->
-      <div class="col-6 bg-primary">
-        <div class="gallery-layout">
-          <!-- Miniaturas verticales -->
-          <div class="thumbnail-vertical">
-            <div class="thumbnail-item">
-              <img src="https://picsum.photos/id/30/100/100" data-large="https://picsum.photos/id/30/600/750" class="thumbnail-img active-thumb" alt="Vista 1">
-            </div>
-            <div class="thumbnail-item">
-              <img src="https://picsum.photos/id/31/100/100" data-large="https://picsum.photos/id/31/600/750" class="thumbnail-img" alt="Vista 2">
-            </div>
-            <div class="thumbnail-item">
-              <img src="https://picsum.photos/id/32/100/100" data-large="https://picsum.photos/id/32/600/750" class="thumbnail-img" alt="Vista 3">
-            </div>
-            <div class="thumbnail-item">
-              <img src="https://picsum.photos/id/33/100/100" data-large="https://picsum.photos/id/33/600/750" class="thumbnail-img" alt="Vista 4">
-            </div>
-            <div class="thumbnail-item">
-              <img src="https://picsum.photos/id/34/100/100" data-large="https://picsum.photos/id/34/600/750" class="thumbnail-img" alt="Vista 5">
-            </div>
-          </div>
-          <!-- Imagen principal -->
-          <div class="main-image-container">
-            <img id="mainProductImage" class="main-product-img img-fluid" src="https://picsum.photos/id/30/600/750" alt="Vista principal del producto">
-          </div>
-        </div>
-      </div>
-
-      <!-- COLUMNA DERECHA (JESÚS Y AXEL): Selector de tallas y colores -->
-      <div class="col-6 d-flex flex-column justify-content-center">
-        <!--Tarjeta del producto-->
-        <h2>TITULO DE LA PLAYERA</h2>
-        <!--Informacion del producto-->
-        <section>
-          <h4>$250</h4>
-          <p>Playera basica de color negro, manga corta, y cuello redondo. Ideal para un estilo en tendencia.</p>
-        </section>
-        <br/>
-        <!-- Dropdown de tallas -->
-        <div class="mb-2">
-          <label for="talla" class="form-label">Selecciona tu talla</label>
-          <select class="form-select">
-            <option selected disabled>Elige una talla</option>
-            <option>XS</option>
-            <option>S</option>
-            <option>M</option>
-            <option>L</option>
-            <option>XL</option>
-          </select>
-        </div>
-        <br/>
-        <!-- Seleccionar colores -->
-        <div class="mb-3">
-          <p class="mb-2">Color:</p>
-          <div class="d-flex justify-content-center gap-2">
-            <button class="btn rounded-circle border" style="width: 30px; height: 30px; background-color: black;"></button>
-            <button class="btn rounded-circle border" style="width: 30px; height: 30px; background-color: white;"></button>
-            <button class="btn rounded-circle border" style="width: 30px; height: 30px; background-color: red;"></button>
-          </div>
-        </div>
-        <br/>
-        <div>
-          <button type="button">Agregar al carrito</button>
-        </div>
+    <div class="container p-5">
+      <div class="row text-center vh-80" id="productDetailRow">
+        <!-- Se inyecta esto con JS -->
       </div>
     </div>
-  </div>
-</main>
+  </main>
 
-    <!-- FOOTER -->
-
-    <footer class="footer mt-auto py-4" style="background-color: #0B090A; color: #A4161A;">
-    
-
-    <div class="footer-container">
-
-      <div class="logo-container">
-        <img src="../imagenes/logo.png" alt="Tinta Brava Logo" class="footer-logo">
-      </div> 
-      
-      <div class="footer-section">
-        <h4>Contáctanos.</h4>
-        <a href="mailto:tintabravasupport@gmail.com" target="_blank">
-          tintabravasupport@gmail.com
-        </a>
-      </div>
-
-      <div class="footer-section">
-        <h4>Siguenos.</h4>
-        <a href="https://www.instagram.com/tintabravamx/" target="_blank" class="social-link">
-        <i class="fa-brands fa-instagram"></i>Instagram</a>
-      </div>
-
-      <div class="footer-section">
-        <h4>Sobre Nosotros.</h4>
-        <a href="sobrenosotros.html" target="_blank">Conoce a nuestro equipo.</a>
-      </div>
-
-      <div class="footer-section">
-        <h4>Dejanos tu opinión.</h4>
-        <a href="contactanos.html" target="_blank">Dinos que mejorar, tu voz cuenta.</a>
-      </div>   
-      
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 Tinta Brava. Todos los derechos reservados.</p>
-    </div>
-  </footer>
+<!-- ========== FOOTER ========== -->
+<div id="footer-placeholder"></div>
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js-scripts/script-cargarcomponentes.js"></script>
   <script src="../js-scripts/script-prendadetalle.js"></script>
   <script src="../js-scripts/script-principal.js"></script>
 </body>

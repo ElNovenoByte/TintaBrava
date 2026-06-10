@@ -83,19 +83,24 @@
 <body>
 
 <!-- ========== NAVBAR ========== -->
-<div id="navbar-placeholder"></div>
+<div id="navbar-placeholder" class="sticky-top"></div>
+
 
 <!-- ========== HERO ========== -->
-<section class="hero-gorras">
-  <div class="container text-center">
-    <h1>PLAYERAS TINTA BRAVA</h1>
-    <p>Diseños urbanos y estilo streetwear.</p>
-    <a href="#catalogo" class="btn btn-danger btn-lg mt-3">Ver catálogo</a>
+
+<div class="hero-video-container">
+  <video autoplay muted loop playsinline class="video-bg">
+    <source src="/Frontend/videos/video-playeras.mp4" type="video/mp4">
+  </video>
+  <div class="video-overlay"></div>
+  <div class="position-relative z-3 text-center text-white">
+    <h1 class="hero-video-title">PLAYERAS</h1>
   </div>
-</section>
+</div>
+
 
 <!-- ========== CATÁLOGO ========== -->
-<div class="marquee-subbarra" id="catalogo">
+<div class="marquee-subbarra">
   <div class="marquee-track">
     <span>NUEVA COLECCIÓN STREETWEAR</span><span>•</span>
     <span>STREET STYLE DESIGN</span><span>•</span>
@@ -120,17 +125,18 @@
       <button class="filter-btn" onclick="filterCategory('series')">Series / Cómics</button>
       <button class="filter-btn" onclick="filterCategory('otros')">Otros</button>
     </div>
-    
+
     <!-- GRID DE PRODUCTOS -->
-     
+
     <section class="py-5">
-  <div class="container px-4 px-lg-5 mt-5">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-5" id="products-grid">
-      
+      <div class="container px-4 px-lg-5 mt-5">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-5" id="products-grid">
+
+        </div>
       </div>
-      </div>
-    
-</section>
+
+    </section>
+</section> <!-- FALTABA ESTE SECTION ASÍ QUE SE LO AGREGUÉ PARA QUE NO SE CORTE EL FOOTER -->
 
 
 <!-- ========== FOOTER ========== -->

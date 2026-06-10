@@ -5,50 +5,6 @@ body{
     padding: 0;
 }
 
-/* ================= NAVBAR ================= */
-
-.navbar{
-    background-color: #0B090A;
-    border-bottom: 3px solid #A4161A;
-    padding: 12px 0;
-}
-
-.navbar-brand img{
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-}
-
-.brand-text{
-    font-family: 'Bebas Neue', sans-serif;
-    color: white;
-    font-size: 3rem;
-    letter-spacing: 2px;
-}
-
-.navbar .nav-link{
-    color: white;
-    font-weight: bold;
-    font-size: 1.3rem;
-    transition: .3s ease;
-}
-
-.navbar .nav-link:hover,
-.navbar .nav-link.active{
-    color: #E5383B;
-    border-bottom: 3px solid #E5383B;
-}
-
-.navbar i{
-    color: white;
-    font-size: 1.8rem;
-    transition: .3s ease;
-}
-
-.navbar i:hover{
-    color: #E5383B;
-}
-
 /* ================= HERO ================= */
 
 .hero-gorras{
@@ -505,4 +461,58 @@ body{
 .gorra-card-premium:hover .img-back {
     opacity: 1;
     transform: scale(1.08);
+}
+
+/* ================= HERO VIDEO ================= */
+.hero-video-container {
+    position: relative;
+    height: 50vh;          /* Controla la altura del banner */
+    min-height: 350px;     /* Evita que se colapse en pantallas pequeñas */
+    width: 100%;
+    overflow: hidden;      /* Corta cualquier parte del video que se salga del recuadro */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0B090A; 
+}
+
+.video-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;     /* Hace que el video actúe como imagen de fondo sin deformarse */
+    transform: translate(-50%, -50%); /* Centrado perfecto */
+    z-index: 0;
+    pointer-events: none;  /* Evita que el usuario pueda pausar el video por accidente */
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(11, 9, 10, 0.8) 0%, rgba(164, 22, 26, 0.7) 100%);
+    z-index: 1;            /* Se pone encima del video, pero debajo del texto */
+}
+
+.hero-video-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 6rem;
+    color: #FFFFFF;
+    letter-spacing: 4px;
+    text-shadow: 3px 3px 0px #A4161A, 6px 6px 0px #0B090A;
+    margin: 0;
+}
+
+/* Ajuste para celulares */
+@media (max-width: 768px) {
+    .hero-video-container {
+        height: 40vh;
+    }
+    .hero-video-title {
+        font-size: 4rem;
+    }
 }

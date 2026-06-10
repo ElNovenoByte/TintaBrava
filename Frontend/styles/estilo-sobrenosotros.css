@@ -1,16 +1,25 @@
-/* Estilos exclusivos para la navbar y ajustes mínimos */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+ body {
+    background-color: #D3D3D3;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    color: #0B090A;
 }
 
-body {
-  background-color: #D3D3D3; /* fondo claro de la paleta */
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.titulo-sobre-nosotros{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 45px;
+    color: #0B090A;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.mt-4 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+    text-align: left;
+    color: #0B090A;
+    font-weight: bold;
+    margin-top: 1.5rem !important;
 }
 
 /* ========== ESTILOS DEL MODAL ========== */
