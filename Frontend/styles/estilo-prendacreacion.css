@@ -13,17 +13,8 @@ body {
   flex-direction: column;
 }
 
-#editar:hover {
-  transform: scale(1.20);
-  transform-origin: center;
-  color: #A4161A;
-}
-
 #crear {
-  transform: scale(1.20);
-  transform-origin: center;
-  color: #A4161A;
-  border-left-color: rgb(164, 22, 26);
+  color: #a4161a;
 }
 
 #submit:hover {
@@ -36,3 +27,15 @@ body {
   background: #0B090A;
 }
 
+.btn-img-upload {
+  cursor: pointer;
+  background: #ffffff;
+  transition: 0.2s;
+}
+
+.btn-img-upload:hover {
+  transform: scale(1.05);
+  background: #a4161a;
+  opacity: 0.60;
+  color: rgb(255,255,255);
+}
