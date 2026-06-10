@@ -56,7 +56,7 @@ public class ClienteService {
                 .orElseThrow(() ->
                         new UserNotFoundException(
                                 "User not found with id: " + idUsuario));
-        if(clienteRepository.existByUsuarioIdUsuario(idUsuario)){
+        if(clienteRepository.existsByUsuarioIdUsuario(idUsuario)){
             throw new RuntimeException(
                     "This user already has a customer profile");
         }
@@ -89,10 +89,11 @@ public class ClienteService {
 
     public boolean usuarioYaEsCliente(Long idUsuario){
         return clienteRepository
-                .existByUsuarioIdUsuario(idUsuario);
+                .existsByUsuarioIdUsuario(idUsuario);
     }
 
-
-
+    public boolean clienteExistsByUsuarioId(Long id){
+        return clienteRepository.existsByUsuarioIdUsuario(id);
+    }
 
 }
