@@ -70,7 +70,8 @@ function renderHoodies() {
           <h5 class="card-title-custom">${hoodie.name}</h5>
           <p class="card-text-custom">${hoodie.description}</p>
           <div class="price-box">$${hoodie.price} MXN</div>
-          <button class="btn-brava-action">COMPRAR</button>
+          <button class="btn-brava-action" style="display: none;">COMPRAR</button>
+          <button class="btn-brava-action btn-agregar-carrito">AGREGAR AL CARRITO</button>
         </div>
       </div>
     `;
