@@ -71,7 +71,7 @@ function renderHoodies() {
           <p class="card-text-custom">${hoodie.description}</p>
           <div class="price-box">$${hoodie.price} MXN</div>
           <button class="btn-brava-action" style="display: none;">COMPRAR</button>
-          <button class="btn-brava-action btn-agregar-carrito">AGREGAR AL CARRITO</button>
+          <button class="btn-brava-action btn-agregar-carrito">DETALLES</button>
         </div>
       </div>
     `;

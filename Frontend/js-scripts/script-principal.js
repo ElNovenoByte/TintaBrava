@@ -43,7 +43,7 @@ function cargarCarruselDinamico() {
                   </div>
                   <div>
                     <div class="fw-bold my-2" style="color: #A4161A; font-size: 1.25rem;">$${producto.price} MXN</div>
-                    <button class="btn btn-dark w-100 rounded-0 aling-self-end btn-brava-action" style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">Agregar al carrito</button>
+                    <button class="btn btn-dark w-100 rounded-0 aling-self-end btn-brava-action" style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">DETALLES</button>
                   </div>
                 </div>
 
