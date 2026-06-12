@@ -14,13 +14,22 @@ public class WebConfig implements WebMvcConfigurer {
     @Value("${file.upload-dir}")
     private String uploadDir;
 
+    @Value("${file.public-path}")
+    private String publicPath;
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // Ruta absoluta a la carpeta de imágenes
         Path rootLocation = Paths.get(uploadDir).toAbsolutePath().normalize();
-        String location = "file:" + rootLocation.toString() + "/";
-        // Mapear la URL /Frontend/imagenes/** a esa carpeta física
-        registry.addResourceHandler("/Frontend/imagenes/**")
-                .addResourceLocations(location);
+
+        System.out.println("=== DEBUG WEBCONFIG ===");
+        System.out.println("Directorio actual Java: " + System.getProperty("user.dir"));
+        System.out.println("uploadDir configurado: " + uploadDir);
+        System.out.println("Sirviendo imágenes desde: " + rootLocation);
+        System.out.println("URL pública: /Frontend/imagenes/**");
+
+        registry.addResourceHandler(publicPath + "/**")
+                .addResourceLocations(rootLocation.toUri().toString());
+
+        System.out.println("Sirviendo imágenes desde: " + rootLocation);
     }
 }
