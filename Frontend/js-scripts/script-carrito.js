@@ -404,6 +404,24 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    btnPagar.addEventListener("click", function() {
+
+    Swal.fire({
+        icon: "success",
+        title: "Pedido realizado",
+        text: "Tu pedido ha sido creado correctamente",
+        confirmButtonText: "Aceptar"
+    }).then(() => {
+
+        localStorage.removeItem("carrito");
+
+        renderizarCarrito();
+
+        window.location.href = "principal.html";
+    });
+
+});
+
     // =========================
     // INICIO
     // =========================
