@@ -95,9 +95,8 @@ function renderizarProducto(producto) {
 
   // Construcción del HTML Principal
   const htmlCompleto = `
-    <div class="col-12 col-md-6 mb-4 mb-md-0">
-      ${breadcrumbHTML}
-      
+    <div> ${breadcrumbHTML} </div>
+    <div class="col-12 col-md-6 mb-4 mb-md-0">      
       <div class="gallery-layout">
         <div class="thumbnail-vertical">
           ${thumbnailsHTML}
