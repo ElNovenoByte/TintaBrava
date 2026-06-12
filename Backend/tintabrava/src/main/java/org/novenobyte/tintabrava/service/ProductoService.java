@@ -30,8 +30,6 @@ public class ProductoService {
 
     //Post
     public Producto createProducto(Producto newProducto){
-        Long skuGenerado = System.currentTimeMillis();
-        newProducto.setSku(skuGenerado);
         return productoRepository.save(newProducto);
     }
 
@@ -67,4 +65,8 @@ public class ProductoService {
         return productoRepository.findById(id);
     }
 
+    //Contar productos
+    public long countProductos() {
+        return productoRepository.count();
+    }
 }
