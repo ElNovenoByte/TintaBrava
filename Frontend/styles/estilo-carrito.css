@@ -231,6 +231,8 @@ body {
     display: flex;
     align-items: baseline;
     gap: 50px;
+    width: 335px;
+    justify-content: space-between;
 }
 
 .titulo-total {
