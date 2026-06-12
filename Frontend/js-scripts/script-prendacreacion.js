@@ -1,106 +1,81 @@
 (() => {
-  'use strict'
+    'use strict';
 
-  // Seleccionamos todos los formularios con validación personalizada
-  const forms = document.querySelectorAll('.needs-validation')
+    const form = document.getElementById('product-form');
+    if (!form) return;
 
-  Array.from(forms).forEach(form => {
-    
-    // ----------------------------------------------------------------
-    // OBJETIVO 1: Validación en tiempo real (campo por campo)
-    // ----------------------------------------------------------------
-    // Seleccionamos todos los campos dentro de este formulario
+    // Validación en tiempo real (Bootstrap)
     const inputs = form.querySelectorAll('input, select, textarea');
-    
     inputs.forEach(input => {
-      // Escuchamos cada vez que el usuario escribe o cambia el valor
-      input.addEventListener('input', () => {
-        // Evaluamos solo el campo actual
-        if (input.checkValidity()) {
-          input.classList.remove('is-invalid');
-          input.classList.add('is-valid');
-        } else {
-          input.classList.remove('is-valid');
-          input.classList.add('is-invalid');
-        }
-      });
+        input.addEventListener('input', () => {
+            if (input.checkValidity()) {
+                input.classList.remove('is-invalid');
+                input.classList.add('is-valid');
+            } else {
+                input.classList.remove('is-valid');
+                input.classList.add('is-invalid');
+            }
+        });
     });
 
-    // ----------------------------------------------------------------
-    // OBJETIVO 2: Envío del formulario y generación de JSON
-    // ----------------------------------------------------------------
-    form.addEventListener('submit', event => {
-      // Detenemos la recarga de la página SIEMPRE, para controlar el envío con JS
-      event.preventDefault();
-      event.stopPropagation();
+    // Envío del formulario
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        event.stopPropagation();
 
-      if (!form.checkValidity()) {
-        // Si hay errores, mostramos las alertas de Bootstrap
-        form.classList.add('was-validated');
-      } else {
+        if (!form.checkValidity()) {
+            form.classList.add('was-validated');
+            return;
+        }
 
-        // Si todo es válido, procedemos a crear el JSON
-      
-        // 1. Obtenemos los valores usando document.getElementById()
-        const nombre = document.getElementById('form-nombre').value;
-        const precio = document.getElementById('form-precio').value;
-        const categoria = document.getElementById('form-categoria').value;
-        const subcategoria = document.getElementById('form-subcategoria').value;
-        const descripcion = document.getElementById('form-descripcion').value;
-        const tallaXs = document.getElementById('form-xs').value;
-        const tallaS = document.getElementById('form-s').value;
-        const tallaM = document.getElementById('form-m').value;
-        const tallaL = document.getElementById('form-l').value;
-        const tallaXl = document.getElementById('form-xl').value;
-
-        // 2. Generamos las rutas de las imágenes
+        // Validar que se hayan seleccionado 3 imágenes
         const img1 = document.getElementById('imagen-1');
         const img2 = document.getElementById('imagen-2');
         const img3 = document.getElementById('imagen-3');
+        if (!img1.files[0] || !img2.files[0] || !img3.files[0]) {
+            alert('Debes seleccionar las 3 imágenes del producto.');
+            return;
+        }
 
-        // Función para extraer el nombre del archivo y construir la ruta solicitada
-        const obtenerRutaImagen = (input, numeroImagen) => {
-          if (input.files && input.files[0]) {
-            const nombreCompleto = input.files[0].name.trim(); 
-            
-            // Encontramos la posición del último punto en el nombre del archivo
-            const ultimoPunto = nombreCompleto.lastIndexOf('.');
-            
-            // Extraemos el nombre base y la extensión por separado
-            const nombreArchivo = nombreCompleto.substring(0, ultimoPunto);
-            const extension = nombreCompleto.substring(ultimoPunto + 1);
-            
-            // Retornamos la ruta con la estructura solicitada
-            return `/${categoria}/${subcategoria}/${nombreArchivo}-${numeroImagen}.${extension}`;
-          }
-          return null;
-        };
+        // Obtener valores del formulario
+        const nombre = document.getElementById('form-nombre').value.trim();
+        const precio = parseFloat(document.getElementById('form-precio').value);
+        const idCategoria = parseInt(document.getElementById('form-categoria').value);
+        const idSubCategoria = parseInt(document.getElementById('form-subcategoria').value);
+        const descripcion = document.getElementById('form-descripcion').value.trim();
 
-        // 3. Construimos el objeto product
-        const product = {
-          nombre: nombre,
-          precio: precio,
-          categoria: categoria,
-          subcategoria: subcategoria,
-          descripcion: descripcion,
-          tallaXs: tallaXs,
-          tallaS: tallaS,
-          tallaM: tallaM,
-          tallaL: tallaL,
-          tallaXl: tallaXl,
-          imagen1: obtenerRutaImagen(img1, 1),
-          imagen2: obtenerRutaImagen(img2, 2),
-          imagen3: obtenerRutaImagen(img3, 3)
-        };
+        // Preparar FormData con los datos
+        const formData = new FormData();
+        formData.append('nombreProducto', nombre);
+        formData.append('precio', precio);
+        formData.append('descripcion', descripcion);
+        formData.append('idCategoria', idCategoria);
+        formData.append('idSubCategoria', idSubCategoria);
+        formData.append('imagen1', img1.files[0]);
+        formData.append('imagen2', img2.files[0]);
+        formData.append('imagen3', img3.files[0]);
 
-        // 4. Convertimos a JSON y mostramos en consola
-        const jsonFinal = JSON.stringify(product, null, 2);
-        console.log("Datos listos para enviar a la base de datos:");
-        console.log(jsonFinal);
-        // console.log(img1.files);
+        // Enviar al backend
+        try {
+            const response = await fetch('http://localhost:8080/api/productos/post/nuevo-producto', {
+                method: 'POST',
+                body: formData
+            });
 
-        // (Aquí es donde más adelante agregarías el código para mandar el JSON a tu servidor)
-      }
-    }, false)
-  })
-})()
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Error ${response.status}: ${errorText}`);
+            }
+
+            const data = await response.json();
+            alert('Producto creado correctamente');
+            console.log('Respuesta del servidor:', data);
+            form.reset();
+            form.classList.remove('was-validated');
+            inputs.forEach(i => i.classList.remove('is-valid', 'is-invalid'));
+        } catch (error) {
+            console.error('Error al crear producto:', error);
+            alert('Error al crear el producto. Revisa la consola para más detalles.');
+        }
+    });
+})();
