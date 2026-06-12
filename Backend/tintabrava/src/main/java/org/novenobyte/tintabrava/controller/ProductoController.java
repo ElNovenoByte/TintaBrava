@@ -86,6 +86,13 @@ public class ProductoController {
             @RequestParam("imagen2") MultipartFile imagen2,
             @RequestParam("imagen3") MultipartFile imagen3) {
 
+        // Logs de evaluacion 1
+        System.out.println("=== ENTRÓ A createProducto ===");
+        System.out.println("nombreProducto = " + nombreProducto);
+        System.out.println("imagen1 = " + imagen1.getOriginalFilename() + " | size = " + imagen1.getSize());
+        System.out.println("imagen2 = " + imagen2.getOriginalFilename() + " | size = " + imagen2.getSize());
+        System.out.println("imagen3 = " + imagen3.getOriginalFilename() + " | size = " + imagen3.getSize());
+
         // Validar que las tres imágenes estén presentes
         if (imagen1.isEmpty() || imagen2.isEmpty() || imagen3.isEmpty()) {
             return ResponseEntity.badRequest().body("Debe subir tres imágenes.");
@@ -124,9 +131,16 @@ public class ProductoController {
 
         // Construir la estructura de carpetas: productos/{categoriaPlural}/{categoriaSingular}-{subcategoriaNombre}/{sku}
         String subCategoriaNombreCarpeta = subNombre.equals("series/comics") ? "series-comics" : subNombre;
-        String carpeta = catNombre + "/" + catNombre + "-" + subCategoriaNombreCarpeta; // + "/" + sku;
-        String subPath = "productos/" + carpeta; // ruta relativa dentro de uploadDir
 
+        String carpeta = catNombre + "/"
+                + catNombre + "-" + subCategoriaNombreCarpeta + "/"
+                + sku;
+
+        String subPath = "productos/" + carpeta;
+
+        System.out.println("=== DEBUG PRODUCTO ===");
+        System.out.println("SKU generado: " + sku);
+        System.out.println("subPath generado: " + subPath);
         // Guardar las imágenes y obtener las rutas
         try {
             String ruta1 = fileStorageService.saveImage(imagen1, subPath, sku + "-1");
