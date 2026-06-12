@@ -32,28 +32,33 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
     }
 
     // Si todo es válido, conectar con la API
-    if (valido) {
-        fetch(`http://localhost:8080/api/usuarios/get/${encodeURIComponent(correo.value.trim())}`)
+  if (valido) {
+    fetch(`http://localhost:8080/api/usuarios/get/${encodeURIComponent(correo.value.trim())}`)
         .then(response => {
             if (response.ok) {
                 return response.json();
             } else {
                 mostrarError(correo, errorCorreo, "Correo no registrado.");
+                return null;
             }
         })
         .then(data => {
             if (data) {
-                if (data.correo === correo.value.trim()) {
-                    // Si el correo coincide
+
+                // Verificar correo y contraseña
+                if (
+                    data.correo === correo.value.trim() &&
+                    data.contrasena === password.value.trim()
+                ) {
                     window.location.href = "../interfaces/principal.html";
                 } else {
-                    // Si no son iguales
-                    mostrarError(correo, errorCorreo, "Correo no registrado.");
+                    mostrarError(password, errorPassword, "Contraseña incorrecta.");
                 }
+
             }
         })
         .catch(error => {
-            mostrarError(correo, errorCorreo, "Correo no registado.");
+            mostrarError(correo, errorCorreo, "Correo no registrado.");
             console.error(error);
         });
     }
