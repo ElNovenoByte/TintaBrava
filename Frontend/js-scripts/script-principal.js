@@ -43,7 +43,12 @@ function cargarCarruselDinamico() {
                   </div>
                   <div>
                     <div class="fw-bold my-2" style="color: #A4161A; font-size: 1.25rem;">$${producto.price} MXN</div>
-                    <button class="btn btn-dark w-100 rounded-0 aling-self-end btn-brava-action" style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">DETALLES</button>
+                    <button 
+  class=\"btn btn-dark w-100 rounded-0 btn-brava-action\" 
+  style=\"font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;\"
+  data-id=\"${producto.id}\">
+  DETALLES
+</button>
                   </div>
                 </div>
 
@@ -56,4 +61,26 @@ function cargarCarruselDinamico() {
   }
 
   carruselContainer.innerHTML = htmlContenido;
+
+  // Listener para los botones DETALLES del carrusel en la pagina principal
+document.querySelectorAll('.btn-brava-action').forEach(btn => {
+  btn.addEventListener('click', function () {
+    const id = parseInt(this.getAttribute('data-id'));
+    const producto = productostintabrava.find(p => p.id === id);
+    if (!producto) return;
+
+    // Transformar al formato que espera prendadetalle.html
+    const productoDetalle = {
+      nombreProducto: producto.name,
+      precio: producto.price,
+      descripcion: producto.description,
+      imagen1: producto.image_front,
+      imagen2: producto.image_back,
+      imagen3: producto.image_back
+    };
+
+    localStorage.setItem('productoDetalle', JSON.stringify(productoDetalle));
+    window.location.href = '../interfaces/prendadetalle.html';
+  });
+});
 }
