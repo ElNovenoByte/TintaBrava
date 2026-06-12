@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    // Referencias a elementos clave del DOM para manipulación dinámica
+    // Referencias a elementos clave del DOM
     const listaItems = document.getElementById("lista-items");
     const montoTotalHTML = document.getElementById("monto-total");
     const btnPagar = document.getElementById("btn-pagar");
@@ -11,13 +11,15 @@ document.addEventListener("DOMContentLoaded", function() {
     const bootstrapModal = new bootstrap.Modal(modalElemento);
     const btnModalOK = document.getElementById("btn-modal-ok");
 
-    // Variables de control global de la sesión del carrito
+    // Variables de control
     let itemSeleccionadoParaEliminar = null;
     let nombreProductoAEliminar = null;
+    let idProductoAEliminar = null;
     let productosEnCarrito = [];
 
-    // ========== FUNCIÓN NORMALIZADORA ==========
-    // Convierte cualquier producto (formato antiguo o nuevo API) a un objeto uniforme
+    // =========================
+    // NORMALIZAR PRODUCTO
+    // =========================
     function normalizarProducto(prod) {
         return {
             id: prod.idProducto || prod.id,
@@ -28,33 +30,56 @@ document.addEventListener("DOMContentLoaded", function() {
             subcategory: prod.idSubCategoria?.nombre || prod.subcategory,
             image_front: prod.imagen1 || prod.image_front,
             image_back: prod.imagen2 || prod.image_back,
-            urlimagenes: prod.urlimagenes || [prod.imagen1, prod.imagen2, prod.imagen3].filter(Boolean),
+            urlimagenes:
+                prod.urlimagenes ||
+                [prod.imagen1, prod.imagen2, prod.imagen3].filter(Boolean),
             cantidad: prod.cantidad || 1,
-            talla: prod.talla || "N/A",
-            colorSeleccionado: prod.colorSeleccionado || "N/A"
+
+            seleccionado:
+                prod.seleccionado !== undefined
+                    ? prod.seleccionado
+                    : true
         };
     }
 
-    // Función para obtener el estado actual del carrito desde localStorage y normalizarlo
+    // =========================
+    // OBTENER CARRITO
+    // =========================
     function obtenerCarrito() {
-        const rawCarrito = JSON.parse(localStorage.getItem('carrito')) || [];
-        productosEnCarrito = rawCarrito.map(prod => normalizarProducto(prod));
+        const rawCarrito =
+            JSON.parse(localStorage.getItem("carrito")) || [];
+
+        productosEnCarrito =
+            rawCarrito.map(prod => normalizarProducto(prod));
     }
 
-    // Función para actualizar el estado del carrito en localStorage (se guarda normalizado)
+    // =========================
+    // ACTUALIZAR STORAGE
+    // =========================
     function actualizarLocalStorage() {
-        // Guardamos los productos ya normalizados, pero sin perder el formato original si es necesario
-        localStorage.setItem('carrito', JSON.stringify(productosEnCarrito));
+        localStorage.setItem(
+            "carrito",
+            JSON.stringify(productosEnCarrito)
+        );
     }
 
-    // Función principal para renderizar el carrito en la interfaz de usuario
+    // =========================
+    // RENDERIZAR CARRITO
+    // =========================
     function renderizarCarrito() {
+
         obtenerCarrito();
-        listaItems.innerHTML = ""; // Limpia contenedor para evitar duplicados
+
+        listaItems.innerHTML = "";
 
         if (productosEnCarrito.length === 0) {
+
             contenedorCarritoActivo.style.display = "none";
             seccionVacía.style.display = "block";
+
+            montoTotalHTML.innerText = "$0.00";
+            btnPagar.disabled = true;
+
             return;
         }
 
@@ -62,46 +87,100 @@ document.addEventListener("DOMContentLoaded", function() {
         seccionVacía.style.display = "none";
 
         productosEnCarrito.forEach((producto) => {
+
             const itemDiv = document.createElement("div");
+
             itemDiv.className = "item-producto";
-            itemDiv.setAttribute("data-nombre", producto.name);
             itemDiv.setAttribute("data-precio-base", producto.price);
             itemDiv.setAttribute("data-id", producto.id);
 
-            const subtotalItem = producto.price * producto.cantidad;
+            const subtotalItem =
+                producto.price * producto.cantidad;
 
             itemDiv.innerHTML = `
                 <div class="bloque-izquierdo">
-                    <input type="checkbox" class="check-producto" checked>
+                    <input
+                        type="checkbox"
+                        class="check-producto"
+                        ${producto.seleccionado ? "checked" : ""}
+                    >
+
                     <a href="../interfaces/prendadetalle.html" class="link-producto">
-                        <img src="${producto.image_front}" class="imagen-cuadro" alt="${producto.name}" style="width:80px; height:80px; object-fit:cover; border-radius:4px;" onerror="this.src='https://via.placeholder.com/400x400?text=No+Image'">
+                        <img
+                            src="${producto.image_front}"
+                            class="imagen-cuadro"
+                            alt="${producto.name}"
+                            style="width:80px;height:80px;object-fit:cover;border-radius:4px;"
+                            onerror="this.src='https://via.placeholder.com/400x400?text=No+Image'"
+                        >
                     </a>
                 </div>
 
                 <div class="bloque-centro">
-                    <a class="nombre-producto link-producto" href="../interfaces/prendadetalle.html">${producto.name}</a>
-                    <a class="descripcion-producto link-producto" href="../interfaces/prendadetalle.html"> 
+                    <a
+                        class="nombre-producto link-producto"
+                        href="../interfaces/prendadetalle.html"
+                    >
+                        ${producto.name}
+                    </a>
+
+                    <a
+                        class="descripcion-producto link-producto"
+                        href="../interfaces/prendadetalle.html"
+                    >
                         ${producto.description || "Descripción no disponible"}
                     </a>
                 </div>
 
                 <div class="bloque-derecho">
+
                     <div class="control-cantidad">
-                        <span class="texto-etiqueta">Cantidad</span>
+
+                        <span class="texto-etiqueta">
+                            Cantidad
+                        </span>
+
                         <div class="opciones-cantidad">
-                            <span class="link-eliminar">Eliminar</span>
+
+                            <span class="link-eliminar">
+                                Eliminar
+                            </span>
+
                             <div class="grupo-contador">
-                                <button class="btn-menos">-</button>
-                                <input type="text" class="input-numero" value="${producto.cantidad}" readonly>
-                                <button class="btn-mas">+</button>
+
+                                <button class="btn-menos">
+                                    -
+                                </button>
+
+                                <input
+                                    type="text"
+                                    class="input-numero"
+                                    value="${producto.cantidad}"
+                                    readonly
+                                >
+
+                                <button class="btn-mas">
+                                    +
+                                </button>
+
                             </div>
+
                         </div>
+
                     </div>
-                    
+
                     <div class="control-precio">
-                        <span class="texto-etiqueta">Precio</span>
-                        <p class="precio-texto">$${subtotalItem.toFixed(2)}</p>
+
+                        <span class="texto-etiqueta">
+                            Precio
+                        </span>
+
+                        <p class="precio-texto">
+                            $${subtotalItem.toFixed(2)}
+                        </p>
+
                     </div>
+
                 </div>
             `;
 
@@ -111,104 +190,222 @@ document.addEventListener("DOMContentLoaded", function() {
         calcularTotales();
     }
 
-    // Función para calcular el total acumulado de los productos seleccionados en el carrito
+    // =========================
+    // CALCULAR TOTALES
+    // =========================
     function calcularTotales() {
+
         let totalAcumulado = 0;
-        const items = document.querySelectorAll(".item-producto");
+
+        const items =
+            document.querySelectorAll(".item-producto");
 
         items.forEach(function(item) {
-            const checkbox = item.querySelector(".check-producto");
-            const precioBase = parseFloat(item.getAttribute("data-precio-base"));
-            const inputCantidad = item.querySelector(".input-numero");
-            const precioTextoHTML = item.querySelector(".precio-texto");
-            
-            let cantidadActual = parseInt(inputCantidad.value);
-            let subtotalItem = cantidadActual * precioBase;
-            
-            precioTextoHTML.innerText = "$" + subtotalItem.toFixed(2);
+
+            const checkbox =
+                item.querySelector(".check-producto");
+
+            const precioBase =
+                parseFloat(
+                    item.getAttribute("data-precio-base")
+                );
+
+            const inputCantidad =
+                item.querySelector(".input-numero");
+
+            const precioTextoHTML =
+                item.querySelector(".precio-texto");
+
+            const cantidadActual =
+                parseInt(inputCantidad.value);
+
+            const subtotalItem =
+                cantidadActual * precioBase;
+
+            precioTextoHTML.innerText =
+                "$" + subtotalItem.toFixed(2);
 
             if (checkbox.checked) {
+
                 totalAcumulado += subtotalItem;
-                item.classList.remove("item-desactivado");
+
+                item.classList.remove(
+                    "item-desactivado"
+                );
+
             } else {
-                item.classList.add("item-desactivado");
+
+                item.classList.add(
+                    "item-desactivado"
+                );
             }
         });
 
-        montoTotalHTML.innerText = "$" + totalAcumulado.toFixed(2);
-        btnPagar.disabled = (totalAcumulado === 0);
+        montoTotalHTML.innerText =
+            "$" + totalAcumulado.toFixed(2);
+
+        btnPagar.disabled =
+            totalAcumulado === 0;
     }
 
-    // Listener de eventos para la interacción con los productos listados en el carrito
+    // =========================
+    // CLICK EN BOTONES
+    // =========================
     listaItems.addEventListener("click", function(evento) {
-        const item = evento.target.closest(".item-producto");
+
+        const item =
+            evento.target.closest(".item-producto");
+
         if (!item) return;
 
-        const nombreProd = item.getAttribute("data-nombre");
-        // Buscamos la referencia del objeto dentro de nuestro arreglo local de memoria
-        const productoEnArreglo = productosEnCarrito.find(p => p.name === nombreProd);
+        const idProducto =
+            parseInt(item.getAttribute("data-id"));
+
+        const productoEnArreglo =
+            productosEnCarrito.find(
+                p => p.id === idProducto
+            );
 
         if (!productoEnArreglo) return;
 
-        // Incrementar unidades (+)
+        // Aumentar cantidad
         if (evento.target.classList.contains("btn-mas")) {
+
             productoEnArreglo.cantidad++;
+
             actualizarLocalStorage();
-            renderizarCarrito(); // Re-renderiza para actualizar vistas y precios de forma limpia
+            renderizarCarrito();
         }
 
-        // Decrementar unidades (-)
+        // Disminuir cantidad
         else if (evento.target.classList.contains("btn-menos")) {
+
             if (productoEnArreglo.cantidad > 1) {
+
                 productoEnArreglo.cantidad--;
+
                 actualizarLocalStorage();
                 renderizarCarrito();
+
             } else {
-                // Si intenta bajar de 1, levanta el modal de confirmación
-                itemSeleccionadoParaEliminar = item;
-                nombreProductoAEliminar = nombreProd;
+
+                itemSeleccionadoParaEliminar =
+                    item;
+
+                nombreProductoAEliminar =
+                    productoEnArreglo.name;
+
+                idProductoAEliminar =
+                    idProducto;
+
                 bootstrapModal.show();
             }
         }
 
-        // Quitar producto (Eliminar)
-        else if (evento.target.classList.contains("link-eliminar")) {
-            itemSeleccionadoParaEliminar = item;
-            nombreProductoAEliminar = nombreProd;
+        // Eliminar producto
+        else if (
+            evento.target.classList.contains(
+                "link-eliminar"
+            )
+        ) {
+
+            itemSeleccionadoParaEliminar =
+                item;
+
+            nombreProductoAEliminar =
+                productoEnArreglo.name;
+
+            idProductoAEliminar =
+                idProducto;
+
             bootstrapModal.show();
         }
     });
 
-    // Escuchador para el botón de confirmación del modal de eliminación
+    // =========================
+    // CONFIRMAR ELIMINACIÓN
+    // =========================
     btnModalOK.addEventListener("click", function() {
-        if (nombreProductoAEliminar && itemSeleccionadoParaEliminar) {
-            // Animación visual de desvanecimiento
-            itemSeleccionadoParaEliminar.style.transition = "opacity 0.3s ease";
-            itemSeleccionadoParaEliminar.style.opacity = "0";
-            
+
+        if (
+            idProductoAEliminar &&
+            itemSeleccionadoParaEliminar
+        ) {
+
+            itemSeleccionadoParaEliminar.style.transition =
+                "opacity 0.3s ease";
+
+            itemSeleccionadoParaEliminar.style.opacity =
+                "0";
+
             setTimeout(function() {
-                // Filtrar el arreglo para remover el producto (por nombre normalizado)
-                productosEnCarrito = productosEnCarrito.filter(p => p.name !== nombreProductoAEliminar);
+
+                productosEnCarrito =
+                    productosEnCarrito.filter(
+                        p =>
+                            p.id !==
+                            idProductoAEliminar
+                    );
+
                 actualizarLocalStorage();
-                
-                // Limpiar variables de control
-                itemSeleccionadoParaEliminar = null;
-                nombreProductoAEliminar = null;
-                
-                // Volver a evaluar el estado general de la vista
+
+                itemSeleccionadoParaEliminar =
+                    null;
+
+                nombreProductoAEliminar =
+                    null;
+
+                idProductoAEliminar =
+                    null;
+
                 renderizarCarrito();
+
             }, 300);
         }
+
         bootstrapModal.hide();
     });
 
-    // Escuchador para el cambio de estado de los checkboxes para recalcular totales en tiempo real
+    // =========================
+    // CHECKBOXES
+    // =========================
     listaItems.addEventListener("change", function(evento) {
-        if (evento.target.classList.contains("check-producto")) {
+
+        if (
+            evento.target.classList.contains(
+                "check-producto"
+            )
+        ) {
+
+            const item =
+                evento.target.closest(
+                    ".item-producto"
+                );
+
+            const idProducto =
+                parseInt(
+                    item.getAttribute("data-id")
+                );
+
+            const producto =
+                productosEnCarrito.find(
+                    p => p.id === idProducto
+                );
+
+            if (producto) {
+
+                producto.seleccionado =
+                    evento.target.checked;
+
+                actualizarLocalStorage();
+            }
+
             calcularTotales();
         }
     });
 
-    // Renderizamos el carrito al cargar la página para mostrar el estado actual de los productos seleccionados
+    // =========================
+    // INICIO
+    // =========================
     renderizarCarrito();
 });
