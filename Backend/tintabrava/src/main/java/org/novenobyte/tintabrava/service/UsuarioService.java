@@ -5,16 +5,22 @@ import org.novenobyte.tintabrava.model.User;
 import org.novenobyte.tintabrava.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.novenobyte.tintabrava.model.Cliente;
+import org.novenobyte.tintabrava.repository.ClienteRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
+    private final ClienteRepository clienteRepository;
 
     @Autowired
-    public UsuarioService(UsuarioRepository usuarioRepository){
+    public UsuarioService(UsuarioRepository usuarioRepository,
+                          ClienteRepository clienteRepository){
         this.usuarioRepository = usuarioRepository;
+        this.clienteRepository = clienteRepository;
     }
 
     // Get
@@ -30,14 +36,25 @@ public class UsuarioService {
 
     // Post
     // Crear usuario
+    @Transactional
     public User createUser(User newUser){
+
         if(usuarioRepository.existsByCorreo(newUser.getCorreo())){
             throw new RuntimeException("Email already exist");
         }
+
         if(usuarioRepository.existsByTelefono(newUser.getTelefono())){
             throw new RuntimeException("Phone already exist");
         }
-        return usuarioRepository.save(newUser);
+
+        User usuarioGuardado = usuarioRepository.save(newUser);
+
+        Cliente cliente = new Cliente();
+        cliente.setUsuario(usuarioGuardado);
+
+        clienteRepository.save(cliente);
+
+        return usuarioGuardado;
     }
 
     // Put

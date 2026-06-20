@@ -50,6 +50,10 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
                     data.correo === correo.value.trim() &&
                     data.contrasena === password.value.trim()
                 ) {
+                    localStorage.setItem(
+                        "usuarioLogueado",
+                        JSON.stringify(data)
+                    )
                     window.location.href = "../interfaces/principal.html";
                 } else {
                     mostrarError(password, errorPassword, "Contraseña incorrecta.");

@@ -49,7 +49,7 @@ public class DetallesPedidoController {
 
 
     @PutMapping("/update/detalles-pedido/{id}")
-    public ResponseEntity<DetallesPedido> updateDetallesPedido(@RequestBody DetallesPedido newDetallesPedido,@PathVariable Long id){
+    public ResponseEntity<DetallesPedido> updateDetallesPedido(@RequestBody DetallesPedido newDetallesPedido, @PathVariable Long id){
         try {
             detallesPedidoService.updateDetallesPedido(newDetallesPedido, id);
             return ResponseEntity.noContent().build();
