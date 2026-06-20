@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "usuarios")
@@ -25,6 +26,7 @@ public class User {
     @Column(name = "telefono", nullable = false, unique = true, length = 10)//No puede ser null, no puede repetirse
     private String telefono;
 
+    @JsonIgnore
     @Column(name = "contrasena", nullable = false, length = 20) //No puede ser null
     private String contrasena;
 

@@ -72,6 +72,19 @@ public class PedidoController {
         }
     }
 
+    // EndPoint especifico para el carrito
+    @PostMapping("/cliente/{idCliente}")
+    public ResponseEntity<Pedido> createPedido(
+            @PathVariable Long idCliente) {
+
+        Pedido pedido =
+                pedidoService.crearPedidoCliente(idCliente);
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(pedido);
+    }
+
 
 
 

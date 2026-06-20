@@ -67,6 +67,18 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         });
     }
 });
+
+//Buscar el cliente asociado al login 
+const responseCliente = await fetch(
+    `http://localhost:8080/api/clientes/usuario/${idUsuario}`
+);
+
+const cliente = await responseCliente.json();
+
+const idCliente = cliente.idCliente;
+
+
+
 // Función reutilizable para mostrar errores
 function mostrarError(input, mensaje, texto) {
     input.classList.add("input-error");
