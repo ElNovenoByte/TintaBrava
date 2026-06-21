@@ -30,11 +30,13 @@ public class UsuarioController {
 
     @GetMapping("/get/{correo}")
     public ResponseEntity<User> getUserByCorreo(@PathVariable String correo){
-        try {
-            return ResponseEntity.ok(usuarioService.getUserByCorreo(correo));
-        } catch (UserNotFoundException e){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        User user = usuarioService.getUserByCorreo(correo);
+
+        if (user == null) {
+            return ResponseEntity.notFound().build();
         }
+
+        return ResponseEntity.ok(user);
     }
 
     //Post

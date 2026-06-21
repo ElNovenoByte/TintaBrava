@@ -39,6 +39,12 @@ public class UsuarioService {
     @Transactional
     public User createUser(User newUser){
 
+        System.out.println("=== DEBUG USER ===");
+        System.out.println("Nombre: " + newUser.getNombre());
+        System.out.println("Correo: " + newUser.getCorreo());
+        System.out.println("Telefono: " + newUser.getTelefono());
+        System.out.println("Contrasena: " + newUser.getContrasena());
+
         if(usuarioRepository.existsByCorreo(newUser.getCorreo())){
             throw new RuntimeException("Email already exist");
         }
