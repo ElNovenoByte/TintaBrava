@@ -41,15 +41,11 @@ public class PedidoController {
 
     // Mapear el metodo createPedido
     @PostMapping("/crear-pedido")
-    public ResponseEntity<Pedido> createpedido(@RequestBody Pedido newPedido){
-        Pedido pedidoById = pedidoService.findById(newPedido.getIdPedido());
-        if (pedidoById != null){
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }else {
-            return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(pedidoService.createPedido(newPedido));
-        }
+    public ResponseEntity<Pedido> createPedido(
+            @RequestBody Pedido newPedido){
 
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(pedidoService.createPedido(newPedido));
     }
 
     // Mapear metodo para actualizar pedido
@@ -74,6 +70,19 @@ public class PedidoController {
         }catch (PedidoNotFound e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    // EndPoint especifico para el carrito
+    @PostMapping("/cliente/{idCliente}")
+    public ResponseEntity<Pedido> createPedido(
+            @PathVariable Long idCliente) {
+
+        Pedido pedido =
+                pedidoService.crearPedidoCliente(idCliente);
+
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(pedido);
     }
 
 

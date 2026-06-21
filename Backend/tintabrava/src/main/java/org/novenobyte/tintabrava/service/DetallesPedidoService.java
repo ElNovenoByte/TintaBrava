@@ -30,7 +30,7 @@ public class DetallesPedidoService {
     }
 
     // Crear detalle de pedido (post)
-    public DetallesPedido createDetallesPedido( DetallesPedido newDetallesPedido){
+    public DetallesPedido createDetallesPedido(DetallesPedido newDetallesPedido){
         return detallesPedidoRepository.save(newDetallesPedido);
     }
 
@@ -39,8 +39,8 @@ public class DetallesPedidoService {
     public DetallesPedido updateDetallesPedido(DetallesPedido detallesPedido, Long id){
         return detallesPedidoRepository.findById(id)
                 .map(detallesPedidoData ->{
-                    detallesPedidoData.setIdPedido(detallesPedido.getIdPedido());
-                    detallesPedidoData.setIdProducto(detallesPedido.getIdProducto());
+                    detallesPedidoData.setPedido(detallesPedido.getPedido());
+                    detallesPedidoData.setProducto(detallesPedido.getProducto());
                     detallesPedidoData.setCantidadProducto(detallesPedido.getCantidadProducto());
                     detallesPedidoData.setTotal(detallesPedido.getTotal());
                     return detallesPedidoRepository.save(detallesPedidoData);

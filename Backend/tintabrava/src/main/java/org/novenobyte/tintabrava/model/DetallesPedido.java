@@ -13,22 +13,26 @@ public class DetallesPedido {
 
     @ManyToOne
     @JoinColumn(name = "id_pedido", nullable = false)
-    private Pedido idPedido;
+    private Pedido pedido;
 
     @ManyToOne
     @JoinColumn(name = "id_producto", nullable = false)
-    private Producto idProducto;
+    private Producto producto;
 
     @Column(name = "cantidad_producto", nullable = false)
     private Integer cantidadProducto;
 
-    @Column(name = "total", nullable = true)
+    @Column(name = "total")
     private Double total;
 
-    public DetallesPedido(Long idDetalle, Pedido idPedido, Producto idProducto, Integer cantidadProducto, Double total) {
+    public DetallesPedido(Long idDetalle,
+                          Pedido pedido,
+                          Producto producto,
+                          Integer cantidadProducto,
+                          Double total) {
         this.idDetalle = idDetalle;
-        this.idPedido = idPedido;
-        this.idProducto = idProducto;
+        this.pedido = pedido;
+        this.producto = producto;
         this.cantidadProducto = cantidadProducto;
         this.total = total;
     }
@@ -44,20 +48,20 @@ public class DetallesPedido {
         this.idDetalle = idDetalle;
     }
 
-    public Pedido getIdPedido() {
-        return idPedido;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setIdPedido(Pedido idPedido) {
-        this.idPedido = idPedido;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
-    public Producto getIdProducto() {
-        return idProducto;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setIdProducto(Producto idProducto) {
-        this.idProducto = idProducto;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     public Integer getCantidadProducto() {
@@ -80,8 +84,8 @@ public class DetallesPedido {
     public String toString() {
         return "DetallesPedido{" +
                 "idDetalle=" + idDetalle +
-                ", idPedido=" + idPedido +
-                ", idProducto=" + idProducto +
+                ", pedido=" + pedido +
+                ", producto=" + producto +
                 ", cantidadProducto=" + cantidadProducto +
                 ", total=" + total +
                 '}';

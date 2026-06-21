@@ -37,19 +37,20 @@ public class DetallesPedidoController {
     }
 
     @PostMapping("/crear/detalle-pedido")
-    public ResponseEntity<DetallesPedido>  createDetallesPedido(@RequestBody DetallesPedido newDetallesPedido){
-        DetallesPedido detallesPedidoById = detallesPedidoService.findById(newDetallesPedido.getIdDetalle());
-        if (detallesPedidoById != null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }else{
-            return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(detallesPedidoService.createDetallesPedido(newDetallesPedido));
-        }
+    public ResponseEntity<DetallesPedido> createDetallesPedido(
+            @RequestBody DetallesPedido newDetallesPedido){
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(
+                        detallesPedidoService.createDetallesPedido(
+                                newDetallesPedido
+                        )
+                );
     }
 
 
     @PutMapping("/update/detalles-pedido/{id}")
-    public ResponseEntity<DetallesPedido> updateDetallesPedido(@RequestBody DetallesPedido newDetallesPedido,@PathVariable Long id){
+    public ResponseEntity<DetallesPedido> updateDetallesPedido(@RequestBody DetallesPedido newDetallesPedido, @PathVariable Long id){
         try {
             detallesPedidoService.updateDetallesPedido(newDetallesPedido, id);
             return ResponseEntity.noContent().build();

@@ -404,6 +404,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    //Boton de pagar
     btnPagar.addEventListener("click", function() {
 
     Swal.fire({

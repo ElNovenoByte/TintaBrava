@@ -13,11 +13,11 @@ public class Cliente {
     @Column(name = "id_cliente")
     private Long idCliente;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)// Indicamos que es FK. Va a venir desde Usuario
+    @OneToOne(fetch = FetchType.EAGER)// Indicamos que es FK. Va a venir desde Usuario
     @JoinColumn(name = "id_usuario", nullable = false, unique = true)
     private User usuario;
 
-    @Column(name = "direccion", nullable = false)
+    @Column(name = "direccion")
     private String direccion;
 
     // Indicamos Onetomany porque este lado es el que solo se puede UNO.

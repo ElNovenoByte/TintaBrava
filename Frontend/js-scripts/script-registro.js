@@ -28,7 +28,13 @@ const errorPassword = document.getElementById("errorPassword");
 const errorPasswordConfirm = document.getElementById("errorPasswordConfirm");
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("algo");
 
+    if (btn) {
+        btn.addEventListener("click", () => {});
+    }
+});
 
 
 
@@ -197,6 +203,8 @@ else {
         telefono: telefono.value.trim(),
         contrasena: passwordInput.value.trim()
     };
+    console.log("PASSWORD:", passwordInput);
+    console.log("VALUE:", passwordInput?.value);
 
     // Llamada al backend
     fetch("http://localhost:8080/api/usuarios/post/create", {
@@ -289,5 +297,7 @@ togglePasswordconfirm.addEventListener('mouseup', ocultarContrasenaconfirm);
 
 // También se puede ocultar la contraseña si el usuario mueve el mouse fuera del área del botón mientras lo mantiene presionado.
 togglePasswordconfirm.addEventListener('mouseleave', ocultarContrasenaconfirm);
+
+
 
 

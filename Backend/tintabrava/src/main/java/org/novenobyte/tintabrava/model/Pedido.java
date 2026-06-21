@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -27,7 +26,7 @@ public class Pedido {
     private LocalDate fechaEntrega;
 
     //Mandamos esta a detallesPedidos
-    @OneToMany(mappedBy = "idPedido", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<DetallesPedido> detallesPedidos = new ArrayList<>();
 
     public Pedido(Long idPedido, Cliente cliente, LocalDateTime fechaPedido, LocalDate fechaEntrega) {

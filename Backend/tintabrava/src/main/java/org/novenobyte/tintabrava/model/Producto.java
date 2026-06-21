@@ -43,7 +43,7 @@ public class Producto {
     private String imagen3;
 
     //Mandamos esta ID a Producto
-    @OneToMany(mappedBy = "idProducto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<DetallesPedido> detallesPedido = new ArrayList<>();
 
     public Producto(Long idProducto, Category idCategoria, SubCategory idSubCategoria, String nombreProducto, String descripcion, Double precio, Long sku, String imagen1, String imagen2, String imagen3, List<DetallesPedido> detallesPedido) {
