@@ -35,7 +35,7 @@ function agregarAlCarrito(producto) {
   alert(`🛒 Agregado al carrito:\n${nombreMostrar}\nTalla: ${tallaSeleccionada}\nPrecio: $${parseFloat(producto.precio).toFixed(2)}`);
 
   // FUNCIONALIDAD 4: Redirección automática a la página principal tras dar clic en "Aceptar"
-  window.location.href = 'principal.html';
+  // window.location.href = 'principal.html';
 }
 
 // ========== ESCAPE HTML (seguridad) ==========

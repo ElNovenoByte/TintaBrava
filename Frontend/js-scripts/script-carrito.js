@@ -111,7 +111,8 @@ document.addEventListener("DOMContentLoaded", function() {
                             class="imagen-cuadro"
                             alt="${producto.name}"
                             style="width:80px;height:80px;object-fit:cover;border-radius:4px;"
-                            onerror="this.src='https://via.placeholder.com/400x400?text=No+Image'"
+                            
+                            onerror="this.src='../imagenes/logo/TintaBrava_SinFondo.webp'"
                         >
                     </a>
                 </div>
@@ -404,24 +405,182 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    //Boton de pagar
-    btnPagar.addEventListener("click", function() {
+    
+    // BOTÓN PAGAR
+    // =========================
+    btnPagar.addEventListener("click", async function () {
 
-    Swal.fire({
-        icon: "success",
-        title: "Pedido realizado",
-        text: "Tu pedido ha sido creado correctamente",
-        confirmButtonText: "Aceptar"
-    }).then(() => {
+        try {
 
-        localStorage.removeItem("carrito");
+            // Obtener usuario logueado
+            const usuarioLogueado = JSON.parse(
+                localStorage.getItem("usuarioLogueado")
+            );
 
-        renderizarCarrito();
+            if (!usuarioLogueado) {
 
-        window.location.href = "principal.html";
+                Swal.fire({
+                    icon: "error",
+                    title: "Debes iniciar sesión",
+                    text: "Inicia sesión para realizar tu compra"
+                });
+
+                return;
+            }
+
+            const idUsuario = usuarioLogueado.idUsuario;
+
+            // Buscar cliente asociado
+            const responseCliente = await fetch(
+                `http://localhost:8080/api/clientes/usuario/${idUsuario}`
+            );
+
+            if (!responseCliente.ok) {
+                throw new Error("No se encontró el cliente");
+            }
+
+            const cliente = await responseCliente.json();
+
+            const idCliente = cliente.idCliente;
+
+            // =========================
+            // VALIDAR DIRECCIÓN
+            // =========================
+            if (!cliente.direccion || cliente.direccion.trim() === "") {
+
+                const { value: direccion } = await Swal.fire({
+                    title: "Dirección de entrega",
+                    input: "text",
+                    inputLabel: "Ingresa tu dirección",
+                    inputPlaceholder: "Ej. Av. Insurgentes 123",
+                    confirmButtonText: "Guardar",
+                    allowOutsideClick: false,
+                    inputValidator: (value) => {
+                        if (!value) {
+                            return "Debes ingresar una dirección";
+                        }
+                    }
+                });
+
+                const responseUpdate = await fetch(
+                    `http://localhost:8080/api/clientes/${idCliente}`,
+                    {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            direccion: direccion
+                        })
+                    }
+                );
+
+                if (!responseUpdate.ok) {
+                    throw new Error(
+                        "No se pudo guardar la dirección"
+                    );
+                }
+
+                cliente.direccion = direccion;
+            }
+
+            // =========================
+            // CREAR PEDIDO
+            // =========================
+            const responsePedido = await fetch(
+                `http://localhost:8080/api/pedidos/cliente/${idCliente}`,
+                {
+                    method: "POST"
+                }
+            );
+
+            if (!responsePedido.ok) {
+                throw new Error("No se pudo crear el pedido");
+            }
+
+            const pedido = await responsePedido.json();
+
+            const idPedido = pedido.idPedido;
+
+            console.log("Pedido creado:", idPedido);
+
+            // Productos seleccionados
+            const productosSeleccionados =
+                productosEnCarrito.filter(
+                    p => p.seleccionado
+                );
+
+            // Guardar cada detalle
+            for (const producto of productosSeleccionados) {
+
+                const detallePedido = {
+
+                    pedido: {
+                        idPedido: idPedido
+                    },
+
+                    producto: {
+                        idProducto: producto.id
+                    },
+
+                    cantidadProducto: producto.cantidad,
+
+                    total:
+                        producto.price *
+                        producto.cantidad
+                };
+
+                const responseDetalle = await fetch(
+                    "http://localhost:8080/api/detalles-pedido/crear/detalle-pedido",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify(
+                            detallePedido
+                        )
+                    }
+                );
+
+                if (!responseDetalle.ok) {
+
+                    throw new Error(
+                        `Error guardando producto ${producto.name}`
+                    );
+                }
+            }
+
+            // Vaciar carrito
+            localStorage.removeItem("carrito");
+
+            renderizarCarrito();
+
+            Swal.fire({
+                icon: "success",
+                title: "Pedido realizado",
+                text: "Tu pedido ha sido creado correctamente",
+                confirmButtonText: "Aceptar"
+            }).then(() => {
+
+                window.location.href =
+                    "principal.html";
+            });
+
+        } catch (error) {
+
+            console.error(error);
+
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: error.message
+            });
+        }
     });
-
-});
 
     // =========================
     // INICIO
