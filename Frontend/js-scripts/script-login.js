@@ -101,7 +101,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             localStorage.setItem("clienteLogueado", JSON.stringify(cliente));
         }
 
-
+        window.location.href = "../interfaces/principal.html";
     } catch (error) {
         console.error("Error en login:", error);
         mostrarError(correo, errorCorreo, "Error de conexión con el servidor.");
