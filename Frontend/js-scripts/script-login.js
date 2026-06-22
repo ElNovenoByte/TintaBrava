@@ -1,13 +1,15 @@
-document.getElementById("loginForm").addEventListener("submit", function (e) {
+document.getElementById("loginForm").addEventListener("submit", async function (e) {
     e.preventDefault();
+
     let valido = true;
 
     const correo = document.getElementById("correo");
     const password = document.getElementById("passwordInput");
+
     const errorCorreo = document.getElementById("errorCorreo");
     const errorPassword = document.getElementById("errorPassword");
 
-    // Limpiar errores anteriores
+    // Reset errores
     [correo, password].forEach(input => input.classList.remove("input-error"));
 
     [errorCorreo, errorPassword].forEach(msg => {
@@ -15,110 +17,101 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         msg.textContent = "";
     });
 
-    // Validar correo
+    // Validación correo
     const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (correo.value.trim() === "") {
+    if (!correo.value.trim()) {
         mostrarError(correo, errorCorreo, "El correo es obligatorio.");
         valido = false;
     } else if (!regexCorreo.test(correo.value.trim())) {
-        mostrarError(correo, errorCorreo, "Ingresa un correo válido. Ejemplo: usuario@correo.com");
+        mostrarError(correo, errorCorreo, "Ingresa un correo válido.");
         valido = false;
     }
 
-    // Validar contraseña
-    if (password.value.trim() === "") {
+    // Validación password
+    if (!password.value.trim()) {
         mostrarError(password, errorPassword, "La contraseña es obligatoria.");
         valido = false;
     }
 
     if (!valido) return;
 
-    // LOGIN FLOW
-    fetch(`http://localhost:8080/api/usuarios/get/${encodeURIComponent(correo.value.trim())}`)
-        .then(response => {
+    try {
+        console.log("🔵 Iniciando login...");
 
-            if (!response.ok) {
-                throw new Error("Usuario no encontrado");
-            }
+        const response = await fetch(
+            `http://localhost:8080/api/usuarios/get/${encodeURIComponent(correo.value.trim())}`
+        );
 
-            return response.json();
-        })
-        .then(data => {
+        console.log("Status backend:", response.status);
 
-            console.log("USER FROM BACKEND:", data);
+        if (!response.ok) {
+            mostrarError(correo, errorCorreo, "Usuario no encontrado.");
+            return;
+        }
 
-            // SEGURIDAD BÁSICA: evitar null
-            if (!data) {
-                mostrarError(correo, errorCorreo, "Usuario no encontrado.");
-                return;
-            }
+        const data = await response.json();
+        console.log("Usuario recibido:", data);
 
-            // Validación de contraseña
-            if (
-                data.correo === correo.value.trim() &&
-                data.contrasena === password.value.trim()
-            ) {
+        if (!data || !data.correo) {
+            mostrarError(correo, errorCorreo, "Usuario inválido.");
+            return;
+        }
 
-                localStorage.setItem(
-                    "usuarioLogueado",
-                    JSON.stringify(data)
-                );
+        //  Validación segura de credenciales
+        const correoInput = correo.value.trim().toLowerCase();
+        const correoBD = data.correo.trim().toLowerCase();
 
-                window.location.href = "../interfaces/principal.html";
+        const passInput = password.value.trim();
+        const passBD = (data.contrasena || "").trim();
 
+        if (correoInput !== correoBD) {
+            mostrarError(correo, errorCorreo, "Correo incorrecto.");
+            return;
+        }
+
+        if (passInput !== passBD) {
+            mostrarError(password, errorPassword, "Contraseña incorrecta.");
+            return;
+        }
+
+        console.log("✔ Login correcto");
+
+        //  Obtener cliente (si existe)
+        let cliente = null;
+
+        try {
+            const resCliente = await fetch(
+                `http://localhost:8080/api/clientes/usuario/${data.idUsuario}`
+            );
+
+            if (resCliente.ok) {
+                cliente = await resCliente.json();
             } else {
-                mostrarError(password, errorPassword, "Contraseña incorrecta.");
+                console.warn("Cliente no encontrado, pero login continúa");
             }
+        } catch (err) {
+            console.warn("Error obteniendo cliente:", err);
+        }
 
-        })
-        .catch(error => {
-            console.error(error);
-            mostrarError(correo, errorCorreo, "Error al iniciar sesión.");
-        });
+        //  Guardar sesión
+        localStorage.setItem("usuarioLogueado", JSON.stringify(data));
 
+        if (cliente) {
+            localStorage.setItem("clienteLogueado", JSON.stringify(cliente));
+        }
+
+
+    } catch (error) {
+        console.error("Error en login:", error);
+        mostrarError(correo, errorCorreo, "Error de conexión con el servidor.");
+    }
 });
 
 
-// Función reutilizable para mostrar errores
+// Función reutilizable
 function mostrarError(input, mensaje, texto) {
     input.classList.add("input-error");
     mensaje.textContent = texto;
     mensaje.style.display = "block";
-}
-
-
-// Toggle mostrar/ocultar contraseña
-const togglePassword = document.getElementById('togglePassword');
-const passwordInput = document.getElementById('passwordInput');
-
-if (togglePassword && passwordInput) {
-
-    function mostrarContrasena() {
-        passwordInput.type = 'text';
-        togglePassword.src = '../imagenes/iconos/ojo_abierto.png';
-    }
-
-    function ocultarContrasena() {
-        passwordInput.type = 'password';
-        togglePassword.src = '../imagenes/iconos/ojo_cerrado.png';
-    }
-
-    togglePassword.addEventListener('mousedown', mostrarContrasena);
-    togglePassword.addEventListener('mouseup', ocultarContrasena);
-    togglePassword.addEventListener('mouseleave', ocultarContrasena);
-}
-
-
-// Botón Volver
-const btnVolver = document.getElementById('btnVolver');
-
-if (btnVolver) {
-    btnVolver.addEventListener('click', function () {
-        if (document.referrer) {
-            window.history.back();
-        } else {
-            window.location.href = "../interfaces/principal.html";
-        }
-    });
 }
