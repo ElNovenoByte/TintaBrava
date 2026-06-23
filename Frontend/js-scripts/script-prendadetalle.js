@@ -34,8 +34,8 @@ function agregarAlCarrito(producto) {
   const nombreMostrar = producto.nombreProducto || producto.name;
   alert(`🛒 Agregado al carrito:\n${nombreMostrar}\nTalla: ${tallaSeleccionada}\nPrecio: $${parseFloat(producto.precio).toFixed(2)}`);
 
-  // FUNCIONALIDAD 4: Redirección automática a la página principal tras dar clic en "Aceptar"
-  // window.location.href = 'principal.html';
+  // FUNCIONALIDAD 4: Redirección automática a la página index tras dar clic en "Aceptar"
+  // window.location.href = 'index.html';
 }
 
 // ========== ESCAPE HTML (seguridad) ==========
@@ -86,14 +86,14 @@ function renderizarProducto(producto) {
   const breadcrumbHTML = `
     <nav aria-label="breadcrumb" class="text-start mb-3">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="principal.html" class="text-dark text-decoration-none">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="index.html" class="text-dark text-decoration-none">Inicio</a></li>
         <li class="breadcrumb-item"><a href="${linkCategoria}" class="text-dark text-decoration-none text-capitalize">${escapeHTML(categoriaNombre)}</a></li>
         <li class="breadcrumb-item active" aria-current="page">${escapeHTML(nombreMostrar)}</li>
       </ol>
     </nav>
   `;
 
-  // Construcción del HTML Principal
+  // Construcción del HTML Index
   const htmlCompleto = `
     <div> ${breadcrumbHTML} </div>
     <div class="col-12 col-md-6 mb-4 mb-md-0">      
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
       container.innerHTML = `
         <div class="col-12 text-center">
           <h3>No se encontró el producto</h3>
-          <a href="principal.html" class="btn btn-dark mt-3">Volver a la tienda</a>
+          <a href="index.html" class="btn btn-dark mt-3">Volver a la tienda</a>
         </div>
       `;
     }

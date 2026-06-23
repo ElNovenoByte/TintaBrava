@@ -100,7 +100,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         if (cliente) {
             localStorage.setItem("clienteLogueado", JSON.stringify(cliente));
         }
-        window.location.href = "../interfaces/principal.html";
+        window.location.href = "../interfaces/index.html";
 
     } catch (error) {
         console.error("Error en login:", error);

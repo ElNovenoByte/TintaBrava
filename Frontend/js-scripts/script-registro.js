@@ -283,7 +283,7 @@ if (btnVolver) {
             window.history.back();
         } else {
             // Si entraron directo por URL
-            window.location.href = "../interfaces/principal.html";
+            window.location.href = "../interfaces/index.html";
         }
     });
 }

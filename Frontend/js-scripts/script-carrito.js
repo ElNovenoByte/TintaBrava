@@ -567,7 +567,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }).then(() => {
 
                 window.location.href =
-                    "principal.html";
+                    "index.html";
             });
 
         } catch (error) {
