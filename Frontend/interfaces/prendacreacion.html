@@ -34,7 +34,7 @@
             <div class="container my-0">
                 <div class="row justify-content-center my-0 py-0">
                     <div class="col-11 col-md-8 ps-0 pe-0 my-0">
-                        <form class="needs-validation" novalidate="">
+                        <form id="product-form" class="needs-validation" novalidate="">
                             <div class="my-3"><label class="form-label fw-semibold" for="form-nombre">Nombre de la prenda *</label><input class="border rounded-2 form-control mt-0" type="text" id="form-nombre" placeholder="Player negra con logo de ..." required="" maxlength="50" minlength="5" name="productName">
                                 <div class="invalid-feedback">
                                     <p>Introduce un nombre con una longitud de 5 a 50 caracteres.</p>
@@ -47,9 +47,9 @@
                             </div>
                             <div class="my-3"><label class="form-label fw-semibold" for="form-categoria">Categoría *</label><select class="form-select" id="form-categoria" required="" name="productCategory">
                                     <option value="" selected="">- Selecciona una categoría -</option>
-                                    <option value="playera">Playera</option>
-                                    <option value="hoodie">Hoodie</option>
-                                    <option value="gorra">Gorra</option>
+                                    <option value="1">Playera</option>
+                                    <option value="2">Hoodie</option>
+                                    <option value="3">Gorra</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     <p>Selecciona una categoría.</p>
@@ -58,9 +58,9 @@
                             <div class="my-3"><label class="form-label fw-semibold" for="form-subcategoria">Subcategoría *</label><select class="form-select" id="form-subcategoria" required="" name="productSubcategory">
                                     <option value="" selected="">- Selecciona una subcategoría -</option>
                                     <!-- <option value="personalizable">Personalizable</option> -->
-                                    <option value="deportiva">Bandas</option>
-                                    <option value="seriesComics">Series/Cómics</option>
-                                    <option value="otros">Otros</option>
+                                    <option value="1">Bandas</option>
+                                    <option value="2">Series/Cómics</option>
+                                    <option value="3">Otros</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     <p>Selecciona una subcategoría.</p>
