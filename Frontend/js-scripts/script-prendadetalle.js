@@ -29,6 +29,10 @@ function agregarAlCarrito(producto) {
   }
 
   localStorage.setItem('carrito', JSON.stringify(carrito));
+
+   // Avisamos al carrito-sidebar (script-carrito.js) que el carrito cambió,
+  // para que se vuelva a pintar sin necesidad de refrescar la página.
+  document.dispatchEvent(new CustomEvent('carritoActualizado'));
   
   // FUNCIONALIDAD 3: Alerta con la talla incluida
   const nombreMostrar = producto.nombreProducto || producto.name;

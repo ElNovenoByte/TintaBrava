@@ -1,0 +1,55 @@
+<!-- ========== CARRITO SIDEBAR (Offcanvas) ========== -->
+<div class="offcanvas offcanvas-end carrito-offcanvas" tabindex="-1" id="carritoSidebar" aria-labelledby="carritoSidebarLabel">
+
+    <div class="offcanvas-header">
+        <div class="cabecera-pagina d-flex align-items-center gap-2 m-0">
+            <h1 class="titulo-pagina m-0" id="carritoSidebarLabel">CARRITO</h1>
+            <img src="../imagenes/iconos/carrito.png" alt="Icono Carrito" class="icono-carrito-texto" style="height: 1em; width: auto;">
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body">
+
+        <div id="contenedor-carrito-activo">
+            <div class="lista-items" id="lista-items">
+                </div>
+
+            <div class="seccion-pago" id="seccion-pago">
+                <div class="resumen-total">
+                    <span class="titulo-total">Total</span>
+                    <span class="monto-total" id="monto-total">$0.00</span>
+                </div>
+                <div class="contenedor-btn-pagar">
+                    <button class="btn-pagar" id="btn-pagar">PROCEDER AL PAGO</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="seccion-vacía" id="seccion-vacía" style="display: none;">
+            <p class="mensaje-vacío">Tu carrito está vacío</p>
+            <a href="index.html" class="link-regresar" style="text-decoration: none;">
+                <button class="btn-regresar">Regresar a la tienda</button>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal de confirmación de eliminación (vive fuera del offcanvas, a nivel raíz, para evitar conflictos de z-index/foco entre Bootstrap modal y offcanvas) -->
+<div class="modal fade" id="modalConfirmacion" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content contenedor-modal">
+            <div class="modal-header border-0 pb-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body py-4">
+                <p class="texto-modal">Estás a punto de eliminar este producto del carrito.</p>
+            </div>
+            <div class="modal-footer border-0 pt-0 justify-content-center gap-2">
+                <button type="button" class="btn-modal btn-confirmar" id="btn-modal-ok">De acuerdo</button>
+                <button type="button" class="btn-modal btn-cancelar" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

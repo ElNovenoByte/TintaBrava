@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("carritoSidebarListo", function() {
 
     // Referencias a elementos clave del DOM
     const listaItems = document.getElementById("lista-items");
@@ -10,6 +10,17 @@ document.addEventListener("DOMContentLoaded", function() {
     const modalElemento = document.getElementById("modalConfirmacion");
     const bootstrapModal = new bootstrap.Modal(modalElemento);
     const btnModalOK = document.getElementById("btn-modal-ok");
+
+     // Referencia al offcanvas del carrito. Bootstrap mantiene una trampa de
+    // foco activa mientras el offcanvas está abierto; si se abre un Swal
+    // (u otro modal) encima sin cerrarlo primero, ambos compiten por el foco
+    // del teclado y los inputs del Swal no reciben texto hasta que el
+    // offcanvas se cierra (ej. con Escape).
+    const offcanvasCarritoElemento = document.getElementById("carritoSidebar");
+    const offcanvasCarrito = offcanvasCarritoElemento
+        ? (bootstrap.Offcanvas.getInstance(offcanvasCarritoElemento) || new bootstrap.Offcanvas(offcanvasCarritoElemento))
+        : null;
+
 
     // Variables de control
     let itemSeleccionadoParaEliminar = null;
@@ -447,6 +458,13 @@ document.addEventListener("DOMContentLoaded", function() {
             // VALIDAR DIRECCIÓN
             // =========================
             if (!cliente.direccion || cliente.direccion.trim() === "") {
+                
+                // Cerramos el offcanvas del carrito ANTES de mostrar el Swal.
+                // Si se queda abierto, Bootstrap retiene el foco del teclado
+                // y el input de SweetAlert2 no recibe lo que se escribe.
+                if (offcanvasCarrito) {
+                    offcanvasCarrito.hide();
+                }
 
                 const { value: direccion } = await Swal.fire({
                     title: "Dirección de entrega",
@@ -581,6 +599,16 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
     });
+
+      // =========================
+    // SINCRONIZACIÓN CON OTRAS PÁGINAS/SCRIPTS
+    // =========================
+    // Otros scripts (ej. script-prendadetalle.js) modifican el carrito en
+    // localStorage directamente desde fuera de este closure. Cuando lo hacen,
+    // disparan el evento "carritoActualizado" en document para que el sidebar
+    // se vuelva a pintar sin necesidad de refrescar la página.
+    document.addEventListener("carritoActualizado", renderizarCarrito);
+
 
     // =========================
     // INICIO
